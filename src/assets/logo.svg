@@ -1,0 +1,10 @@
+<svg width="200" height="40" viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="40" rx="4" fill="#b91c1c"/>
+  <path d="M20 8H35C36.1046 8 37 8.89543 37 10V30C37 31.1046 36.1046 32 35 32H20C18.8954 32 18 31.1046 18 30V10C18 8.89543 18.8954 8 20 8Z" fill="white"/>
+  <path d="M45 12H160C161.105 12 162 12.8954 162 14V26C162 27.1046 161.105 28 160 28H45C43.8954 28 43 27.1046 43 26V14C43 12.8954 43.8954 12 45 12Z" fill="white"/>
+  <path d="M50 18H155V22H50V18Z" fill="#b91c1c"/>
+  <path d="M170 8H180C181.105 8 182 8.89543 182 10V30C182 31.1046 181.105 32 180 32H170C168.895 32 168 31.1046 168 30V10C168 8.89543 168.895 8 170 8Z" fill="white"/>
+  <path d="M23 14L25 20H30L26 24L27 30L23 26L19 30L20 24L16 20H21L23 14Z" fill="#b91c1c"/>
+  <path d="M172 14L174 20H179L175 24L176 30L172 26L168 30L169 24L165 20H170L172 14Z" fill="#b91c1c"/>
+  <text x="65" y="22" font-family="Arial" font-weight="bold" font-size="10" fill="#b91c1c">МОЯ АВТОКОМПАНИЯ</text>
+</svg>
