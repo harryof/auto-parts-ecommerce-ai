@@ -1,0 +1,1091 @@
+import pistonImg from "../img/поршни.jpg";
+import klapanMercedes from "../img/комплект клапанов mercedes.jpg";
+import GrmChain from "../img/цепь грм ауди.jpg";
+import clutch from "../img/сцепление ауди.jpg";
+import val from "../img/вал корданный toyota.jpg";
+import fluidagb from "../img/масло акпп bmw.jpg";
+import koylovers from "../img/подвеска_bmw.jpg";
+import lavers_mercedes from "../img/рычаги_мерседес.jpg";
+import springs_audi from "../img/пружины_audiA6.jpg";
+import kolodki_audi from "../img/колодки_ауди.jpg";
+import disk_toyota from "../img/тормозные_диски_тойота.jpg";
+import brakes_fluid_bmw from "../img/масло_тормоза_bmw.jpg";
+import tail from "../img/спойлер_бмв.jpeg";
+import baggage from "../img/багажник_на_крышу.jpg";
+import bodykit from "../img/обвес.jpg";
+import fara from "../img/fara_audi.jpg";
+import tumanki from "../img/tumanki_camry.jpg";
+import svet from "../img/svet_bmw.jpg";
+import vihlop from "../img/vihlop.jpg";
+import turbo from "../img/turbo.jpg";
+import chip from "../img/chip.jpg";
+import wax from "../img/wax.jpg";
+import polish from "../img/polirol.jpg";
+import shampoo from "../img/schampoo.jpg";
+import lether from "../img/lether.jpg";
+import salon from "../img/salon.jpg";
+import vozduh from "../img/vozduh.jpg";
+import motor_oil_bmw from "../img/motor_oil_bmw.jpg";
+import motor_oil_mercedes from "../img/motor_oil_mercedes.jpg";
+import motor_oil_audi from "../img/motor_oil_audi.jpg";
+
+export interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  images?: string[];        // gallery images array
+  brand: string;
+  inStock: boolean;
+  categoryId: string;
+  subCategoryId: string;
+  isHit?: boolean;
+  isNew?: boolean;
+  isRecommended?: boolean;
+  oldPrice?: number | null;
+  article?: string;
+  rating?: number;
+  reviewCount?: number;
+  color?: string;
+  serviceType?: "maintenance" | "repair"; // ТО or Ремонт
+  compatibleCars?: string[];
+  specifications?: Record<string, string>;
+}
+
+export const products: Product[] = [
+
+  // ══════════════════════════════════════════════════════
+  // Автозапчасти — Двигатель
+  // ══════════════════════════════════════════════════════
+  {
+    id: "piston-kit-bmw-m54",
+    name: "Поршневой комплект BMW M54",
+    description:
+      "Полный комплект поршней с кольцами и пальцами для двигателя BMW M54 объёмом 2.5 и 3.0 л. Изготовлен из кованого алюминиевого сплава с сниженным весом и улучшенной термостойкостью. Обеспечивает точный зазор и минимальный расход масла.",
+    price: 45000,
+    image: pistonImg,
+    images: [pistonImg, klapanMercedes],
+    brand: "BMW",
+    inStock: true,
+    categoryId: "spare-parts",
+    subCategoryId: "engine-parts",
+    isHit: true,
+    isNew: false,
+    isRecommended: true,
+    article: "11257501567",
+    rating: 4.8,
+    reviewCount: 34,
+    serviceType: "repair",
+    compatibleCars: ["BMW M54 2.5", "BMW M54 3.0", "BMW E46", "BMW E39"],
+    specifications: {
+      "Оригинальный артикул": "11257501567",
+      "Тип": "Поршневой комплект",
+      "Материал": "Кованый алюминий",
+      "Диаметр поршня": "84 / 89.6 мм",
+      "Страна производства": "Германия",
+      "Комплектность": "4 поршня + кольца + пальцы",
+      "Совместимость": "BMW M54",
+    },
+  },
+  {
+    id: "valve-kit-mercedes-m271",
+    name: "Комплект клапанов Mercedes M271",
+    description:
+      "Комплект впускных и выпускных клапанов для двигателя Mercedes-Benz M271. Материал — хром-кремниевая сталь, повышенная жёсткость и стойкость к нагару. 16 клапанов в комплекте.",
+    price: 35000,
+    image: klapanMercedes,
+    images: [klapanMercedes],
+    brand: "Mercedes",
+    inStock: true,
+    categoryId: "spare-parts",
+    subCategoryId: "engine-parts",
+    isHit: false,
+    isNew: true,
+    isRecommended: true,
+    article: "2710530026",
+    rating: 4.6,
+    reviewCount: 18,
+    serviceType: "repair",
+    compatibleCars: ["Mercedes C180", "Mercedes C200", "Mercedes E200"],
+    specifications: {
+      "Артикул": "2710530026",
+      "Тип": "Набор клапанов (16 шт)",
+      "Материал": "Хром-кремниевая сталь",
+      "Диаметр тарелки впускного": "28 мм",
+      "Диаметр тарелки выпускного": "24 мм",
+      "Мотор": "M271 1.8 Kompressor",
+    },
+  },
+  {
+    id: "timing-chain-audi-2.0t",
+    name: "Цепь ГРМ Audi 2.0 TFSI",
+    description:
+      "Полный комплект цепи ГРМ с натяжителем, успокоителем и звёздочками для Audi 2.0 TFSI EA888. Устраняет цепной треск на холодном запуске.",
+    price: 28000,
+    image: GrmChain,
+    images: [GrmChain],
+    brand: "Audi",
+    inStock: true,
+    categoryId: "spare-parts",
+    subCategoryId: "engine-parts",
+    isHit: true,
+    isNew: false,
+    isRecommended: false,
+    article: "06H109467N",
+    rating: 4.7,
+    reviewCount: 52,
+    serviceType: "repair",
+    compatibleCars: ["Audi A4 2.0T", "Audi A6 2.0T", "VW Passat 2.0T", "Skoda Superb 2.0T"],
+    specifications: {
+      "Артикул": "06H109467N",
+      "Тип": "Комплект ГРМ",
+      "Количество звеньев": "152",
+      "Включает": "Цепь, натяжитель, успокоитель, шестерни",
+      "Применение": "EA888 2.0 TFSI",
+    },
+  },
+
+  // ══════════════════════════════════════════════════════
+  // Автозапчасти — Трансмиссия
+  // ══════════════════════════════════════════════════════
+  {
+    id: "clutch-kit-audi-a4",
+    name: "Комплект сцепления Audi A4",
+    description:
+      "Полный комплект сцепления для Audi A4 B8 с двигателем 2.0 TDI. Диск, корзина и выжимной подшипник. Увеличенный ресурс по сравнению с OEM.",
+    price: 28000,
+    image: clutch,
+    images: [clutch],
+    brand: "Audi",
+    inStock: true,
+    categoryId: "spare-parts",
+    subCategoryId: "transmission",
+    isNew: true,
+    article: "LUK-624307200",
+    rating: 4.5,
+    reviewCount: 27,
+    serviceType: "repair",
+    compatibleCars: ["Audi A4 2.0 TDI B8", "Audi A5 2.0 TDI"],
+    specifications: {
+      "Артикул": "LUK-624307200",
+      "Тип": "Комплект сцепления",
+      "Включает": "Диск, корзина, подшипник",
+      "Диаметр диска": "228 мм",
+      "Применение": "Audi 2.0 TDI 6-МКПП",
+    },
+  },
+  {
+    id: "driveshaft-toyota-camry",
+    name: "Карданный вал Toyota Camry",
+    description:
+      "Передний карданный вал для Toyota Camry V70 2018–2024. Оригинальное качество, балансировка на заводе.",
+    price: 32000,
+    image: val,
+    images: [val],
+    brand: "Toyota",
+    inStock: true,
+    categoryId: "spare-parts",
+    subCategoryId: "transmission",
+    article: "37140-33230",
+    rating: 4.4,
+    reviewCount: 11,
+    serviceType: "repair",
+    compatibleCars: ["Toyota Camry 2018-2024 V70"],
+    specifications: {
+      "Артикул": "37140-33230",
+      "Тип": "Карданный вал",
+      "Позиция": "Передний",
+      "Применение": "Camry XV70 2.0/2.5",
+    },
+  },
+  {
+    id: "gearbox-oil-bmw",
+    name: "Масло для АКПП BMW ATF",
+    description:
+      "Синтетическое масло для автоматической коробки передач BMW 8HP. 1 литр. Допуск BMW 83 22 2 305 397.",
+    price: 2500,
+    image: fluidagb,
+    images: [fluidagb],
+    brand: "BMW",
+    inStock: true,
+    categoryId: "spare-parts",
+    subCategoryId: "transmission",
+    isHit: true,
+    article: "83222305397",
+    rating: 4.9,
+    reviewCount: 88,
+    serviceType: "maintenance",
+    specifications: {
+      "Артикул": "83222305397",
+      "Тип": "ATF синтетика",
+      "Объём": "1 л",
+      "Допуск": "BMW 83 22 2 305 397",
+      "Вязкость": "ATF JWS 3309",
+    },
+  },
+
+  // ══════════════════════════════════════════════════════
+  // Автозапчасти — Подвеска
+  // ══════════════════════════════════════════════════════
+  {
+    id: "shock-absorbers-bmw-3",
+    name: "Комплект амортизаторов BMW 3 Series",
+    description:
+      "Газо-масляные амортизаторы Bilstein B4 для BMW 3 Series F30 2019–2022. Комплект 4 шт. Обеспечивают оптимальный баланс комфорта и управляемости.",
+    price: 42000,
+    image: koylovers,
+    images: [koylovers],
+    brand: "BMW",
+    inStock: true,
+    categoryId: "spare-parts",
+    subCategoryId: "suspension",
+    isHit: true,
+    article: "BILSTEIN-22268826",
+    rating: 4.9,
+    reviewCount: 61,
+    serviceType: "repair",
+    compatibleCars: ["BMW 3 Series F30 2011-2019", "BMW 3 Series F31"],
+    specifications: {
+      "Артикул": "BILSTEIN-22268826",
+      "Тип": "Газо-масляный",
+      "Комплект": "4 шт (перед + зад)",
+      "Ход сжатия": "156 мм",
+      "Аналог OEM": "33526785779",
+    },
+  },
+  {
+    id: "control-arms-mercedes-c",
+    name: "Рычаги подвески Mercedes C-Class",
+    description:
+      "Комплект передних рычагов подвески для Mercedes W205 C-Class 2018–2022. Усиленная конструкция с запрессованными втулками.",
+    price: 38000,
+    image: lavers_mercedes,
+    images: [lavers_mercedes],
+    brand: "Mercedes",
+    inStock: true,
+    categoryId: "spare-parts",
+    subCategoryId: "suspension",
+    article: "2053302101",
+    rating: 4.6,
+    reviewCount: 22,
+    serviceType: "repair",
+    compatibleCars: ["Mercedes C-Class W205 2014-2021"],
+    specifications: {
+      "Артикул": "2053302101",
+      "Тип": "Поперечный рычаг",
+      "Позиция": "Передняя ось",
+      "Включает": "Рычаг + сайлентблок",
+      "Применение": "W205",
+    },
+  },
+  {
+    id: "springs-audi-a6",
+    name: "Комплект пружин Audi A6",
+    description:
+      "Пружины подвески для Audi A6 C8 2019–2022. Единая высота посадки, соответствуют OEM. Комплект 4 шт.",
+    price: 25000,
+    image: springs_audi,
+    images: [springs_audi],
+    brand: "Audi",
+    inStock: true,
+    categoryId: "spare-parts",
+    subCategoryId: "suspension",
+    article: "4K0411105AB",
+    rating: 4.5,
+    reviewCount: 14,
+    serviceType: "repair",
+    compatibleCars: ["Audi A6 C8 2018-2024"],
+    specifications: {
+      "Артикул": "4K0411105AB",
+      "Тип": "Пружина подвески",
+      "Комплект": "4 шт",
+      "Применение": "Audi A6 C8 2.0 / 3.0",
+    },
+  },
+
+  // ══════════════════════════════════════════════════════
+  // Автозапчасти — Тормоза
+  // ══════════════════════════════════════════════════════
+  {
+    id: "brake-pads-audi-a6",
+    name: "Тормозные колодки Audi A6",
+    description:
+      "Передние тормозные колодки Brembo для Audi A6 C8 2019–2022. Малый шум, минимальная пыль, отличное начальное торможение.",
+    price: 12000,
+    image: kolodki_audi,
+    images: [kolodki_audi],
+    brand: "Audi",
+    inStock: true,
+    categoryId: "spare-parts",
+    subCategoryId: "brake-system",
+    isHit: true,
+    isRecommended: true,
+    article: "BREMBO-P85130",
+    rating: 4.8,
+    reviewCount: 79,
+    serviceType: "maintenance",
+    compatibleCars: ["Audi A6 C8 2018-2024", "Audi A7 C8"],
+    specifications: {
+      "Артикул": "BREMBO-P85130",
+      "Тип": "Передние колодки",
+      "Количество": "4 шт (1 ось)",
+      "Материал фрикционного слоя": "Полуметалл",
+      "Толщина новой колодки": "18.2 мм",
+      "Применение": "Audi A6 C8",
+    },
+  },
+  {
+    id: "brake-discs-toyota-camry",
+    name: "Тормозные диски Toyota Camry",
+    description:
+      "Вентилируемые тормозные диски для Toyota Camry XV70 2018–2022. Диаметр 296 мм. Комплект 2 шт (передняя ось).",
+    price: 15000,
+    image: disk_toyota,
+    images: [disk_toyota],
+    brand: "Toyota",
+    inStock: true,
+    categoryId: "spare-parts",
+    subCategoryId: "brake-system",
+    article: "43512-06180",
+    rating: 4.7,
+    reviewCount: 43,
+    serviceType: "repair",
+    compatibleCars: ["Toyota Camry XV70 2018-2024"],
+    specifications: {
+      "Артикул": "43512-06180",
+      "Диаметр": "296 мм",
+      "Тип": "Вентилируемый",
+      "Толщина": "28 мм",
+      "Комплект": "2 шт (передняя ось)",
+    },
+  },
+  {
+    id: "brake-fluid-bmw",
+    name: "Тормозная жидкость BMW DOT4",
+    description: "Тормозная жидкость класса DOT4 для BMW. Объём 0.5 л. Температура кипения 260 °C сухая / 165 °C увлажнённая.",
+    price: 1500,
+    image: brakes_fluid_bmw,
+    images: [brakes_fluid_bmw],
+    brand: "BMW",
+    inStock: true,
+    categoryId: "spare-parts",
+    subCategoryId: "brake-system",
+    isHit: false,
+    article: "83130492666",
+    rating: 4.7,
+    reviewCount: 120,
+    serviceType: "maintenance",
+    specifications: {
+      "Артикул": "83130492666",
+      "Класс": "DOT 4",
+      "Объём": "0.5 л",
+      "Температура кипения (сухая)": "260 °C",
+      "Температура кипения (увл.)": "165 °C",
+    },
+  },
+
+  // ══════════════════════════════════════════════════════
+  // Декор и тюнинг — Обвесы и спойлеры
+  // ══════════════════════════════════════════════════════
+  {
+    id: "spoiler-bmw-m4",
+    name: "Спойлер BMW M4 карбон",
+    description:
+      "Карбоновый спойлер для BMW M4 G82 2020–2024. Сухой карбон, точное повторение форм кузова, увеличивает прижимную силу на 35 кг при 200 км/ч.",
+    price: 65000,
+    image: tail,
+    images: [tail],
+    brand: "BMW",
+    inStock: true,
+    categoryId: "tuning",
+    subCategoryId: "body-kits",
+    isHit: true,
+    article: "TUN-SPL-BMW-M4-G82",
+    rating: 4.9,
+    reviewCount: 17,
+    color: "Чёрный (карбон)",
+    compatibleCars: ["BMW M4 G82 2020-2024"],
+    specifications: {
+      "Артикул": "TUN-SPL-BMW-M4-G82",
+      "Материал": "Сухой карбон",
+      "Цвет": "Чёрный (натуральный карбон)",
+      "Прижимная сила": "+35 кг при 200 км/ч",
+      "Крепление": "На штатные точки кузова",
+    },
+  },
+  {
+    id: "roof-rack-mercedes-glc",
+    name: "Багажник на крышу Mercedes GLC",
+    description:
+      "Аэродинамический багажник на крышу для Mercedes GLC X253 2019–2023. Нагрузка до 75 кг. Быстрый монтаж без сверления.",
+    price: 45000,
+    image: baggage,
+    images: [baggage],
+    brand: "Mercedes",
+    inStock: true,
+    categoryId: "tuning",
+    subCategoryId: "body-kits",
+    article: "THULE-7206MBZ",
+    rating: 4.6,
+    reviewCount: 9,
+    compatibleCars: ["Mercedes GLC X253 2015-2022"],
+    specifications: {
+      "Артикул": "THULE-7206MBZ",
+      "Тип": "Багажная система",
+      "Нагрузка": "до 75 кг",
+      "Материал": "Алюминий + сталь",
+      "Крепление": "Без сверления (на рейлинги)",
+    },
+  },
+  {
+    id: "body-kit-audi-rs6",
+    name: "Обвес Audi RS6 Avant",
+    description:
+      "Полный комплект обвеса для Audi A6 C8 в стиле RS6 Avant. Включает передний бампер, задний диффузор, накладки на пороги.",
+    price: 180000,
+    image: bodykit,
+    images: [bodykit],
+    brand: "Audi",
+    inStock: false,
+    oldPrice: 210000,
+    categoryId: "tuning",
+    subCategoryId: "body-kits",
+    article: "TUN-BODY-A6-RS6",
+    rating: 4.8,
+    reviewCount: 5,
+    color: "Чёрный матовый",
+    compatibleCars: ["Audi A6 C8 2018-2024"],
+    specifications: {
+      "Артикул": "TUN-BODY-A6-RS6",
+      "Материал": "Полиуретан",
+      "Цвет": "Чёрный матовый (под окраску)",
+      "Включает": "Передний бампер, задний диффузор, пороги",
+      "Применение": "Audi A6 C8",
+    },
+  },
+
+  // ══════════════════════════════════════════════════════
+  // Декор и тюнинг — Светотехника
+  // ══════════════════════════════════════════════════════
+  {
+    id: "led-headlights-audi-a4",
+    name: "LED фары Audi A4 B9",
+    description:
+      "Комплект LED фар Matrix для Audi A4 B9 2019–2024. Автоматическое управление светом, матричный дальний свет.",
+    price: 85000,
+    image: fara,
+    images: [fara],
+    brand: "Audi",
+    inStock: true,
+    categoryId: "tuning",
+    subCategoryId: "lighting",
+    isNew: true,
+    article: "8W0941035",
+    rating: 4.9,
+    reviewCount: 23,
+    compatibleCars: ["Audi A4 B9 2016-2024"],
+    specifications: {
+      "Артикул": "8W0941035",
+      "Тип": "LED Matrix",
+      "Сторона": "Правая + Левая (комплект)",
+      "Функции": "ДХО, Поворотник, Ближний, Дальний Matrix",
+      "Применение": "A4 B9 рестайл 2019+",
+    },
+  },
+  {
+    id: "fog-lights-toyota-camry",
+    name: "Противотуманные фары Toyota Camry",
+    description:
+      "Комплект светодиодных противотуманных фар для Toyota Camry XV70 2018–2022. Яркость 3000 Лм, 6000K белый свет.",
+    price: 25000,
+    image: tumanki,
+    images: [tumanki],
+    brand: "Toyota",
+    inStock: true,
+    categoryId: "tuning",
+    subCategoryId: "lighting",
+    article: "81210-06242",
+    rating: 4.5,
+    reviewCount: 31,
+    compatibleCars: ["Toyota Camry XV70 2018-2024"],
+    specifications: {
+      "Артикул": "81210-06242",
+      "Тип": "LED ПТФ",
+      "Цветовая температура": "6000 K",
+      "Световой поток": "3000 Лм",
+      "IP класс": "IP67",
+    },
+  },
+  {
+    id: "interior-lighting-bmw",
+    name: "Подсветка салона BMW Ambient",
+    description:
+      "Комплект RGB подсветки салона для BMW 3/4/5 Series с 2018 г. Управление через iDrive, 64 цвета.",
+    price: 15000,
+    image: svet,
+    images: [svet],
+    brand: "BMW",
+    inStock: true,
+    categoryId: "tuning",
+    subCategoryId: "lighting",
+    article: "63312465894",
+    rating: 4.6,
+    reviewCount: 44,
+    compatibleCars: ["BMW 3 Series G20", "BMW 4 Series G22", "BMW 5 Series G30"],
+    specifications: {
+      "Артикул": "63312465894",
+      "Тип": "Ambient LED",
+      "Цвета": "64 цвета RGB",
+      "Управление": "Через iDrive",
+      "Применение": "BMW G20/G22/G30",
+    },
+  },
+
+  // ══════════════════════════════════════════════════════
+  // Декор и тюнинг — Тюнинг двигателя
+  // ══════════════════════════════════════════════════════
+  {
+    id: "chip-tuning-bmw-m4",
+    name: "Чип-тюнинг BMW M4 G82",
+    description:
+      "Программное обеспечение для увеличения мощности BMW M4 G82 S58 до Stage 2. Прирост +90 л.с. / +120 Нм.",
+    price: 45000,
+    image: chip,
+    images: [chip],
+    brand: "BMW",
+    inStock: true,
+    categoryId: "tuning",
+    subCategoryId: "engine-tuning",
+    isHit: true,
+    article: "TUN-ECU-BMW-S58-S2",
+    rating: 5.0,
+    reviewCount: 12,
+    compatibleCars: ["BMW M4 G82 2021-2024", "BMW M3 G80 2021-2024"],
+    specifications: {
+      "Артикул": "TUN-ECU-BMW-S58-S2",
+      "Stage": "2",
+      "Прирост мощности": "+90 л.с.",
+      "Прирост крутящего момента": "+120 Нм",
+      "Мотор": "BMW S58 3.0 BiTurbo",
+      "Метод прошивки": "OBD2 (ISTA)",
+    },
+  },
+  {
+    id: "exhaust-mercedes-c63",
+    name: "Спортивный выхлоп Mercedes C63",
+    description:
+      "Клапанная спортивная выпускная система для Mercedes C63 AMG W205. Нержавеющая сталь 304, диаметр труб 76 мм.",
+    price: 120000,
+    image: vihlop,
+    images: [vihlop],
+    brand: "Mercedes",
+    inStock: true,
+    categoryId: "tuning",
+    subCategoryId: "engine-tuning",
+    isNew: true,
+    article: "TUN-EXH-C63-AMG",
+    rating: 4.8,
+    reviewCount: 8,
+    compatibleCars: ["Mercedes C63 AMG W205 2014-2021"],
+    specifications: {
+      "Артикул": "TUN-EXH-C63-AMG",
+      "Материал": "Нержавеющая сталь 304",
+      "Диаметр труб": "76 мм",
+      "Система": "Полный выхлоп Cat-back",
+      "Клапан": "Электрический, управляется с телефона",
+    },
+  },
+  {
+    id: "turbo-kit-audi-rs3",
+    name: "Турбо-комплект Audi RS3",
+    description:
+      "Комплект для замены турбины Audi RS3 8V с увеличенной крыльчаткой. Stage 2+. Прирост +120 л.с. до 520 л.с.",
+    price: 250000,
+    image: turbo,
+    images: [turbo],
+    brand: "Audi",
+    inStock: false,
+    oldPrice: 280000,
+    categoryId: "tuning",
+    subCategoryId: "engine-tuning",
+    article: "TUN-TURBO-RS3-8V",
+    rating: 4.7,
+    reviewCount: 4,
+    compatibleCars: ["Audi RS3 8V 2015-2020"],
+    specifications: {
+      "Артикул": "TUN-TURBO-RS3-8V",
+      "Stage": "2+",
+      "Базовая мощность": "400 л.с.",
+      "Мощность после": "520 л.с.",
+      "Мотор": "2.5 TFSI EA855",
+    },
+  },
+
+  // ══════════════════════════════════════════════════════
+  // Автокосметика — Уход за кузовом
+  // ══════════════════════════════════════════════════════
+  {
+    id: "car-wax-bmw",
+    name: "Воск для кузова Soft99 Fusso Coat",
+    description:
+      "Фторполимерный воск длительной защиты Soft99 Fusso Coat Speed & Barrier. Защищает ЛКП до 12 месяцев, гидрофобный эффект.",
+    price: 2500,
+    image: wax,
+    images: [wax],
+    brand: "Soft99",
+    inStock: true,
+    categoryId: "auto-chemistry",
+    subCategoryId: "car-care",
+    isHit: true,
+    article: "SOFT99-00391",
+    rating: 4.8,
+    reviewCount: 234,
+    serviceType: "maintenance",
+    specifications: {
+      "Артикул": "SOFT99-00391",
+      "Тип": "Фторполимерный воск",
+      "Защита": "до 12 месяцев",
+      "Объём": "200 г",
+      "Применение": "Все виды ЛКП",
+    },
+  },
+  {
+    id: "polish-mercedes",
+    name: "Полироль SONAX Profiline",
+    description:
+      "Полировальная паста SONAX Profiline для удаления царапин и восстановления блеска. Зернистость 3000.",
+    price: 1800,
+    image: polish,
+    images: [polish],
+    brand: "SONAX",
+    inStock: true,
+    categoryId: "auto-chemistry",
+    subCategoryId: "car-care",
+    article: "SONAX-236300",
+    rating: 4.7,
+    reviewCount: 156,
+    serviceType: "maintenance",
+    specifications: {
+      "Артикул": "SONAX-236300",
+      "Тип": "Полировальная паста",
+      "Зернистость": "3000",
+      "Объём": "250 мл",
+      "Применение": "Все виды ЛКП, ручная/машинная полировка",
+    },
+  },
+  {
+    id: "shampoo-audi",
+    name: "Автошампунь Koch Chemie",
+    description:
+      "Профессиональный нейтральный автошампунь Koch Chemie GS. Концентрат 1:50. Без воска. Объём 1 л.",
+    price: 1200,
+    image: shampoo,
+    images: [shampoo],
+    brand: "Koch Chemie",
+    inStock: true,
+    categoryId: "auto-chemistry",
+    subCategoryId: "car-care",
+    article: "KC-GS-1L",
+    rating: 4.9,
+    reviewCount: 312,
+    serviceType: "maintenance",
+    specifications: {
+      "Артикул": "KC-GS-1L",
+      "Тип": "Автошампунь концентрат",
+      "Разведение": "1:50",
+      "Объём": "1 л",
+      "pH": "Нейтральный (7)",
+    },
+  },
+
+  // ══════════════════════════════════════════════════════
+  // Автокосметика — Уход за салоном
+  // ══════════════════════════════════════════════════════
+  {
+    id: "interior-cleaner-bmw",
+    name: "Очиститель салона GYEON Leather Cleaner",
+    description:
+      "Мягкий очиститель для кожаного салона GYEON Leather Cleaner. Удаляет загрязнения без повреждения натуральной кожи.",
+    price: 1500,
+    image: salon,
+    images: [salon],
+    brand: "GYEON",
+    inStock: true,
+    categoryId: "auto-chemistry",
+    subCategoryId: "interior-care",
+    article: "GYEON-Q2M-LC-500",
+    rating: 4.8,
+    reviewCount: 97,
+    serviceType: "maintenance",
+    specifications: {
+      "Артикул": "GYEON-Q2M-LC-500",
+      "Тип": "Очиститель кожи",
+      "Объём": "500 мл",
+      "pH": "Слабо щелочной",
+      "Применение": "Кожаные сиденья и руль",
+    },
+  },
+  {
+    id: "air-freshener-mercedes",
+    name: "Ароматизатор Creed Aventus",
+    description: "Автомобильный ароматизатор в стиле Creed Aventus. Держатель на дефлектор. Аромат держится до 30 дней.",
+    price: 800,
+    image: vozduh,
+    images: [vozduh],
+    brand: "Drive Fresh",
+    inStock: true,
+    categoryId: "auto-chemistry",
+    subCategoryId: "interior-care",
+    article: "DF-CA-001",
+    rating: 4.4,
+    reviewCount: 67,
+    specifications: {
+      "Артикул": "DF-CA-001",
+      "Тип": "Крепление на дефлектор",
+      "Срок аромата": "до 30 дней",
+      "Объём": "8 мл",
+    },
+  },
+  {
+    id: "leather-care-audi",
+    name: "Кондиционер для кожи Leather Master",
+    description:
+      "Кондиционер для кожаных поверхностей Leather Master Soft Touch. Увлажняет, защищает от трещин и выгорания.",
+    price: 2000,
+    image: lether,
+    images: [lether],
+    brand: "Leather Master",
+    inStock: true,
+    categoryId: "auto-chemistry",
+    subCategoryId: "interior-care",
+    article: "LM-SOFT-500",
+    rating: 4.7,
+    reviewCount: 45,
+    serviceType: "maintenance",
+    specifications: {
+      "Артикул": "LM-SOFT-500",
+      "Тип": "Кондиционер для кожи",
+      "Объём": "500 мл",
+      "pH": "Нейтральный",
+      "Применение": "Анилиновая, нубук, перфорированная кожа",
+    },
+  },
+
+  // ══════════════════════════════════════════════════════
+  // Масла — Моторные масла
+  // ══════════════════════════════════════════════════════
+  {
+    id: "oil-bmw-5w30",
+    name: "Масло BMW Twin Power 5W-30",
+    description:
+      "Синтетическое моторное масло BMW TwinPower Turbo Longlife-04 5W-30. Оригинальное масло для BMW с допуском LL-04. 1 л.",
+    price: 1200,
+    image: motor_oil_bmw,
+    images: [motor_oil_bmw],
+    brand: "BMW",
+    inStock: true,
+    categoryId: "oil",
+    subCategoryId: "engine-oil",
+    isHit: true,
+    isNew: true,
+    isRecommended: true,
+    article: "83212465843",
+    rating: 4.9,
+    reviewCount: 892,
+    serviceType: "maintenance",
+    specifications: {
+      "Артикул": "83212465843",
+      "Вязкость": "5W-30",
+      "Допуск": "BMW LL-04",
+      "Тип": "Синтетика (PAO)",
+      "Объём": "1 л",
+      "ACEA": "C3",
+    },
+  },
+  {
+    id: "oil-mercedes-0w40",
+    name: "Масло Mercedes-Benz 0W-40",
+    description:
+      "Синтетическое моторное масло Mercedes-Benz Genuine с допуском MB229.5. Отличные низкотемпературные пусковые характеристики.",
+    price: 1500,
+    image: motor_oil_mercedes,
+    images: [motor_oil_mercedes],
+    brand: "Mercedes",
+    inStock: true,
+    categoryId: "oil",
+    subCategoryId: "engine-oil",
+    isHit: false,
+    isNew: true,
+    isRecommended: true,
+    article: "A000989920011",
+    rating: 4.8,
+    reviewCount: 456,
+    serviceType: "maintenance",
+    specifications: {
+      "Артикул": "A000989920011",
+      "Вязкость": "0W-40",
+      "Допуск": "MB 229.5",
+      "Тип": "Синтетика",
+      "Объём": "1 л",
+      "ACEA": "A3/B4",
+    },
+  },
+  {
+    id: "oil-audi-5w40",
+    name: "Масло Castrol EDGE 5W-40",
+    description:
+      "Синтетическое моторное масло Castrol EDGE 5W-40 A3/B4 с допуском VW 502.00/505.00 (Audi/VW). 1 л.",
+    price: 1300,
+    image: motor_oil_audi,
+    images: [motor_oil_audi],
+    brand: "Castrol",
+    inStock: true,
+    categoryId: "oil",
+    subCategoryId: "engine-oil",
+    isHit: true,
+    isNew: false,
+    isRecommended: true,
+    article: "CASTROL-5W40-A3B4",
+    rating: 4.8,
+    reviewCount: 1024,
+    serviceType: "maintenance",
+    specifications: {
+      "Артикул": "CASTROL-5W40-A3B4",
+      "Вязкость": "5W-40",
+      "Допуск": "VW 502.00 / 505.00",
+      "Тип": "Синтетика (TITANIUM FST)",
+      "Объём": "1 л",
+      "ACEA": "A3/B4",
+    },
+  },
+
+  // ══════════════════════════════════════════════════════
+  // Фильтры для авто
+  // ══════════════════════════════════════════════════════
+  {
+    id: "air-filter-bmw-320",
+    name: "Воздушный фильтр BMW 320",
+    description:
+      "Воздушный фильтр Mann-Filter для BMW 320i/320d F30. Задерживает частицы от 10 мкм. Интервал замены 15 000 км.",
+    price: 1800,
+    image: motor_oil_bmw,
+    images: [motor_oil_bmw],
+    brand: "Mann-Filter",
+    inStock: true,
+    categoryId: "filters",
+    subCategoryId: "air-filter",
+    isHit: true,
+    isRecommended: true,
+    article: "MANN-C26168",
+    rating: 4.9,
+    reviewCount: 445,
+    serviceType: "maintenance",
+    compatibleCars: ["BMW 3 Series F30 2012-2019", "BMW 4 Series F32"],
+    specifications: {
+      "Артикул": "MANN-C26168",
+      "Тип": "Воздушный фильтр",
+      "Размер ячейки": "10 мкм",
+      "Интервал замены": "15 000 км",
+    },
+  },
+  {
+    id: "oil-filter-mercedes-c",
+    name: "Масляный фильтр Mercedes C-Class",
+    description:
+      "Масляный фильтр Mahle для Mercedes C-Class W205 2.0 Turbo. Давление открытия перепускного клапана 2.5 bar.",
+    price: 1200,
+    image: motor_oil_mercedes,
+    images: [motor_oil_mercedes],
+    brand: "Mahle",
+    inStock: true,
+    categoryId: "filters",
+    subCategoryId: "oil-filter",
+    isNew: false,
+    article: "MAHLE-OX154D3",
+    rating: 4.8,
+    reviewCount: 233,
+    serviceType: "maintenance",
+    compatibleCars: ["Mercedes C-Class W205 2014-2021", "Mercedes E-Class W213"],
+    specifications: {
+      "Артикул": "MAHLE-OX154D3",
+      "Тип": "Масляный фильтр",
+      "Давление клапана": "2.5 bar",
+      "Диаметр резьбы": "M20×1.5",
+    },
+  },
+  {
+    id: "cabin-filter-audi",
+    name: "Салонный фильтр Audi A4 (угольный)",
+    description:
+      "Угольный салонный фильтр BOSCH для Audi A4 B9. Задерживает пыль, пыльцу и газы. Эффективность 97%.",
+    price: 1500,
+    image: motor_oil_audi,
+    images: [motor_oil_audi],
+    brand: "Bosch",
+    inStock: true,
+    categoryId: "filters",
+    subCategoryId: "cabin-filter",
+    isHit: false,
+    isRecommended: true,
+    article: "BOSCH-1987432527",
+    rating: 4.7,
+    reviewCount: 189,
+    serviceType: "maintenance",
+    compatibleCars: ["Audi A4 B9 2016-2024", "Audi A5 F5"],
+    specifications: {
+      "Артикул": "BOSCH-1987432527",
+      "Тип": "Угольный (комбинированный)",
+      "Эффективность": "97% (частицы PM2.5)",
+      "Интервал замены": "12 000 км / 1 год",
+    },
+  },
+
+  // ══════════════════════════════════════════════════════
+  // АКБ — Свинцово-кислотные
+  // ══════════════════════════════════════════════════════
+  {
+    id: "battery-varta-60",
+    name: "Аккумулятор VARTA Silver Dynamic 60Ah",
+    description:
+      "Автомобильный аккумулятор VARTA Silver Dynamic 60 Ah 540A. Обратная полярность. Для большинства европейских авто.",
+    price: 12000,
+    image: brakes_fluid_bmw,
+    images: [brakes_fluid_bmw],
+    brand: "VARTA",
+    inStock: true,
+    categoryId: "batteries",
+    subCategoryId: "lead-acid",
+    isHit: true,
+    isRecommended: true,
+    article: "VARTA-560408054",
+    rating: 4.8,
+    reviewCount: 678,
+    serviceType: "maintenance",
+    specifications: {
+      "Артикул": "VARTA-560408054",
+      "Ёмкость": "60 Ah",
+      "Ток холодной прокрутки": "540 A (EN)",
+      "Полярность": "Обратная (–/+)",
+      "Размер (ДxШxВ)": "242×175×190 мм",
+    },
+  },
+  {
+    id: "battery-optima-agm",
+    name: "Аккумулятор Optima RedTop 55Ah AGM",
+    description:
+      "AGM аккумулятор Optima RedTop 55 Ah. Спиральные ячейки, 15× больше виброустойчивость. Идеален для Start-Stop.",
+    price: 22000,
+    image: fluidagb,
+    images: [fluidagb],
+    brand: "Optima",
+    inStock: true,
+    categoryId: "batteries",
+    subCategoryId: "agm",
+    isNew: true,
+    article: "OPTIMA-8020-164",
+    rating: 4.9,
+    reviewCount: 312,
+    serviceType: "maintenance",
+    specifications: {
+      "Артикул": "OPTIMA-8020-164",
+      "Ёмкость": "55 Ah",
+      "ТХП": "720 A (CCA)",
+      "Технология": "AGM Spiral Cell",
+      "Система Start-Stop": "Да",
+    },
+  },
+
+  // ══════════════════════════════════════════════════════
+  // Электрооборудование — Лампы
+  // ══════════════════════════════════════════════════════
+  {
+    id: "bulbs-osram-h7-led",
+    name: "Лампы Osram Night Breaker H7 LED",
+    description:
+      "Светодиодные лампы Osram Night Breaker H7 LED +230% яркости к стандарту. Одобрены для дорог Европы (ECE). 2 шт.",
+    price: 8500,
+    image: fara,
+    images: [fara],
+    brand: "Osram",
+    inStock: true,
+    categoryId: "electrical",
+    subCategoryId: "bulbs",
+    isHit: true,
+    isNew: true,
+    article: "OSRAM-64210DWNB",
+    rating: 4.7,
+    reviewCount: 889,
+    serviceType: "maintenance",
+    specifications: {
+      "Артикул": "OSRAM-64210DWNB",
+      "Тип цоколя": "H7",
+      "Технология": "LED",
+      "Яркость": "+230% к стандарту",
+      "Цветовая температура": "6000 K",
+      "Одобрение": "ECE R37",
+      "Комплект": "2 лампы",
+    },
+  },
+
+  // ══════════════════════════════════════════════════════
+  // Шины, диски
+  // ══════════════════════════════════════════════════════
+  {
+    id: "tires-michelin-r17",
+    name: "Шины Michelin Pilot Sport 5 225/45 R17",
+    description:
+      "Летние шины Michelin Pilot Sport 5 225/45 R17 94Y. Спортивный профиль, максимальная управляемость. Цена за 1 шт.",
+    price: 14500,
+    image: disk_toyota,
+    images: [disk_toyota],
+    brand: "Michelin",
+    inStock: true,
+    categoryId: "wheels",
+    subCategoryId: "summer-tires",
+    isHit: true,
+    isRecommended: true,
+    article: "MICH-PS5-225-45-17",
+    rating: 4.9,
+    reviewCount: 1204,
+    serviceType: "maintenance",
+    specifications: {
+      "Артикул": "MICH-PS5-225-45-17",
+      "Размер": "225/45 R17",
+      "Индекс нагрузки": "94",
+      "Индекс скорости": "Y (300 км/ч)",
+      "Тип": "Летние",
+      "Протектор": "Асимметричный",
+    },
+  },
+
+  // ══════════════════════════════════════════════════════
+  // Инструмент
+  // ══════════════════════════════════════════════════════
+  {
+    id: "obd2-scanner-launch",
+    name: "OBD2 сканер Launch X431 Pro",
+    description:
+      "Профессиональный мультимарочный сканер Launch X431 Pro. Android 10, 10.1\". Диагностика всех систем авто. Wi-Fi/BT.",
+    price: 85000,
+    image: chip,
+    images: [chip],
+    brand: "Launch",
+    inStock: true,
+    categoryId: "tools",
+    subCategoryId: "diagnostic",
+    isHit: true,
+    isNew: true,
+    article: "LAUNCH-X431PRO5",
+    rating: 4.8,
+    reviewCount: 234,
+    specifications: {
+      "Артикул": "LAUNCH-X431PRO5",
+      "Экран": "10.1\" Android 10",
+      "Подключение": "Wi-Fi / Bluetooth / USB",
+      "Марки": "Более 10 000",
+      "Функции": "Коды ошибок, активации, кодирования",
+      "Обновления": "2 года бесплатно",
+    },
+  },
+];
