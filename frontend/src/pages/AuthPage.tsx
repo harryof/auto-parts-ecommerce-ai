@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Mail, Lock, User, Phone, Eye, EyeOff } from "lucide-react";
-import { loginUser, registerUser } from "../data/users";
+import api from "../services/api";
 
 const AuthPage: React.FC = () => {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const AuthPage: React.FC = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setSuccess("");
@@ -28,47 +28,34 @@ const AuthPage: React.FC = () => {
     const form = e.target as HTMLFormElement;
     const formData = new FormData(form);
 
-    if (isLogin) {
-      // Логин
-      const email = formData.get("email") as string;
-      const password = formData.get("password") as string;
-
-      const result = loginUser(email, password);
-      if (result.success) {
-        setSuccess(result.message);
-        // Вызываем событие обновления состояния авторизации
+    try {
+      if (isLogin) {
+        const email = formData.get("email") as string;
+        const password = formData.get("password") as string;
+        await api.login(email, password);
+        setSuccess("Вход выполнен успешно!");
         window.dispatchEvent(new Event("authChange"));
-        setTimeout(() => {
-          navigate("/"); // Перенаправляем на главную страницу
-        }, 1000);
+        setTimeout(() => navigate("/"), 800);
       } else {
-        setError(result.message);
+        const name = formData.get("name") as string;
+        const phone = formData.get("phone") as string;
+        const email = formData.get("email") as string;
+        const password = formData.get("password") as string;
+        await api.register({ name, email, password, phone });
+        setSuccess("Регистрация прошла успешно! Войдите в аккаунт.");
+        setTimeout(() => setIsLogin(true), 1200);
       }
-    } else {
-      // Регистрация
-      const name = formData.get("name") as string;
-      const phone = formData.get("phone") as string;
-      const email = formData.get("email") as string;
-      const password = formData.get("password") as string;
-
-      const result = registerUser({ name, phone, email, password });
-      if (result.success) {
-        setSuccess(result.message);
-        setTimeout(() => {
-          setIsLogin(true); // Переключаем на форму входа
-        }, 1000);
-      } else {
-        setError(result.message);
-      }
+    } catch (err: any) {
+      setError(err.message || "Произошла ошибка");
     }
   };
 
   return (
-    <div className="max-w-md mx-auto">
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
+    <div className="max-w-md mx-auto py-10 animate-fade-in">
+      <div className="glass rounded-3xl shadow-2xl overflow-hidden">
         <div className="p-6">
           <div className="text-center mb-10">
-            <h1 className="section-title">
+            <h1 className="section-title" style={{ fontSize: 'clamp(2rem, 8vw, 2.5rem)' }}>
               {isLogin ? <span>Вход</span> : <span>Регистрация</span>}
             </h1>
             <div className="accent-line mx-auto mt-2" />
@@ -92,7 +79,7 @@ const AuthPage: React.FC = () => {
                 <div className="mb-4">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium text-gray-700 mb-1"
+                    className="block text-sm font-medium text-[var(--color-text)] mb-1"
                   >
                     Имя
                   </label>
@@ -104,7 +91,7 @@ const AuthPage: React.FC = () => {
                       id="name"
                       name="name"
                       type="text"
-                      className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary-500"
+                      className="input-dark" style={{ paddingLeft: '2.5rem' }}
                       placeholder="Иван Иванов"
                       required
                     />
@@ -114,7 +101,7 @@ const AuthPage: React.FC = () => {
                 <div className="mb-4">
                   <label
                     htmlFor="phone"
-                    className="block text-sm font-medium text-gray-700 mb-1"
+                    className="block text-sm font-medium text-[var(--color-text)] mb-1"
                   >
                     Телефон
                   </label>
@@ -126,7 +113,7 @@ const AuthPage: React.FC = () => {
                       id="phone"
                       name="phone"
                       type="tel"
-                      className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary-500"
+                      className="input-dark" style={{ paddingLeft: '2.5rem' }}
                       placeholder="+7 (___) ___-__-__"
                       required
                     />
@@ -138,7 +125,7 @@ const AuthPage: React.FC = () => {
             <div className="mb-4">
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium text-[var(--color-text)] mb-1"
               >
                 Email
               </label>
@@ -150,7 +137,7 @@ const AuthPage: React.FC = () => {
                   id="email"
                   name="email"
                   type="email"
-                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  className="input-dark" style={{ paddingLeft: '2.5rem' }}
                   placeholder="example@mail.ru"
                   required
                 />
@@ -160,7 +147,7 @@ const AuthPage: React.FC = () => {
             <div className="mb-6">
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium text-[var(--color-text)] mb-1"
               >
                 Пароль
               </label>
@@ -172,7 +159,7 @@ const AuthPage: React.FC = () => {
                   id="password"
                   name="password"
                   type={showPassword ? "text" : "password"}
-                  className="block w-full pl-10 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  className="input-dark" style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }}
                   placeholder="••••••••"
                   required
                 />
@@ -203,18 +190,18 @@ const AuthPage: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full py-2 px-4 bg-primary-700 text-white font-medium rounded-md hover:bg-primary-800"
+              className="btn-primary w-full mt-4 py-3 text-lg"
             >
               {isLogin ? "Войти" : "Зарегистрироваться"}
             </button>
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-dark-300">
               {isLogin ? "Нет аккаунта?" : "Уже есть аккаунт?"}{" "}
               <button
                 onClick={toggleAuthMode}
-                className="text-primary-700 hover:text-primary-800 font-medium"
+                className="text-[#F3C15F] hover:text-[#d4a017] font-medium transition-colors"
               >
                 {isLogin ? "Зарегистрироваться" : "Войти"}
               </button>
@@ -222,19 +209,19 @@ const AuthPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 border-t border-gray-200">
-          <div className="text-sm text-center">
+        <div className="px-6 py-4 border-t" style={{ borderColor: 'var(--color-border2)', background: 'rgba(0,0,0,0.02)' }}>
+          <div className="text-sm text-center text-dark-300">
             Продолжая, вы соглашаетесь с{" "}
             <Link
               to="/terms"
-              className="text-primary-700 hover:text-primary-800"
+              className="text-[#F3C15F] hover:text-[#d4a017] transition-colors"
             >
               условиями использования
             </Link>{" "}
             и{" "}
             <Link
               to="/privacy-policy"
-              className="text-primary-700 hover:text-primary-800"
+              className="text-[#F3C15F] hover:text-[#d4a017] transition-colors"
             >
               политикой конфиденциальности
             </Link>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ShoppingCart, Heart } from "lucide-react";
-import { Product } from "../../data/products";
+import { Product } from "../../types/product";
 import { useCartStore } from "../../store/cartStore";
 import { useFavoritesStore } from "../../store/favoritesStore";
 
@@ -30,11 +30,17 @@ const RelatedProducts: React.FC<RelatedProductsProps> = ({
               {/* Image */}
               <div className="relative overflow-hidden" style={{ height: 160 }}>
                 <Link to={`/product/${p.id}`}>
-                  <img
-                    src={p.image}
-                    alt={p.name}
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                  />
+                  {p.image ? (
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-dark-700 flex items-center justify-center">
+                      <span className="text-dark-500 text-xs text-center px-2 line-clamp-2">{p.name}</span>
+                    </div>
+                  )}
                 </Link>
                 {/* Badges */}
                 <div className="absolute top-2 left-2 flex flex-col gap-1">
@@ -63,7 +69,7 @@ const RelatedProducts: React.FC<RelatedProductsProps> = ({
                   <div className="text-sm font-black text-white">{p.price.toLocaleString()} ₽</div>
                   <button
                     onClick={() =>
-                      addItem({ id: p.id, title: p.name, price: p.price, image: p.image, article: p.id, quantity: 1 }, 1)
+                      addItem({ id: p.id, title: p.name, price: p.price, image: p.image ?? null, article: p.article || p.id, quantity: 1 }, 1)
                     }
                     disabled={!p.inStock}
                     className="btn-primary py-1.5 px-2.5 text-xs disabled:opacity-40"

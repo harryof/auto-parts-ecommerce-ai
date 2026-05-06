@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import logo from "../../assets/graphics/Logo.png";
 import { useCartStore } from "../../store/cartStore";
 import { useFavoritesStore } from "../../store/favoritesStore";
-import { getCurrentUser, logoutUser } from "../../data/users";
+import api from "../../services/api";
 import { useTheme } from "../../context/ThemeContext";
 
 import HeaderSearch from "./HeaderSearch";
@@ -32,14 +32,14 @@ const Header: React.FC<HeaderProps> = ({ toggleSideMenu }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [currentUser, setCurrentUser] = useState(getCurrentUser());
+  const [currentUser, setCurrentUser] = useState(api.getCurrentUser());
 
   const { items, clearCart } = useCartStore();
   const { items: favs, clearFavorites } = useFavoritesStore();
   const cartCount = items.reduce((t, i) => t + i.quantity, 0);
 
   useEffect(() => {
-    const update = () => setCurrentUser(getCurrentUser());
+    const update = () => setCurrentUser(api.getCurrentUser());
     window.addEventListener("storage", update);
     window.addEventListener("authChange", update);
     return () => {
@@ -49,7 +49,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSideMenu }) => {
   }, []);
 
   const handleLogout = () => {
-    clearCart(); clearFavorites(); logoutUser();
+    clearCart(); clearFavorites(); api.logout();
     setCurrentUser(null); setUserMenuOpen(false);
     window.dispatchEvent(new Event("authChange"));
     navigate("/");

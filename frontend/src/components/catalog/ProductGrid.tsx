@@ -1,21 +1,32 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Product } from "../../data/products";
+import { Product } from "../../types/product";
 import ProductCard from "./ProductCard";
 import { PackageOpen } from "lucide-react";
 
 interface ProductGridProps {
   products: Product[];
+  loading?: boolean;
 }
 
-const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
-  const [visible, setVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+const SkeletonCard: React.FC = () => (
+  <div className="card flex flex-col h-full animate-pulse">
+    <div className="bg-dark-700 rounded-t-2xl" style={{ height: 220 }} />
+    <div className="p-4 flex flex-col gap-3">
+      <div className="h-4 bg-dark-700 rounded w-3/4" />
+      <div className="h-3 bg-dark-700 rounded w-1/2" />
+      <div className="h-5 bg-dark-700 rounded w-1/3 mt-auto" />
+    </div>
+  </div>
+);
 
-  useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold: 0.05 });
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
+const ProductGrid: React.FC<ProductGridProps> = ({ products, loading = false }) => {
+  if (loading) {
+    return (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        {Array.from({ length: 8 }).map((_, i) => <SkeletonCard key={i} />)}
+      </div>
+    );
+  }
 
   if (products.length === 0) {
     return (
@@ -30,9 +41,9 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
   }
 
   return (
-    <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
       {products.map((product, i) => (
-        <ProductCard key={product.id} product={product} index={i} visible={visible} />
+        <ProductCard key={product.id} product={product} index={i} visible={true} />
       ))}
     </div>
   );

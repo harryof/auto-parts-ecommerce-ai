@@ -1,25 +1,24 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { ProductType, CartItem } from "../types/product";
-import { getCurrentUser } from "../data/users";
+import { CartItem } from "../types/product";
 
 interface CartStore {
   items: CartItem[];
   addItem: (item: CartItem, quantity: number) => void;
-  removeItem: (itemId: string | number) => void;
-  updateQuantity: (itemId: string | number, quantity: number) => void;
+  removeItem: (itemId: string) => void;
+  updateQuantity: (itemId: string, quantity: number) => void;
   clearCart: () => void;
 }
 
 export const useCartStore = create<CartStore>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       items: [],
 
       addItem: (item, quantity) =>
         set((state) => {
-          const existingItem = state.items.find((i) => i.id === item.id);
-          if (existingItem) {
+          const existing = state.items.find((i) => i.id === item.id);
+          if (existing) {
             return {
               items: state.items.map((i) =>
                 i.id === item.id ? { ...i, quantity: i.quantity + quantity } : i
@@ -43,8 +42,6 @@ export const useCartStore = create<CartStore>()(
 
       clearCart: () => set({ items: [] }),
     }),
-    {
-      name: `cart-storage-${getCurrentUser()?.email || "guest"}`,
-    }
+    { name: "cart-storage-guest" }
   )
 );

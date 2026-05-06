@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { ZoomIn } from "lucide-react";
 
 interface ProductGalleryProps {
-  image: string;
+  image?: string;
   images?: string[];
   name: string;
 }
 
 const ProductGallery: React.FC<ProductGalleryProps> = ({ image, images, name }) => {
-  const allImages = images && images.length > 0 ? images : [image];
+  const allImages = images && images.length > 0 ? images : image ? [image] : [];
   const [active, setActive] = useState(0);
   const [zoomed, setZoomed] = useState(false);
 
@@ -20,11 +20,18 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({ image, images, name }) 
         style={{ aspectRatio: "4/3" }}
         onClick={() => setZoomed(!zoomed)}
       >
-        <img
-          src={allImages[active]}
-          alt={name}
-          className={`w-full h-full object-contain transition-transform duration-500 ${zoomed ? "scale-150" : "scale-100 group-hover:scale-105"}`}
-        />
+        {allImages.length > 0 ? (
+          <img
+            src={allImages[active]}
+            alt={name}
+            className={`w-full h-full object-contain transition-transform duration-500 ${zoomed ? "scale-150" : "scale-100 group-hover:scale-105"}`}
+          />
+        ) : (
+          <div className="w-full h-full flex flex-col items-center justify-center gap-3 text-dark-500">
+            <span className="text-6xl">📦</span>
+            <span className="text-sm text-center px-4">{name}</span>
+          </div>
+        )}
         <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
           <div className="glass rounded-xl p-2 text-dark-300">
             <ZoomIn size={16} />

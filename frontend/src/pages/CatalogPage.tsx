@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useParams, Link } from "react-router-dom";
 import { ChevronRight, Filter, Search, LayoutGrid, List } from "lucide-react";
-import { categories } from "../data/categories";
-import { products } from "../data/products";
+import { useCategories } from "../context/CategoriesContext";
+import api from "../services/api";
+import { Product } from "../types/product";
 import ProductGrid from "../components/catalog/ProductGrid";
 import CategorySidebar from "../components/catalog/CategorySidebar";
 import ServiceTypeSelector from "../components/catalog/ServiceTypeSelector";
 import FilterPanel, { FiltersState } from "../components/catalog/FilterPanel";
+import VinSearchModal from "../components/catalog/VinSearchModal";
 
 const DEFAULT_FILTERS: FiltersState = {
   priceMin: 0,
@@ -18,65 +20,85 @@ const DEFAULT_FILTERS: FiltersState = {
 
 const CatalogPage: React.FC = () => {
   const { categoryId, subCategoryId } = useParams<{ categoryId: string; subCategoryId: string }>();
+  const { categories } = useCategories();
 
-  const [serviceType, setServiceType] = useState<"all" | "maintenance" | "repair">("all");
+
   const [filters, setFilters] = useState<FiltersState>(DEFAULT_FILTERS);
   const [searchQuery, setSearchQuery] = useState("");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isVinOpen, setIsVinOpen] = useState(false);
+
+  // Products state (used on subcategory/product view)
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loadingProducts, setLoadingProducts] = useState(false);
+  const [totalProducts, setTotalProducts] = useState(0);
+  const [availableBrands, setAvailableBrands] = useState<string[]>([]);
 
   const currentCategory = categoryId ? categories.find((c) => c.id === categoryId) : null;
   const currentSubCategory = subCategoryId
     ? currentCategory?.subCategories.find((s) => s.id === subCategoryId)
     : null;
 
-  // Filtered categories for main grid
+  const isProductView = true;
+
+  // Fetch products from API when subcategory is selected or filters change
+  const fetchProducts = useCallback(() => {
+    if (!isProductView) return;
+    setLoadingProducts(true);
+
+    const apiFilters: Record<string, any> = {
+      category: categoryId,
+      subcategory: subCategoryId,
+      limit: 40,
+    };
+    if (searchQuery)          apiFilters.search    = searchQuery;
+    if (filters.inStockOnly)  apiFilters.inStock   = true;
+    if (filters.brands.length === 1) apiFilters.brand = filters.brands[0];
+    if (filters.priceMin > 0) apiFilters.minPrice  = filters.priceMin;
+    if (filters.priceMax < 1000000) apiFilters.maxPrice = filters.priceMax;
+
+
+    api.getProducts(apiFilters)
+      .then((res) => {
+        let filtered = res.products;
+        // client-side multi-brand filter
+        if (filters.brands.length > 1) {
+          filtered = filtered.filter((p) => filters.brands.includes(p.brand));
+        }
+        setProducts(filtered);
+        setTotalProducts(res.pagination.total);
+        // Extract available brands
+        const brands = Array.from(new Set(res.products.map((p) => p.brand).filter(Boolean)));
+        setAvailableBrands(brands);
+      })
+      .catch(() => setProducts([]))
+      .finally(() => setLoadingProducts(false));
+  }, [isProductView, categoryId, subCategoryId, searchQuery, filters]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
+
+  // Reset products and brands when navigating away from product view
+  useEffect(() => {
+    if (!isProductView) {
+      setProducts([]);
+      setAvailableBrands([]);
+    }
+  }, [isProductView]);
+
+  // Filter for category/subcategory list views (local, uses API data)
   const filteredCategories = categories.filter((c) =>
     c.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
-  const filteredSubCategories = currentCategory?.subCategories.filter((s) =>
-    s.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    s.description.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredSubCategories = currentCategory?.subCategories.filter(
+    (s) =>
+      s.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      s.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
-  // Products filtered
-  const filteredProducts = products.filter((p) => {
-    const mCat      = !categoryId    || p.categoryId    === categoryId;
-    const mSubCat   = !subCategoryId || p.subCategoryId === subCategoryId;
-    const mSearch   = !searchQuery   ||
-      p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const mPrice    = p.price >= filters.priceMin && p.price <= filters.priceMax;
-    const mBrand    = filters.brands.length === 0 || filters.brands.includes(p.brand);
-    const mColor    = filters.colors.length === 0 || (p.color && filters.colors.some((c) => p.color?.includes(c)));
-    const mStock    = !filters.inStockOnly || p.inStock;
-    const mService  = serviceType === "all" || !p.serviceType || p.serviceType === serviceType;
-    return mCat && mSubCat && mSearch && mPrice && mBrand && mColor && mStock && mService;
-  });
-
-  const uniqueBrands = Array.from(
-    new Set(
-      products
-        .filter(
-          (p) =>
-            (!categoryId    || p.categoryId    === categoryId) &&
-            (!subCategoryId || p.subCategoryId === subCategoryId)
-        )
-        .map((p) => p.brand)
-    )
-  );
-
-  const uniqueColors = Array.from(
-    new Set(
-      products
-        .filter((p) => p.color && (!categoryId || p.categoryId === categoryId))
-        .map((p) => p.color as string)
-    )
-  );
-
-  const isProductView = !!currentSubCategory;
 
   return (
+    <>
     <div className="max-w-[1600px] mx-auto px-4 py-8">
 
       {/* ── Breadcrumbs ── */}
@@ -96,7 +118,6 @@ const CatalogPage: React.FC = () => {
             </Link>
           </>
         )}
-
         {currentSubCategory && (
           <>
             <ChevronRight size={14} className="text-dark-500 flex-shrink-0" />
@@ -135,24 +156,21 @@ const CatalogPage: React.FC = () => {
         </div>
       </div>
 
-      {/* ── ТО / Ремонт selector (only on main catalog page or category page) ── */}
+      {/* ── VIN поиск ── */}
       {!currentSubCategory && (
-        <ServiceTypeSelector activeType={serviceType} onChange={setServiceType} />
+        <ServiceTypeSelector onVinSearch={() => setIsVinOpen(true)} />
       )}
 
       {/* ── Main layout: sidebar + content ── */}
       <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
 
-        {/* Sidebar */}
         <CategorySidebar />
 
-        {/* Right content */}
         <div className="flex-1 w-full min-w-0">
 
-          {/* ══ PRODUCT VIEW (subcategory selected) ══ */}
+          {/* ══ PRODUCT VIEW ══ */}
           {isProductView && (
             <>
-              {/* Mobile filter toggle */}
               <button
                 onClick={() => setIsFilterOpen(!isFilterOpen)}
                 className="lg:hidden w-full flex items-center justify-center gap-2 py-3 mb-4 rounded-xl bg-dark-800 border border-white/5 text-sm font-semibold text-white"
@@ -162,31 +180,28 @@ const CatalogPage: React.FC = () => {
               </button>
 
               <div className="flex flex-col xl:flex-row gap-6 items-start">
-                {/* Filter panel */}
                 <div className={`w-full xl:w-60 flex-shrink-0 ${isFilterOpen ? "block" : "hidden lg:block xl:block"}`}>
                   <FilterPanel
                     filters={filters}
                     onChange={setFilters}
-                    availableBrands={uniqueBrands}
-                    availableColors={uniqueColors}
+                    availableBrands={availableBrands}
+                    availableColors={[]}
                   />
                 </div>
 
-                {/* Products */}
                 <div className="flex-1 w-full min-w-0">
-                  {/* result count */}
                   <div className="text-sm text-dark-400 mb-4">
-                    Найдено товаров: <span className="text-white font-semibold">{filteredProducts.length}</span>
+                    Найдено товаров: <span className="text-white font-semibold">{totalProducts}</span>
                   </div>
-                  <ProductGrid products={filteredProducts} />
+                  <ProductGrid products={products} loading={loadingProducts} />
                 </div>
               </div>
             </>
           )}
 
-          {/* ══ SUBCATEGORY VIEW (category selected, no subcategory) ══ */}
-          {!isProductView && currentCategory && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {/* ══ SUBCATEGORY VIEW ══ */}
+          {!currentSubCategory && currentCategory && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
               {filteredSubCategories?.map((sub) => (
                 <Link
                   key={sub.id}
@@ -208,9 +223,9 @@ const CatalogPage: React.FC = () => {
             </div>
           )}
 
-          {/* ══ MAIN CATALOG VIEW (no category selected) ══ */}
+          {/* ══ MAIN CATALOG VIEW ══ */}
           {!currentCategory && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
               {filteredCategories.map((cat) => (
                 <Link
                   key={cat.id}
@@ -234,6 +249,10 @@ const CatalogPage: React.FC = () => {
         </div>
       </div>
     </div>
+
+    {/* VIN Search Modal */}
+    <VinSearchModal isOpen={isVinOpen} onClose={() => setIsVinOpen(false)} />
+  </>
   );
 };
 

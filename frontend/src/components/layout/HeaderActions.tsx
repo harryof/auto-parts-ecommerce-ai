@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { User, Heart, ShoppingCart, Settings, Package, LogOut, Sun, Moon } from "lucide-react";
-import { Product } from "../../data/products";
+import { Product } from "../../types/product";
 import { useTheme } from "../../context/ThemeContext";
 
 interface CurrentUser {

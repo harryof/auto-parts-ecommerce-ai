@@ -1,0 +1,18 @@
+# .dockerignore для ai-agent (контекст = корень проекта!)
+# Исключаем node_modules всех сервисов
+node_modules
+frontend/node_modules
+backend/node_modules
+ai-agent/node_modules
+
+# Исключаем ненужное
+frontend/dist
+frontend/.vite
+.git
+*.md
+.env
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# npm логи
+npm-debug.log*

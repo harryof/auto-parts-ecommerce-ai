@@ -7,7 +7,7 @@ import {
   CheckCircle,
   XCircle,
 } from "lucide-react";
-import { getCurrentUser } from "../data/users";
+import api from "../services/api";
 
 // Временные данные для демонстрации
 const mockOrders = [
@@ -76,7 +76,7 @@ const getStatusInfo = (status: string) => {
 
 const OrdersPage: React.FC = () => {
   const navigate = useNavigate();
-  const currentUser = getCurrentUser();
+  const currentUser = api.getCurrentUser();
 
   if (!currentUser) {
     navigate("/auth");

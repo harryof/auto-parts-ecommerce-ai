@@ -7,4 +7,18 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  server: {
+    proxy: {
+      // AI Agent — должен быть ВЫШЕ общего /api/ (как в nginx.conf)
+      '/api/chat': {
+        target: 'http://localhost:5001',
+        changeOrigin: true,
+      },
+      // Backend API
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+      },
+    },
+  },
 });

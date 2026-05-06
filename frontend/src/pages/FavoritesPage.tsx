@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Heart, ShoppingCart, Trash2 } from "lucide-react";
 import { useFavoritesStore } from "../store/favoritesStore";
 import { useCartStore } from "../store/cartStore";
-import { Product } from "../data/products";
+import { Product } from "../types/product";
 
 const FavoritesPage: React.FC = () => {
   const { items, removeFromFavorites } = useFavoritesStore();
@@ -57,7 +57,7 @@ const FavoritesPage: React.FC = () => {
             >
               <Link to={`/product/${product.id}`}>
                 <img
-                  src={product.image}
+                  src={product.image ?? undefined}
                   alt={product.name}
                   className="w-full h-48 object-cover"
                 />

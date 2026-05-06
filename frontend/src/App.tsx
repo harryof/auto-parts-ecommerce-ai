@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
+import { CategoriesProvider } from "./context/CategoriesContext";
 import Layout from "./components/layout/Layout";
 import HomePage from "./pages/HomePage";
 import CatalogPage from "./pages/CatalogPage";
@@ -22,12 +23,16 @@ import OrdersPage from "./pages/OrdersPage";
 import SearchPage from "./pages/SearchPage";
 import DeliveryPage from "./pages/DeliveryPage";
 
+import AdminPage from "./pages/AdminPage";
+import AIChatWidget from "./components/common/AIChatWidget";
+
 function App() {
   return (
     <ThemeProvider>
-      <Router>
-      <Routes>
-        <Route path="/" element={<Layout />}>
+      <CategoriesProvider>
+        <Router>
+        <Routes>
+          <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="catalog" element={<CatalogPage />} />
           <Route path="catalog/:categoryId" element={<CatalogPage />} />
@@ -38,6 +43,7 @@ function App() {
           <Route path="product/:productId" element={<ProductPage />} />
           <Route path="cart" element={<CartPage />} />
           <Route path="auth" element={<AuthPage />} />
+          <Route path="admin" element={<AdminPage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="contacts" element={<ContactsPage />} />
           <Route path="contact-us" element={<ContactUsPage />} />
@@ -54,7 +60,9 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
+      <AIChatWidget />
       </Router>
+      </CategoriesProvider>
     </ThemeProvider>
   );
 }

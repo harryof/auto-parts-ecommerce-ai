@@ -1,0 +1,89 @@
+# ============================================================
+# docker-compose.yml — AutoParts Store
+# 4 контейнера: postgres, backend, ai-agent, frontend(nginx)
+# ============================================================
+
+services:
+
+  # ── PostgreSQL ──────────────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    container_name: autoparts_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB:       ${DB_NAME}
+      POSTGRES_USER:     ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"          # можно убрать если не нужен внешний доступ
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # ── Backend (Express API) ───────────────────────────────────
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: autoparts_backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_HOST:       postgres
+      DB_PORT:       5432
+      DB_NAME:       ${DB_NAME}
+      DB_USER:       ${DB_USER}
+      DB_PASSWORD:   ${DB_PASSWORD}
+      JWT_SECRET:    ${JWT_SECRET}
+      JWT_EXPIRES_IN: 7d
+      PORT:          5000
+      NODE_ENV:      production
+    volumes:
+      - uploads_data:/app/uploads   # сохраняем загруженные файлы
+    ports:
+      - "5000:5000"                 # можно убрать в продакшене
+
+  # ── AI Agent (GigaChat микросервис) ────────────────────────
+  ai-agent:
+    build:
+      context: .                    # контекст = корень проекта
+      dockerfile: ai-agent/Dockerfile
+    container_name: autoparts_ai
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PORT:                5001
+      DB_HOST:             postgres
+      DB_PORT:             5432
+      DB_NAME:             ${DB_NAME}
+      DB_USER:             ${DB_USER}
+      DB_PASSWORD:         ${DB_PASSWORD}
+      GIGACHAT_CREDENTIALS: ${GIGACHAT_CREDENTIALS}
+    ports:
+      - "5001:5001"                 # можно убрать в продакшене
+
+  # ── Frontend (React → Nginx) ────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: autoparts_frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+      - ai-agent
+    ports:
+      - "80:80"                     # сайт доступен на http://localhost
+
+# ── Именованные тома ────────────────────────────────────────
+volumes:
+  postgres_data:    # данные PostgreSQL переживут перезапуск контейнера
+  uploads_data:     # загруженные изображения товаров

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Product } from "../../data/products";
+import { Product } from "../../types/product";
 
 interface ProductTabsProps {
   product: Product;

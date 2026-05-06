@@ -14,13 +14,6 @@ interface NewsItem {
   category: string;
 }
 
-const newsItems: NewsItem[] = [
-  { id: 1, title: "Новое поступление запчастей BMW", date: "15.03.2024", image: bmw_news, excerpt: "Поступили новые оригинальные запчасти для моделей BMW серии 3 и 5", category: "Поступления" },
-  { id: 2, title: "Скидки на масла и фильтры", date: "10.03.2024", image: maslo_filter, excerpt: "Специальные цены на масла и фильтры всех производителей", category: "Акции" },
-  { id: 3, title: "Открытие нового сервисного центра", date: "05.03.2024", image: new_service, excerpt: "Мы открываем новый современный сервисный центр", category: "События" },
-  { id: 4, title: "Новые поступления запчастей Mercedes", date: "01.03.2024", image: mercedes_news, excerpt: "Поступили новые оригинальные запчасти для Mercedes-Benz", category: "Поступления" },
-];
-
 const CATEGORY_COLORS: Record<string, string> = {
   "Поступления": "rgba(243,193,95,0.15)",
   "Акции":       "rgba(59,130,246,0.15)",
@@ -35,6 +28,25 @@ const CATEGORY_TEXT: Record<string, string> = {
 const NewsPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+
+  const [newsItems, setNewsItems] = useState<NewsItem[]>([]);
+
+  React.useEffect(() => {
+    fetch('http://localhost:5000/api/news')
+      .then(res => res.json())
+      .then(data => {
+        // Map backend format to frontend format
+        setNewsItems(data.map((item: any) => ({
+          id: item.id,
+          title: item.title,
+          date: new Date(item.created_at).toLocaleDateString(),
+          image: item.image_url ? `http://localhost:5000${item.image_url}` : '',
+          excerpt: item.excerpt,
+          category: item.category
+        })));
+      })
+      .catch(console.error);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

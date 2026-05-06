@@ -1,21 +1,12 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { Product } from "../data/products";
-import { ProductType } from "../types/product";
-import { getCurrentUser } from "../data/users";
+import { Product } from "../types/product";
 
 interface FavoritesState {
   items: Product[];
   addToFavorites: (product: Product) => void;
   removeFromFavorites: (productId: string) => void;
   isFavorite: (productId: string) => boolean;
-  clearFavorites: () => void;
-}
-
-interface FavoritesStore {
-  items: ProductType[];
-  addItem: (item: ProductType) => void;
-  removeItem: (itemId: string | number) => void;
   clearFavorites: () => void;
 }
 
@@ -39,21 +30,6 @@ export const useFavoritesStore = create<FavoritesState>()(
       },
       clearFavorites: () => set({ items: [] }),
     }),
-    {
-      name: `favorites-storage-${getCurrentUser()?.email || "guest"}`,
-    }
+    { name: "favorites-storage-guest" }
   )
 );
-
-export const useFavoritesStore2 = create<FavoritesStore>((set) => ({
-  items: [],
-  addItem: (item) =>
-    set((state) => ({
-      items: [...state.items, item],
-    })),
-  removeItem: (itemId) =>
-    set((state) => ({
-      items: state.items.filter((item) => item.id !== itemId),
-    })),
-  clearFavorites: () => set({ items: [] }),
-}));

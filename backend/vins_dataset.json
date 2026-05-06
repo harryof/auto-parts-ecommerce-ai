@@ -1,0 +1,464 @@
+[
+  {
+    "vin": "XTACGNE3T1VL67P3D",
+    "make": "Lada",
+    "model": "Vesta",
+    "year": 2020,
+    "full_name": "Lada Vesta 2020"
+  },
+  {
+    "vin": "TMB3S3G975BU95FZG",
+    "make": "Skoda",
+    "model": "Octavia A8",
+    "year": 2022,
+    "full_name": "Skoda Octavia A8 2022"
+  },
+  {
+    "vin": "TMBRS5SY129R67UXA",
+    "make": "Skoda",
+    "model": "Octavia A8",
+    "year": 2022,
+    "full_name": "Skoda Octavia A8 2022"
+  },
+  {
+    "vin": "KNATULW7MYD7585FK",
+    "make": "Kia",
+    "model": "Rio IV",
+    "year": 2019,
+    "full_name": "Kia Rio IV 2019"
+  },
+  {
+    "vin": "JTJX0RPRBUPDYN2PW",
+    "make": "Toyota",
+    "model": "RAV4 XA50",
+    "year": 2022,
+    "full_name": "Toyota RAV4 XA50 2022"
+  },
+  {
+    "vin": "JT2P4XDHX0T4BSGKB",
+    "make": "Toyota",
+    "model": "Corolla E210",
+    "year": 2020,
+    "full_name": "Toyota Corolla E210 2020"
+  },
+  {
+    "vin": "WVG0D1082TSS0KP2R",
+    "make": "Volkswagen",
+    "model": "Tiguan II",
+    "year": 2021,
+    "full_name": "Volkswagen Tiguan II 2021"
+  },
+  {
+    "vin": "VF1UTLKFUS4NPBL1L",
+    "make": "Renault",
+    "model": "Duster",
+    "year": 2016,
+    "full_name": "Renault Duster 2016"
+  },
+  {
+    "vin": "TMB83VSJKS9P3RJ19",
+    "make": "Skoda",
+    "model": "Rapid",
+    "year": 2018,
+    "full_name": "Skoda Rapid 2018"
+  },
+  {
+    "vin": "JTJECL9SXEDBJ2G9Z",
+    "make": "Toyota",
+    "model": "RAV4 XA50",
+    "year": 2022,
+    "full_name": "Toyota RAV4 XA50 2022"
+  },
+  {
+    "vin": "TMBEP2PEFT5BM01LZ",
+    "make": "Skoda",
+    "model": "Rapid",
+    "year": 2018,
+    "full_name": "Skoda Rapid 2018"
+  },
+  {
+    "vin": "WVWUSL8X5D6HZASC5",
+    "make": "Volkswagen",
+    "model": "Polo V",
+    "year": 2015,
+    "full_name": "Volkswagen Polo V 2015"
+  },
+  {
+    "vin": "WVWD1PFHLHBPRAAMD",
+    "make": "Volkswagen",
+    "model": "Polo V",
+    "year": 2015,
+    "full_name": "Volkswagen Polo V 2015"
+  },
+  {
+    "vin": "WVWBFZU0LV20VFSZP",
+    "make": "Volkswagen",
+    "model": "Polo V",
+    "year": 2015,
+    "full_name": "Volkswagen Polo V 2015"
+  },
+  {
+    "vin": "WVG89458BZAJ8C1SJ",
+    "make": "Volkswagen",
+    "model": "Tiguan II",
+    "year": 2021,
+    "full_name": "Volkswagen Tiguan II 2021"
+  },
+  {
+    "vin": "JT2WF1HJP06FVWT85",
+    "make": "Toyota",
+    "model": "Corolla E210",
+    "year": 2020,
+    "full_name": "Toyota Corolla E210 2020"
+  },
+  {
+    "vin": "TMB6VAUSFRRZ19FMA",
+    "make": "Skoda",
+    "model": "Rapid",
+    "year": 2018,
+    "full_name": "Skoda Rapid 2018"
+  },
+  {
+    "vin": "KMHAMPHAJGW9G2LEW",
+    "make": "Hyundai",
+    "model": "Creta I",
+    "year": 2018,
+    "full_name": "Hyundai Creta I 2018"
+  },
+  {
+    "vin": "KNATVTZLKE99CTGRV",
+    "make": "Kia",
+    "model": "Rio IV",
+    "year": 2019,
+    "full_name": "Kia Rio IV 2019"
+  },
+  {
+    "vin": "KMH61MHEUNJB60WLK",
+    "make": "Hyundai",
+    "model": "Solaris II",
+    "year": 2020,
+    "full_name": "Hyundai Solaris II 2020"
+  },
+  {
+    "vin": "JTJ6GV565M440TSGL",
+    "make": "Toyota",
+    "model": "RAV4 XA50",
+    "year": 2022,
+    "full_name": "Toyota RAV4 XA50 2022"
+  },
+  {
+    "vin": "JTN05PJDP822K8J8A",
+    "make": "Toyota",
+    "model": "Camry XV70",
+    "year": 2021,
+    "full_name": "Toyota Camry XV70 2021"
+  },
+  {
+    "vin": "JT2084ZPVPPFDBWMN",
+    "make": "Toyota",
+    "model": "Corolla E210",
+    "year": 2020,
+    "full_name": "Toyota Corolla E210 2020"
+  },
+  {
+    "vin": "WVGMERPNFLVYG88D5",
+    "make": "Volkswagen",
+    "model": "Tiguan II",
+    "year": 2021,
+    "full_name": "Volkswagen Tiguan II 2021"
+  },
+  {
+    "vin": "VF1KGU4SRH09R6XEW",
+    "make": "Renault",
+    "model": "Duster",
+    "year": 2016,
+    "full_name": "Renault Duster 2016"
+  },
+  {
+    "vin": "YV18K4DFT2SK5YBCP",
+    "make": "Volvo",
+    "model": "XC90 II",
+    "year": 2023,
+    "full_name": "Volvo XC90 II 2023"
+  },
+  {
+    "vin": "WF0MYJBWYT36HJDX2",
+    "make": "Ford",
+    "model": "Focus III",
+    "year": 2014,
+    "full_name": "Ford Focus III 2014"
+  },
+  {
+    "vin": "XTASPBD0C2VGRD29Z",
+    "make": "Lada",
+    "model": "Vesta",
+    "year": 2020,
+    "full_name": "Lada Vesta 2020"
+  },
+  {
+    "vin": "WF08MARH4UBLRVMCZ",
+    "make": "Ford",
+    "model": "Focus III",
+    "year": 2014,
+    "full_name": "Ford Focus III 2014"
+  },
+  {
+    "vin": "VF1Z12567DFAX8LEP",
+    "make": "Renault",
+    "model": "Duster",
+    "year": 2016,
+    "full_name": "Renault Duster 2016"
+  },
+  {
+    "vin": "WAUNJ4A7PHMWE3AGB",
+    "make": "Audi",
+    "model": "A4 B9",
+    "year": 2021,
+    "full_name": "Audi A4 B9 2021"
+  },
+  {
+    "vin": "JTNY0XHLR7DY9TY64",
+    "make": "Toyota",
+    "model": "Camry XV70",
+    "year": 2021,
+    "full_name": "Toyota Camry XV70 2021"
+  },
+  {
+    "vin": "WBASUTNZCRU6XLZXX",
+    "make": "BMW",
+    "model": "3 Series G20",
+    "year": 2022,
+    "full_name": "BMW 3 Series G20 2022"
+  },
+  {
+    "vin": "WDD2N8ZBGF72PDTM5",
+    "make": "Mercedes-Benz",
+    "model": "E-Class W213",
+    "year": 2019,
+    "full_name": "Mercedes-Benz E-Class W213 2019"
+  },
+  {
+    "vin": "WBAKFHCFEWS3WA5E1",
+    "make": "BMW",
+    "model": "3 Series G20",
+    "year": 2022,
+    "full_name": "BMW 3 Series G20 2022"
+  },
+  {
+    "vin": "JTNUJMW1VVUHMZSMB",
+    "make": "Toyota",
+    "model": "Camry XV70",
+    "year": 2021,
+    "full_name": "Toyota Camry XV70 2021"
+  },
+  {
+    "vin": "KMHA12PSWWUGEDB45",
+    "make": "Hyundai",
+    "model": "Creta I",
+    "year": 2018,
+    "full_name": "Hyundai Creta I 2018"
+  },
+  {
+    "vin": "XTATC2RP0HP2M4DLF",
+    "make": "Lada",
+    "model": "Granta",
+    "year": 2019,
+    "full_name": "Lada Granta 2019"
+  },
+  {
+    "vin": "JMZ38FRGKSR34MLFS",
+    "make": "Mazda",
+    "model": "CX-5 KF",
+    "year": 2020,
+    "full_name": "Mazda CX-5 KF 2020"
+  },
+  {
+    "vin": "WDD45BWTLVXKND4Z1",
+    "make": "Mercedes-Benz",
+    "model": "E-Class W213",
+    "year": 2019,
+    "full_name": "Mercedes-Benz E-Class W213 2019"
+  },
+  {
+    "vin": "XTAHZJWTA9CRA4XCA",
+    "make": "Lada",
+    "model": "Granta",
+    "year": 2019,
+    "full_name": "Lada Granta 2019"
+  },
+  {
+    "vin": "KMHKTNA2LX7DPX5D8",
+    "make": "Hyundai",
+    "model": "Creta I",
+    "year": 2018,
+    "full_name": "Hyundai Creta I 2018"
+  },
+  {
+    "vin": "KNATB5CEN92576TBL",
+    "make": "Kia",
+    "model": "Rio IV",
+    "year": 2019,
+    "full_name": "Kia Rio IV 2019"
+  },
+  {
+    "vin": "XTA2UBNFL5TE3ZBCJ",
+    "make": "Lada",
+    "model": "Granta",
+    "year": 2019,
+    "full_name": "Lada Granta 2019"
+  },
+  {
+    "vin": "SJNMDJNAFZ17UED9L",
+    "make": "Nissan",
+    "model": "Qashqai J11",
+    "year": 2017,
+    "full_name": "Nissan Qashqai J11 2017"
+  },
+  {
+    "vin": "WP0167XGX1E0W6J8D",
+    "make": "Porsche",
+    "model": "Cayenne III",
+    "year": 2022,
+    "full_name": "Porsche Cayenne III 2022"
+  },
+  {
+    "vin": "WF09VM8A79FXH0RDR",
+    "make": "Ford",
+    "model": "Focus III",
+    "year": 2014,
+    "full_name": "Ford Focus III 2014"
+  },
+  {
+    "vin": "WP08ENFA4M7LV84YV",
+    "make": "Porsche",
+    "model": "Cayenne III",
+    "year": 2022,
+    "full_name": "Porsche Cayenne III 2022"
+  },
+  {
+    "vin": "TMBJECATMY92J7T3C",
+    "make": "Skoda",
+    "model": "Octavia A8",
+    "year": 2022,
+    "full_name": "Skoda Octavia A8 2022"
+  },
+  {
+    "vin": "WBA6P6K3MA40CSRKK",
+    "make": "BMW",
+    "model": "3 Series G20",
+    "year": 2022,
+    "full_name": "BMW 3 Series G20 2022"
+  },
+  {
+    "vin": "KMHDW7AE39CFNG9GF",
+    "make": "Hyundai",
+    "model": "Solaris II",
+    "year": 2020,
+    "full_name": "Hyundai Solaris II 2020"
+  },
+  {
+    "vin": "WDDJC8BJXUJMJBUK8",
+    "make": "Mercedes-Benz",
+    "model": "E-Class W213",
+    "year": 2019,
+    "full_name": "Mercedes-Benz E-Class W213 2019"
+  },
+  {
+    "vin": "KMHPW1ET3LRFYTPTL",
+    "make": "Hyundai",
+    "model": "Solaris II",
+    "year": 2020,
+    "full_name": "Hyundai Solaris II 2020"
+  },
+  {
+    "vin": "WAUDJKUZUAZ610JHZ",
+    "make": "Audi",
+    "model": "A4 B9",
+    "year": 2021,
+    "full_name": "Audi A4 B9 2021"
+  },
+  {
+    "vin": "WP0ZWP00NUDJ3V0EA",
+    "make": "Porsche",
+    "model": "Cayenne III",
+    "year": 2022,
+    "full_name": "Porsche Cayenne III 2022"
+  },
+  {
+    "vin": "JHLB38RZXCEBZ1ST2",
+    "make": "Honda",
+    "model": "CR-V V",
+    "year": 2021,
+    "full_name": "Honda CR-V V 2021"
+  },
+  {
+    "vin": "YV12VEM0V740GXL7G",
+    "make": "Volvo",
+    "model": "XC90 II",
+    "year": 2023,
+    "full_name": "Volvo XC90 II 2023"
+  },
+  {
+    "vin": "YV1KX9AG5D0YV6PBC",
+    "make": "Volvo",
+    "model": "XC90 II",
+    "year": 2023,
+    "full_name": "Volvo XC90 II 2023"
+  },
+  {
+    "vin": "WAUGT20NWF3XFP07R",
+    "make": "Audi",
+    "model": "A4 B9",
+    "year": 2021,
+    "full_name": "Audi A4 B9 2021"
+  },
+  {
+    "vin": "JMZ3A7DGX10HL6ZPB",
+    "make": "Mazda",
+    "model": "CX-5 KF",
+    "year": 2020,
+    "full_name": "Mazda CX-5 KF 2020"
+  },
+  {
+    "vin": "XTA2WM1B7CR5MNBGY",
+    "make": "Lada",
+    "model": "Vesta",
+    "year": 2020,
+    "full_name": "Lada Vesta 2020"
+  },
+  {
+    "vin": "SJNN8GUZH4SZWRN7D",
+    "make": "Nissan",
+    "model": "Qashqai J11",
+    "year": 2017,
+    "full_name": "Nissan Qashqai J11 2017"
+  },
+  {
+    "vin": "JHLLU92T7YVFC2GMH",
+    "make": "Honda",
+    "model": "CR-V V",
+    "year": 2021,
+    "full_name": "Honda CR-V V 2021"
+  },
+  {
+    "vin": "JHL5ZM6CTD9YUDHKP",
+    "make": "Honda",
+    "model": "CR-V V",
+    "year": 2021,
+    "full_name": "Honda CR-V V 2021"
+  },
+  {
+    "vin": "JMZUA0T4B0WAYRKZL",
+    "make": "Mazda",
+    "model": "CX-5 KF",
+    "year": 2020,
+    "full_name": "Mazda CX-5 KF 2020"
+  },
+  {
+    "vin": "SJNNWC67KBX9YLE04",
+    "make": "Nissan",
+    "model": "Qashqai J11",
+    "year": 2017,
+    "full_name": "Nissan Qashqai J11 2017"
+  }
+]
