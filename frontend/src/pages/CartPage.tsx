@@ -29,20 +29,68 @@ const CartPage: React.FC = () => {
   if (items.length === 0) {
     return (
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="bg-white rounded-lg shadow-md p-8 text-center max-w-md mx-auto">
-          <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <ShoppingBag size={40} className="text-gray-400" />
+        <div
+          style={{
+            background: "var(--bg-card)",
+            border: "1px solid var(--color-border2)",
+            borderRadius: "1.5rem",
+            padding: "3rem 2rem",
+            textAlign: "center",
+            maxWidth: "420px",
+            margin: "0 auto",
+          }}
+        >
+          <div
+            style={{
+              width: "80px",
+              height: "80px",
+              borderRadius: "50%",
+              background: "var(--bg-card-deep)",
+              border: "1px solid var(--color-border2)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              margin: "0 auto 1.5rem",
+            }}
+          >
+            <ShoppingBag size={36} style={{ color: "var(--color-muted)" }} />
           </div>
-          <h1 className="text-2xl font-bold text-secondary-800 mb-2">
+          <h1
+            style={{
+              fontSize: "1.4rem",
+              fontWeight: 700,
+              color: "var(--color-text)",
+              marginBottom: "0.5rem",
+            }}
+          >
             Ваша корзина пуста
           </h1>
-          <p className="text-gray-600 mb-8">
+          <p
+            style={{
+              color: "var(--color-muted)",
+              fontSize: "0.9rem",
+              marginBottom: "2rem",
+            }}
+          >
             Перейдите в каталог, чтобы найти нужные товары для вашего
             автомобиля.
           </p>
           <Link
             to="/catalog"
-            className="inline-block w-full py-3 bg-primary-700 text-white font-medium rounded-md hover:bg-primary-800 transition-colors"
+            style={{
+              display: "inline-block",
+              width: "100%",
+              padding: "0.875rem",
+              background: "linear-gradient(135deg, #F3C15F, #D9AB52)",
+              color: "#141824",
+              fontWeight: 700,
+              fontSize: "0.95rem",
+              borderRadius: "0.75rem",
+              textDecoration: "none",
+              textAlign: "center",
+              boxShadow: "0 4px 15px rgba(243,193,95,0.25)",
+              transition: "all 0.2s ease",
+            }}
           >
             Перейти в каталог
           </Link>
@@ -56,7 +104,8 @@ const CartPage: React.FC = () => {
       <div className="flex flex-col items-center mb-12">
         <Link
           to="/catalog"
-          className="text-gray-500 hover:text-primary-700 flex items-center mb-6"
+          style={{ color: "var(--color-muted)", textDecoration: "none" }}
+          className="flex items-center mb-6 hover:text-primary-500 transition-colors"
         >
           <ArrowLeft size={20} className="mr-1" />
           Вернуться к покупкам

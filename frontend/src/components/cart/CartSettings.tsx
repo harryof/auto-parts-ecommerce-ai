@@ -1,4 +1,5 @@
 import React from "react";
+import { Truck, Store, CreditCard, Globe, Wallet } from "lucide-react";
 
 interface CartSettingsProps {
   deliveryMethod: string;
@@ -7,6 +8,115 @@ interface CartSettingsProps {
   setPaymentMethod: (m: string) => void;
 }
 
+const RadioOption: React.FC<{
+  name: string;
+  value: string;
+  checked: boolean;
+  onChange: () => void;
+  icon: React.ReactNode;
+  title: string;
+  subtitle?: string;
+}> = ({ name, value, checked, onChange, icon, title, subtitle }) => (
+  <label
+    style={{
+      display: "flex",
+      alignItems: "center",
+      gap: "0.875rem",
+      padding: "0.875rem 1rem",
+      borderRadius: "0.75rem",
+      border: checked
+        ? "1.5px solid #F3C15F"
+        : "1.5px solid var(--color-border2)",
+      background: checked ? "rgba(243,193,95,0.06)" : "var(--bg-card-deep)",
+      cursor: "pointer",
+      transition: "all 0.2s ease",
+    }}
+  >
+    <input
+      type="radio"
+      name={name}
+      value={value}
+      checked={checked}
+      onChange={onChange}
+      style={{ display: "none" }}
+    />
+
+    {/* Custom radio dot */}
+    <div
+      style={{
+        width: "18px",
+        height: "18px",
+        borderRadius: "50%",
+        border: checked ? "5px solid #F3C15F" : "2px solid var(--color-muted)",
+        flexShrink: 0,
+        transition: "all 0.2s ease",
+        background: "transparent",
+      }}
+    />
+
+    {/* Icon */}
+    <div
+      style={{
+        width: "36px",
+        height: "36px",
+        borderRadius: "0.6rem",
+        background: checked ? "rgba(243,193,95,0.12)" : "var(--bg-card)",
+        border: "1px solid var(--color-border)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        color: checked ? "#F3C15F" : "var(--color-muted)",
+        flexShrink: 0,
+        transition: "all 0.2s ease",
+      }}
+    >
+      {icon}
+    </div>
+
+    {/* Text */}
+    <div>
+      <div
+        style={{
+          fontSize: "0.875rem",
+          fontWeight: 600,
+          color: "var(--color-text)",
+          lineHeight: 1.3,
+        }}
+      >
+        {title}
+      </div>
+      {subtitle && (
+        <div
+          style={{
+            fontSize: "0.75rem",
+            color: "var(--color-muted)",
+            marginTop: "0.1rem",
+          }}
+        >
+          {subtitle}
+        </div>
+      )}
+    </div>
+  </label>
+);
+
+const SectionLabel: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => (
+  <div
+    style={{
+      fontSize: "0.75rem",
+      fontWeight: 700,
+      letterSpacing: "0.08em",
+      textTransform: "uppercase",
+      color: "var(--color-muted)",
+      marginBottom: "0.75rem",
+    }}
+  >
+    {children}
+  </div>
+);
+
 const CartSettings: React.FC<CartSettingsProps> = ({
   deliveryMethod,
   setDeliveryMethod,
@@ -14,97 +124,74 @@ const CartSettings: React.FC<CartSettingsProps> = ({
   setPaymentMethod,
 }) => {
   return (
-    <div className="bg-white rounded-lg shadow p-4 mb-6 lg:mb-0">
-      <h2 className="font-medium text-secondary-800 mb-4">Способ доставки</h2>
-
-      <div className="space-y-2 mb-6">
-        <label className="flex items-center p-3 border rounded-md cursor-pointer hover:bg-gray-50">
-          <input
-            type="radio"
-            name="delivery"
-            value="courier"
-            checked={deliveryMethod === "courier"}
-            onChange={() => setDeliveryMethod("courier")}
-            className="mr-3"
-          />
-          <div>
-            <div className="font-medium text-secondary-800">
-              Доставка курьером
-            </div>
-            <div className="text-sm text-gray-600">300 ₽, 1-2 дня</div>
-          </div>
-        </label>
-
-        <label className="flex items-center p-3 border rounded-md cursor-pointer hover:bg-gray-50">
-          <input
-            type="radio"
-            name="delivery"
-            value="pickup"
-            checked={deliveryMethod === "pickup"}
-            onChange={() => setDeliveryMethod("pickup")}
-            className="mr-3"
-          />
-          <div>
-            <div className="font-medium text-secondary-800">
-              Самовывоз из магазина
-            </div>
-            <div className="text-sm text-gray-600">
-              Бесплатно, сегодня с 10:00
-            </div>
-          </div>
-        </label>
+    <div
+      style={{
+        background: "var(--bg-card)",
+        border: "1px solid var(--color-border2)",
+        borderRadius: "1.25rem",
+        padding: "1.25rem",
+        marginBottom: "1.5rem",
+      }}
+    >
+      {/* Delivery */}
+      <SectionLabel>Способ доставки</SectionLabel>
+      <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "1.5rem" }}>
+        <RadioOption
+          name="delivery"
+          value="courier"
+          checked={deliveryMethod === "courier"}
+          onChange={() => setDeliveryMethod("courier")}
+          icon={<Truck size={16} />}
+          title="Доставка курьером"
+          subtitle="300 ₽ · 1–2 рабочих дня"
+        />
+        <RadioOption
+          name="delivery"
+          value="pickup"
+          checked={deliveryMethod === "pickup"}
+          onChange={() => setDeliveryMethod("pickup")}
+          icon={<Store size={16} />}
+          title="Самовывоз из магазина"
+          subtitle="Бесплатно · сегодня с 10:00"
+        />
       </div>
 
-      <h2 className="font-medium text-secondary-800 mb-4">Способ оплаты</h2>
+      {/* Divider */}
+      <div
+        style={{
+          height: "1px",
+          background: "var(--color-border)",
+          marginBottom: "1.25rem",
+        }}
+      />
 
-      <div className="space-y-2">
-        <label className="flex items-center p-3 border rounded-md cursor-pointer hover:bg-gray-50">
-          <input
-            type="radio"
-            name="payment"
-            value="card"
-            checked={paymentMethod === "card"}
-            onChange={() => setPaymentMethod("card")}
-            className="mr-3"
-          />
-          <div>
-            <div className="font-medium text-secondary-800">
-              Оплата картой при получении
-            </div>
-          </div>
-        </label>
-
-        <label className="flex items-center p-3 border rounded-md cursor-pointer hover:bg-gray-50">
-          <input
-            type="radio"
-            name="payment"
-            value="online"
-            checked={paymentMethod === "online"}
-            onChange={() => setPaymentMethod("online")}
-            className="mr-3"
-          />
-          <div>
-            <div className="font-medium text-secondary-800">
-              Онлайн оплата на сайте
-            </div>
-          </div>
-        </label>
-
-        <label className="flex items-center p-3 border rounded-md cursor-pointer hover:bg-gray-50">
-          <input
-            type="radio"
-            name="payment"
-            value="cash"
-            checked={paymentMethod === "cash"}
-            onChange={() => setPaymentMethod("cash")}
-            className="mr-3"
-          />
-          <div>
-            <div className="font-medium text-secondary-800">
-              Наличными при получении
-            </div>
-          </div>
-        </label>
+      {/* Payment */}
+      <SectionLabel>Способ оплаты</SectionLabel>
+      <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+        <RadioOption
+          name="payment"
+          value="card"
+          checked={paymentMethod === "card"}
+          onChange={() => setPaymentMethod("card")}
+          icon={<CreditCard size={16} />}
+          title="Картой при получении"
+        />
+        <RadioOption
+          name="payment"
+          value="online"
+          checked={paymentMethod === "online"}
+          onChange={() => setPaymentMethod("online")}
+          icon={<Globe size={16} />}
+          title="Онлайн оплата на сайте"
+        />
+        <RadioOption
+          name="payment"
+          value="cash"
+          checked={paymentMethod === "cash"}
+          onChange={() => setPaymentMethod("cash")}
+          icon={<Wallet size={16} />}
+          title="Наличными при получении"
+        />
       </div>
     </div>
   );

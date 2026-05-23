@@ -1,4 +1,5 @@
 import React from "react";
+import { ShieldCheck } from "lucide-react";
 
 interface CartSummaryProps {
   itemCount: number;
@@ -8,6 +9,69 @@ interface CartSummaryProps {
   deliveryMethod: string;
 }
 
+const inputStyle: React.CSSProperties = {
+  width: "100%",
+  padding: "0.6rem 0.875rem",
+  background: "var(--bg-card-deep)",
+  border: "1.5px solid var(--color-border2)",
+  borderRadius: "0.65rem",
+  color: "var(--color-text)",
+  fontSize: "0.875rem",
+  outline: "none",
+  transition: "border-color 0.2s, box-shadow 0.2s",
+  fontFamily: "inherit",
+};
+
+const labelStyle: React.CSSProperties = {
+  display: "block",
+  fontSize: "0.75rem",
+  fontWeight: 600,
+  color: "var(--color-muted)",
+  marginBottom: "0.35rem",
+  letterSpacing: "0.03em",
+};
+
+const FocusInput: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = (
+  props
+) => {
+  const [focused, setFocused] = React.useState(false);
+  return (
+    <input
+      {...props}
+      style={{
+        ...inputStyle,
+        borderColor: focused ? "#F3C15F" : "var(--color-border2)",
+        boxShadow: focused
+          ? "0 0 0 2px rgba(243,193,95,0.15)"
+          : "none",
+      }}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
+    />
+  );
+};
+
+const FocusTextarea: React.FC<
+  React.TextareaHTMLAttributes<HTMLTextAreaElement>
+> = (props) => {
+  const [focused, setFocused] = React.useState(false);
+  return (
+    <textarea
+      {...props}
+      style={{
+        ...inputStyle,
+        resize: "vertical",
+        borderColor: focused ? "#F3C15F" : "var(--color-border2)",
+        boxShadow: focused
+          ? "0 0 0 2px rgba(243,193,95,0.15)"
+          : "none",
+      }}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
+    />
+  );
+};
+
 const CartSummary: React.FC<CartSummaryProps> = ({
   itemCount,
   subtotal,
@@ -16,77 +80,162 @@ const CartSummary: React.FC<CartSummaryProps> = ({
   deliveryMethod,
 }) => {
   return (
-    <div className="bg-white rounded-lg shadow p-4 sticky top-4">
-      <h2 className="font-medium text-secondary-800 mb-4">Ваш заказ</h2>
+    <div
+      style={{
+        background: "var(--bg-card)",
+        border: "1px solid var(--color-border2)",
+        borderRadius: "1.25rem",
+        padding: "1.25rem",
+        position: "sticky",
+        top: "1rem",
+      }}
+    >
+      {/* Title */}
+      <div
+        style={{
+          fontSize: "0.75rem",
+          fontWeight: 700,
+          letterSpacing: "0.08em",
+          textTransform: "uppercase",
+          color: "var(--color-muted)",
+          marginBottom: "1rem",
+        }}
+      >
+        Ваш заказ
+      </div>
 
-      <div className="space-y-3 mb-4">
-        <div className="flex justify-between text-sm">
-          <span className="text-gray-600">Товары ({itemCount})</span>
-          <span className="text-secondary-800">
+      {/* Price breakdown */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "0.6rem",
+          marginBottom: "1rem",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <span
+            style={{ fontSize: "0.875rem", color: "var(--color-muted)" }}
+          >
+            Товары ({itemCount})
+          </span>
+          <span
+            style={{
+              fontSize: "0.875rem",
+              fontWeight: 600,
+              color: "var(--color-text)",
+            }}
+          >
             {subtotal.toLocaleString()} ₽
           </span>
         </div>
 
-        <div className="flex justify-between text-sm">
-          <span className="text-gray-600">Доставка</span>
-          <span className="text-secondary-800">
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <span
+            style={{ fontSize: "0.875rem", color: "var(--color-muted)" }}
+          >
+            Доставка
+          </span>
+          <span
+            style={{
+              fontSize: "0.875rem",
+              fontWeight: 600,
+              color: deliveryCost > 0 ? "var(--color-text)" : "#4ade80",
+            }}
+          >
             {deliveryCost > 0 ? `${deliveryCost} ₽` : "Бесплатно"}
           </span>
         </div>
-
-        <div className="pt-3 border-t border-gray-200 flex justify-between font-bold">
-          <span>Итого</span>
-          <span className="text-lg">{total.toLocaleString()} ₽</span>
-        </div>
       </div>
 
-      <div className="space-y-4">
+      {/* Total */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: "0.875rem 0",
+          borderTop: "1px solid var(--color-border)",
+          borderBottom: "1px solid var(--color-border)",
+          marginBottom: "1.25rem",
+        }}
+      >
+        <span
+          style={{
+            fontSize: "0.9rem",
+            fontWeight: 700,
+            color: "var(--color-text)",
+          }}
+        >
+          Итого
+        </span>
+        <span
+          style={{
+            fontSize: "1.2rem",
+            fontWeight: 800,
+            color: "#F3C15F",
+          }}
+        >
+          {total.toLocaleString()} ₽
+        </span>
+      </div>
+
+      {/* Form */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="name" style={labelStyle}>
             Ваше имя *
           </label>
-          <input
+          <FocusInput
             id="name"
             type="text"
-            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary-500"
             placeholder="Иван Иванов"
             required
           />
         </div>
 
         <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="phone" style={labelStyle}>
             Телефон *
           </label>
-          <input
+          <FocusInput
             id="phone"
             type="tel"
-            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary-500"
             placeholder="+7 (___) ___-__-__"
             required
           />
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="email" style={labelStyle}>
             Email
           </label>
-          <input
+          <FocusInput
             id="email"
             type="email"
-            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary-500"
             placeholder="example@mail.ru"
           />
         </div>
 
         {deliveryMethod === "courier" && (
           <div>
-            <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="address" style={labelStyle}>
               Адрес доставки *
             </label>
-            <textarea
+            <FocusTextarea
               id="address"
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary-500"
               rows={3}
               placeholder="Город, улица, дом, квартира"
               required
@@ -95,24 +244,62 @@ const CartSummary: React.FC<CartSummaryProps> = ({
         )}
 
         <div>
-          <label htmlFor="comment" className="block text-sm font-medium text-gray-700 mb-1">
-            Комментарий к заказу
+          <label htmlFor="comment" style={labelStyle}>
+            Комментарий
           </label>
-          <textarea
+          <FocusTextarea
             id="comment"
-            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary-500"
             rows={2}
             placeholder="Необязательно"
           />
         </div>
 
-        <button className="w-full py-3 bg-primary-700 text-white font-medium rounded-md hover:bg-primary-800">
+        {/* Submit button */}
+        <button
+          style={{
+            width: "100%",
+            padding: "0.875rem",
+            background: "linear-gradient(135deg, #F3C15F, #D9AB52)",
+            color: "#141824",
+            fontWeight: 700,
+            fontSize: "0.95rem",
+            borderRadius: "0.75rem",
+            border: "none",
+            cursor: "pointer",
+            transition: "all 0.2s ease",
+            boxShadow: "0 4px 15px rgba(243,193,95,0.25)",
+            marginTop: "0.25rem",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLButtonElement).style.transform =
+              "translateY(-2px)";
+            (e.currentTarget as HTMLButtonElement).style.boxShadow =
+              "0 6px 20px rgba(243,193,95,0.35)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLButtonElement).style.transform =
+              "translateY(0)";
+            (e.currentTarget as HTMLButtonElement).style.boxShadow =
+              "0 4px 15px rgba(243,193,95,0.25)";
+          }}
+        >
           Оформить заказ
         </button>
 
-        <p className="text-xs text-gray-500 text-center">
-          Нажимая кнопку, вы соглашаетесь с условиями обработки персональных данных
-        </p>
+        {/* Trust line */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "0.4rem",
+            color: "var(--color-muted)",
+            fontSize: "0.72rem",
+          }}
+        >
+          <ShieldCheck size={13} />
+          Данные защищены и не передаются третьим лицам
+        </div>
       </div>
     </div>
   );
