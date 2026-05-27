@@ -6,13 +6,13 @@ import imgHero from "../../assets/images/hero_auto_parts_1773677862466.png";
 const Banner: React.FC = () => {
   return (
     <div className="w-full">
-      {/* ── Main Hero Section ── */}
+      
       <section className="relative w-full pt-10 pb-16 lg:pt-24 lg:pb-32 overflow-hidden mx-auto">
         <div className="max-w-[1600px] mx-auto px-4 relative z-10 flex flex-col-reverse lg:flex-row items-center gap-12">
 
-          {/* Hero Image (Left side on screenshot, actually the 3D parts) */}
+          
           <div className="w-full lg:w-1/2 animate-slide-in-left relative">
-            {/* The generated image goes here. We'll simulate the floating parts. */}
+            
             <div className="relative aspect-[4/3] w-full max-w-lg mx-auto lg:max-w-none">
               <img
                 src={imgHero}
@@ -23,7 +23,7 @@ const Banner: React.FC = () => {
             </div>
           </div>
 
-          {/* Hero Content (Right side) */}
+          
           <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left animate-fade-in-up">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-2 tracking-tight leading-tight">
               АВТОЗАПЧАСТИ
@@ -48,7 +48,7 @@ const Banner: React.FC = () => {
         </div>
       </section>
 
-      {/* ── Stats Bar ── */}
+      
       <section className="mb-10">
         <div className="max-w-[1600px] mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-4">

@@ -34,7 +34,7 @@ const AIChatWidget: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // Отправляем всю историю кроме последнего сообщения сервера (чтобы не перегружать контекст, отправляем 5 последних)
+      
       const recentHistory = messages.slice(-5);
       const response = await api.sendChatMessage(userMsg.content, recentHistory);
       setMessages([...newHistory, response]);
@@ -51,14 +51,14 @@ const AIChatWidget: React.FC = () => {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
-      {/* Окно чата */}
+      
       <div 
         className={`transition-all duration-300 origin-bottom-right ${
           isOpen ? 'scale-100 opacity-100 mb-4' : 'scale-0 opacity-0 h-0 w-0 overflow-hidden'
         }`}
       >
         <div className="glass w-80 sm:w-96 rounded-2xl shadow-2xl flex flex-col h-[500px] max-h-[80vh] border border-white/5 overflow-hidden">
-          {/* Header */}
+          
           <div className="p-4 bg-dark-800/80 border-b border-white/5 flex items-center justify-between shadow-sm">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-primary-500/20 flex items-center justify-center text-primary-400">
@@ -80,7 +80,7 @@ const AIChatWidget: React.FC = () => {
             </button>
           </div>
 
-          {/* Messages Area */}
+          
           <div className="flex-1 overflow-y-auto p-4 space-y-4 no-scrollbar bg-dark-900/40">
             {messages.map((msg, idx) => (
               <div 
@@ -119,7 +119,7 @@ const AIChatWidget: React.FC = () => {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input Area */}
+          
           <form 
             onSubmit={handleSend}
             className="p-3 bg-dark-800/80 border-t border-white/5 flex gap-2"
@@ -142,7 +142,7 @@ const AIChatWidget: React.FC = () => {
         </div>
       </div>
 
-      {/* Floating Button */}
+      
       {!isOpen && (
         <button
           onClick={toggleChat}

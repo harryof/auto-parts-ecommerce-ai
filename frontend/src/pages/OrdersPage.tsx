@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import api from "../services/api";
 
-// Временные данные для демонстрации
+
 const mockOrders = [
   {
     id: "1",

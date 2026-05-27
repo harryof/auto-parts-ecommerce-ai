@@ -41,7 +41,7 @@ const RadioOption: React.FC<{
       style={{ display: "none" }}
     />
 
-    {/* Custom radio dot */}
+    
     <div
       style={{
         width: "18px",
@@ -54,7 +54,7 @@ const RadioOption: React.FC<{
       }}
     />
 
-    {/* Icon */}
+    
     <div
       style={{
         width: "36px",
@@ -73,7 +73,7 @@ const RadioOption: React.FC<{
       {icon}
     </div>
 
-    {/* Text */}
+    
     <div>
       <div
         style={{
@@ -133,7 +133,7 @@ const CartSettings: React.FC<CartSettingsProps> = ({
         marginBottom: "1.5rem",
       }}
     >
-      {/* Delivery */}
+      
       <SectionLabel>Способ доставки</SectionLabel>
       <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "1.5rem" }}>
         <RadioOption
@@ -156,7 +156,7 @@ const CartSettings: React.FC<CartSettingsProps> = ({
         />
       </div>
 
-      {/* Divider */}
+      
       <div
         style={{
           height: "1px",
@@ -165,7 +165,7 @@ const CartSettings: React.FC<CartSettingsProps> = ({
         }}
       />
 
-      {/* Payment */}
+      
       <SectionLabel>Способ оплаты</SectionLabel>
       <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
         <RadioOption

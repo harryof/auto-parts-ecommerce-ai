@@ -27,7 +27,7 @@ const RelatedProducts: React.FC<RelatedProductsProps> = ({
           const fav = isFavorite(p.id);
           return (
             <div key={p.id} className="card group flex flex-col">
-              {/* Image */}
+              
               <div className="relative overflow-hidden" style={{ height: 160 }}>
                 <Link to={`/product/${p.id}`}>
                   {p.image ? (
@@ -42,12 +42,12 @@ const RelatedProducts: React.FC<RelatedProductsProps> = ({
                     </div>
                   )}
                 </Link>
-                {/* Badges */}
+                
                 <div className="absolute top-2 left-2 flex flex-col gap-1">
                   {p.isHit && <span className="badge badge-hit">Хит</span>}
                   {p.isNew && <span className="badge badge-new">New</span>}
                 </div>
-                {/* Fav button */}
+                
                 <button
                   onClick={() => fav ? removeFromFavorites(p.id) : addToFavorites(p)}
                   className={`absolute top-2 right-2 w-7 h-7 flex items-center justify-center rounded-xl glass transition-all opacity-0 group-hover:opacity-100
@@ -57,7 +57,7 @@ const RelatedProducts: React.FC<RelatedProductsProps> = ({
                 </button>
               </div>
 
-              {/* Info */}
+              
               <div className="p-3 flex flex-col flex-1">
                 <Link to={`/product/${p.id}`} className="flex-1">
                   <h3 className="text-xs font-semibold text-dark-100 group-hover:text-white transition-colors line-clamp-2 mb-2 leading-snug">

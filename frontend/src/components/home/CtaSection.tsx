@@ -19,11 +19,11 @@ const CtaSection: React.FC = () => {
           visible ? "opacity-100 scale-100" : "opacity-0 scale-95"
         }`}
       >
-        {/* Decor */}
+        
         <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-primary-600 z-0" />
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/20 blur-[80px] rounded-full translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none" />
         
-        {/* Hexagon pattern overlay (subtle) */}
+        
         <div 
           className="absolute inset-0 z-0 opacity-10 pointer-events-none mix-blend-overlay"
           style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, black 1px, transparent 0)', backgroundSize: '24px 24px' }}

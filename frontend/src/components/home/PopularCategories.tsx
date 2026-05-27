@@ -22,7 +22,7 @@ const CATEGORIES = [
 ];
 
 const ITEMS_PER_PAGE = 4;
-const GAP = 24; // gap-6 = 1.5rem = 24px
+const GAP = 24; 
 
 const PopularCategories: React.FC = () => {
   const [visible, setVisible] = useState(false);
@@ -33,7 +33,7 @@ const PopularCategories: React.FC = () => {
 
   const totalPages = Math.ceil(CATEGORIES.length / ITEMS_PER_PAGE);
 
-  // Fade-in on scroll
+  
   useEffect(() => {
     const obs = new IntersectionObserver(
       ([e]) => { if (e.isIntersecting) setVisible(true); },
@@ -43,7 +43,7 @@ const PopularCategories: React.FC = () => {
     return () => obs.disconnect();
   }, []);
 
-  // Scroll to correct page whenever `page` changes
+  
   const scrollToPage = useCallback((targetPage: number) => {
     const wrap = wrapRef.current;
     if (!wrap) return;
@@ -65,10 +65,10 @@ const PopularCategories: React.FC = () => {
       </h2>
       <div className={`accent-line mx-auto transition-all duration-1000 delay-300 ${visible ? "w-24 opacity-100" : "w-0 opacity-0"}`} />
 
-      {/* Carousel wrapper */}
+      
       <div className="relative">
 
-        {/* Left arrow */}
+        
         <button
           onClick={goLeft}
           aria-label="Назад"
@@ -87,7 +87,7 @@ const PopularCategories: React.FC = () => {
           </svg>
         </button>
 
-        {/* Scrollable track — hidden scrollbar */}
+        
         <div
           ref={wrapRef}
           className="overflow-x-hidden no-scrollbar"
@@ -107,7 +107,7 @@ const PopularCategories: React.FC = () => {
                   ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}
                 `}
                 style={{
-                  /* Always dark card — immune to light theme overrides */
+                  
                   background: "#1e2a3a",
                   width: `calc((100% - ${GAP * (ITEMS_PER_PAGE - 1)}px) / ${ITEMS_PER_PAGE})`,
                   height: 220,
@@ -116,7 +116,7 @@ const PopularCategories: React.FC = () => {
                   boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
                 }}
               >
-                {/* Strong bottom gradient so title always readable */}
+                
                 <div
                   className="absolute inset-0 z-10"
                   style={{
@@ -124,13 +124,13 @@ const PopularCategories: React.FC = () => {
                   }}
                 />
 
-                {/* Hover shimmer */}
+                
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
                   style={{ background: "linear-gradient(135deg, rgba(243,193,95,0.10) 0%, transparent 60%)" }}
                 />
 
-                {/* Image */}
+                
                 <div className="absolute inset-0 flex items-center justify-center p-5 pb-12 transition-transform duration-500 group-hover:scale-110">
                   <img
                     src={cat.image}
@@ -140,7 +140,7 @@ const PopularCategories: React.FC = () => {
                   />
                 </div>
 
-                {/* Title — always white via inline style */}
+                
                 <div className="absolute bottom-0 left-0 right-0 z-20 px-5 py-4">
                   <h3
                     className="text-sm font-bold leading-tight drop-shadow-lg"
@@ -159,7 +159,7 @@ const PopularCategories: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Yellow bottom accent on hover */}
+                
                 <div className="absolute bottom-0 left-0 right-0 h-[3px] z-30 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
                   style={{ background: "linear-gradient(to right, #F3C15F, #F5D085)" }}
                 />
@@ -168,7 +168,7 @@ const PopularCategories: React.FC = () => {
           </div>
         </div>
 
-        {/* Right arrow */}
+        
         <button
           onClick={goRight}
           aria-label="Вперед"
@@ -188,7 +188,7 @@ const PopularCategories: React.FC = () => {
         </button>
       </div>
 
-      {/* Page dots */}
+      
       <div className="flex justify-center gap-2 mt-6">
         {Array.from({ length: totalPages }).map((_, i) => (
           <button

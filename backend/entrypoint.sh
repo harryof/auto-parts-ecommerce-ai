@@ -1,5 +1,5 @@
 #!/bin/sh
-# entrypoint.sh — ждём PostgreSQL, запускаем миграции, seed, затем сервер
+
 
 set -e
 

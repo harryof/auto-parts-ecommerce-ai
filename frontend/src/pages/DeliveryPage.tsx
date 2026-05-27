@@ -7,17 +7,14 @@ import {
   ChevronRight, Calculator, Info,
 } from "lucide-react";
 
-/* ══════════════════════════════════════════════════════════════
-   DATA
-══════════════════════════════════════════════════════════════ */
 
 type Zone = "moscow" | "near" | "russia" | "far";
 
 const REGIONS: { label: string; zone: Zone }[] = [
-  // Moscow & MO
+  
   { label: "Москва", zone: "moscow" },
   { label: "Московская область", zone: "moscow" },
-  // Near regions
+  
   { label: "Санкт-Петербург", zone: "near" },
   { label: "Ленинградская область", zone: "near" },
   { label: "Нижний Новгород", zone: "near" },
@@ -28,7 +25,7 @@ const REGIONS: { label: string; zone: Zone }[] = [
   { label: "Тверь", zone: "near" },
   { label: "Рязань", zone: "near" },
   { label: "Тула", zone: "near" },
-  // Russia
+  
   { label: "Екатеринбург", zone: "russia" },
   { label: "Краснодар", zone: "russia" },
   { label: "Ростов-на-Дону", zone: "russia" },
@@ -38,7 +35,7 @@ const REGIONS: { label: string; zone: Zone }[] = [
   { label: "Новосибирск", zone: "russia" },
   { label: "Омск", zone: "russia" },
   { label: "Волгоград", zone: "russia" },
-  // Far
+  
   { label: "Красноярск", zone: "far" },
   { label: "Иркутск", zone: "far" },
   { label: "Хабаровск", zone: "far" },
@@ -121,9 +118,7 @@ const PAYMENT: { icon: LucideIcon; title: string; text: string }[] = [
   { icon: ShieldCheck, title: "Для юр. лиц", text: "Счёт-фактура, НДС, безналичный расчёт" },
 ];
 
-/* ══════════════════════════════════════════════════════════════
-   COMPONENT
-══════════════════════════════════════════════════════════════ */
+
 const DeliveryPage: React.FC = () => {
   const [selectedRegion, setSelectedRegion] = useState<string>("");
   const [selectedMethod, setSelectedMethod] = useState<MethodKey | "">("");
@@ -164,7 +159,7 @@ const DeliveryPage: React.FC = () => {
   return (
     <div className="max-w-[1100px] mx-auto px-4 py-10">
 
-      {/* ── Hero ──────────────────────────────────────────────── */}
+      
       <section
         className="relative rounded-3xl overflow-hidden mb-14 px-8 py-16 text-center"
         style={{ background: "linear-gradient(135deg, #1B2131 0%, #2A3246 60%, #1B2131 100%)" }}
@@ -198,7 +193,7 @@ const DeliveryPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ── CALCULATOR ─────────────────────────────────────────── */}
+      
       <section className="mb-16">
         <div className="text-center mb-10">
           <h2 className="section-title">
@@ -211,7 +206,7 @@ const DeliveryPage: React.FC = () => {
         <div className="glass rounded-3xl p-6 md:p-8 border border-white/5">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
 
-            {/* Region */}
+            
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-dark-400 mb-2">
                 📍 Ваш город
@@ -231,7 +226,7 @@ const DeliveryPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Method */}
+            
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-dark-400 mb-2">
                 🚚 Способ доставки
@@ -255,7 +250,7 @@ const DeliveryPage: React.FC = () => {
               )}
             </div>
 
-            {/* Order amount */}
+            
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-dark-400 mb-2">
                 💳 Сумма заказа (₽)
@@ -274,12 +269,12 @@ const DeliveryPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Result */}
+          
           {isCalculated && result ? (
             <div className="rounded-2xl overflow-hidden border border-primary-500/30 bg-primary-500/5">
               <div className="flex flex-col md:flex-row items-center md:items-stretch">
 
-                {/* Cost block */}
+                
                 <div className="flex-1 p-6 text-center md:text-left border-b md:border-b-0 md:border-r border-primary-500/20">
                   <div className="text-xs font-bold uppercase tracking-wider text-dark-400 mb-2">Стоимость доставки</div>
                   {result.isFree ? (
@@ -300,14 +295,14 @@ const DeliveryPage: React.FC = () => {
                   )}
                 </div>
 
-                {/* Time block */}
+                
                 <div className="flex-1 p-6 text-center border-b md:border-b-0 md:border-r border-primary-500/20">
                   <div className="text-xs font-bold uppercase tracking-wider text-dark-400 mb-2">Срок доставки</div>
                   <div className="text-4xl font-black text-white">{result.days}</div>
                   <div className="text-xs text-dark-400 mt-1">с момента отправки</div>
                 </div>
 
-                {/* CTA block */}
+                
                 <div className="p-6 flex flex-col items-center justify-center gap-3">
                   <div className="text-xs text-dark-400 text-center max-w-[140px]">Готовы оформить заказ?</div>
                   <Link to="/catalog" className="btn-primary text-sm py-2.5 px-5 whitespace-nowrap">
@@ -317,7 +312,7 @@ const DeliveryPage: React.FC = () => {
               </div>
             </div>
           ) : (
-            /* Placeholder */
+            
             <div className="rounded-2xl border border-dashed border-white/10 py-10 text-center text-dark-500">
               <Calculator size={32} className="mx-auto mb-3 opacity-30" />
               <div className="text-sm">Выберите город и способ доставки,<br />чтобы увидеть стоимость и срок</div>
@@ -326,7 +321,7 @@ const DeliveryPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ── Method cards ───────────────────────────────────────── */}
+      
       <section className="mb-16">
         <div className="text-center mb-10">
           <h2 className="section-title">
@@ -353,7 +348,7 @@ const DeliveryPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Zone table */}
+              
               <table className="w-full text-xs">
                 <thead>
                   <tr className="border-b border-white/5">
@@ -392,7 +387,7 @@ const DeliveryPage: React.FC = () => {
           ))}
         </div>
 
-        {/* Free delivery banner */}
+        
         <div className="mt-5 glass rounded-2xl p-5 border border-primary-500/20 flex flex-col sm:flex-row items-center gap-4">
           <div className="w-12 h-12 rounded-xl bg-primary-500/20 flex items-center justify-center flex-shrink-0">
             <Truck size={22} className="text-primary-400" />
@@ -407,7 +402,7 @@ const DeliveryPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ── Payment ─────────────────────────────────────────────── */}
+      
       <section className="mb-16">
         <div className="text-center mb-10">
           <h2 className="section-title">
@@ -432,7 +427,7 @@ const DeliveryPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ── CTA ─────────────────────────────────────────────────── */}
+      
       <section className="glass rounded-3xl p-10 text-center border border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5 pointer-events-none"
           style={{ background: "radial-gradient(circle at 50% 0%, #F3C15F, transparent 60%)" }} />

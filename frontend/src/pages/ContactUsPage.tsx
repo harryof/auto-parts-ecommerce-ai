@@ -11,7 +11,7 @@ const ContactUsPage: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here would be the logic to send the form data
+    
     console.log("Form submitted:", formData);
     alert("Спасибо за ваше сообщение! Мы свяжемся с вами в ближайшее время.");
     setFormData({ name: "", email: "", phone: "", subject: "", message: "" });

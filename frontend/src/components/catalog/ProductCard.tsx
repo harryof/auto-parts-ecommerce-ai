@@ -11,7 +11,7 @@ interface ProductCardProps {
   visible?: boolean;
 }
 
-// Плейсхолдер когда у товара нет картинки
+
 const PlaceholderImage: React.FC<{ name: string }> = ({ name }) => (
   <div className="w-full h-full flex flex-col items-center justify-center bg-dark-800/60 gap-2">
     <Package size={40} className="text-dark-500" />
@@ -57,7 +57,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, index = 0, visible =
       onMouseLeave={() => setHovered(false)}
       onClick={() => navigate(`/product/${product.id}`)}
     >
-      {/* Image area */}
+      
       <div className="relative overflow-hidden flex-shrink-0" style={{ height: 220 }}>
         {product.image ? (
           <img
@@ -71,13 +71,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, index = 0, visible =
           <PlaceholderImage name={product.name} />
         )}
 
-        {/* Gradient overlay */}
+        
         <div
           className={`absolute inset-0 transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}`}
           style={{ background: "linear-gradient(to top, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.1) 60%)" }}
         />
 
-        {/* Badges */}
+        
         <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
           {product.isHit && <span className="badge badge-hit">Хит</span>}
           {product.isNew && <span className="badge badge-new">New</span>}
@@ -88,7 +88,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, index = 0, visible =
           )}
         </div>
 
-        {/* Action icons top-right */}
+        
         <div
           className={`absolute top-3 right-3 flex flex-col gap-2 z-10 transition-all duration-300 ${
             hovered ? "translate-x-0 opacity-100" : "translate-x-4 opacity-0"
@@ -111,7 +111,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, index = 0, visible =
           </Link>
         </div>
 
-        {/* Bottom action bar */}
+        
         <div
           className={`absolute bottom-0 left-0 right-0 p-3 z-10 transition-all duration-300 ${
             hovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
@@ -128,7 +128,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, index = 0, visible =
         </div>
       </div>
 
-      {/* Info */}
+      
       <div className="p-4 flex flex-col flex-1">
         <Link to={`/product/${product.id}`} onClick={(e) => e.stopPropagation()} className="flex-1">
           <h3

@@ -25,7 +25,7 @@ const ProductActionCard: React.FC<ProductActionCardProps> = ({
 
   return (
     <div className="glass rounded-2xl p-6 flex-shrink-0 w-full md:w-80">
-      {/* Price */}
+      
       <div className="flex items-end gap-3 mb-2">
         <span className="text-3xl font-black text-white leading-none">
           {product.price.toLocaleString()} ₽
@@ -37,7 +37,7 @@ const ProductActionCard: React.FC<ProductActionCardProps> = ({
         )}
       </div>
 
-      {/* Rating */}
+      
       {rating > 0 && (
         <div className="flex items-center gap-2 mb-4">
           <div className="flex items-center gap-0.5">
@@ -56,21 +56,21 @@ const ProductActionCard: React.FC<ProductActionCardProps> = ({
         </div>
       )}
 
-      {/* Stock */}
+      
       <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold mb-5
         ${product.inStock ? "bg-emerald-500/10 text-emerald-400" : "bg-dark-700 text-dark-400"}`}>
         <span className={`w-2 h-2 rounded-full ${product.inStock ? "bg-emerald-400" : "bg-dark-500"}`} />
         {product.inStock ? "● В наличии" : "● Под заказ"}
       </div>
 
-      {/* Article */}
+      
       {product.article && (
         <div className="text-xs text-dark-500 mb-5">
           Арт: <span className="text-dark-300 font-mono">{product.article}</span>
         </div>
       )}
 
-      {/* Quantity */}
+      
       <div className="flex items-center gap-3 mb-4">
         <span className="text-sm text-dark-400">Количество:</span>
         <div className="flex items-center gap-0 rounded-xl overflow-hidden border border-white/10 bg-dark-900">
@@ -93,7 +93,7 @@ const ProductActionCard: React.FC<ProductActionCardProps> = ({
         </div>
       </div>
 
-      {/* Buttons */}
+      
       <div className="space-y-2 mb-5">
         <button
           onClick={() =>
@@ -122,7 +122,7 @@ const ProductActionCard: React.FC<ProductActionCardProps> = ({
         </button>
       </div>
 
-      {/* Delivery info */}
+      
       <div className="pt-4 border-t border-white/5 space-y-2">
         <div className="flex items-start gap-3">
           <ShieldCheck size={15} className="text-emerald-400 flex-shrink-0 mt-0.5" />

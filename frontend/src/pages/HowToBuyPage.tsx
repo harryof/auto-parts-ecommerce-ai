@@ -6,7 +6,6 @@ import {
   ClipboardList, CheckCircle2, ChevronDown, Headphones, Zap,
 } from "lucide-react";
 
-/* ── Data ────────────────────────────────────────────────────── */
 
 const ORDER_STEPS = [
   {
@@ -117,14 +116,14 @@ const FAQ = [
   },
 ];
 
-/* ── Component ───────────────────────────────────────────────── */
+
 const HowToBuyPage: React.FC = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
     <div className="max-w-[1100px] mx-auto px-4 py-10">
 
-      {/* ── Hero ─────────────────────────────────────────────── */}
+      
       <section
         className="relative rounded-3xl overflow-hidden mb-14 px-8 py-16 text-center"
         style={{ background: "linear-gradient(135deg, #1B2131 0%, #2A3246 60%, #1B2131 100%)" }}
@@ -159,7 +158,7 @@ const HowToBuyPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ── Order steps ──────────────────────────────────────── */}
+      
       <section className="mb-16">
         <div className="text-center mb-10">
           <h2 className="section-title">
@@ -169,13 +168,13 @@ const HowToBuyPage: React.FC = () => {
         </div>
 
         <div className="relative">
-          {/* connector line */}
+          
           <div className="hidden md:block absolute top-10 left-[calc(10%+2rem)] right-[calc(10%+2rem)] h-0.5 bg-gradient-to-r from-transparent via-primary-500/30 to-transparent" />
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
             {ORDER_STEPS.map(({ icon: Icon, title, text }, i) => (
               <div key={i} className="flex flex-col items-center text-center group">
-                {/* icon circle */}
+                
                 <div className="relative mb-4">
                   <div className="w-16 h-16 rounded-2xl bg-primary-500/10 border border-primary-500/20 flex items-center justify-center group-hover:bg-primary-500/20 transition-colors z-10 relative">
                     <Icon size={24} className="text-primary-400" />
@@ -192,7 +191,7 @@ const HowToBuyPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ── Delivery methods ─────────────────────────────────── */}
+      
       <section className="mb-16">
         <div className="text-center mb-10">
           <h2 className="section-title">
@@ -225,7 +224,7 @@ const HowToBuyPage: React.FC = () => {
           ))}
         </div>
 
-        {/* Free delivery banner */}
+        
         <div className="mt-5 glass rounded-2xl p-5 border border-primary-500/20 flex flex-col sm:flex-row items-center gap-4">
           <div className="w-12 h-12 rounded-xl bg-primary-500/20 flex items-center justify-center flex-shrink-0">
             <Truck size={22} className="text-primary-400" />
@@ -243,7 +242,7 @@ const HowToBuyPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ── Payment methods ───────────────────────────────────── */}
+      
       <section className="mb-16">
         <div className="text-center mb-10">
           <h2 className="section-title">
@@ -264,14 +263,14 @@ const HowToBuyPage: React.FC = () => {
           ))}
         </div>
 
-        {/* Security note */}
+        
         <div className="mt-5 flex items-center justify-center gap-3 text-sm text-dark-400">
           <ShieldCheck size={16} className="text-emerald-400" />
           Все платежи защищены SSL-шифрованием. Данные карты не хранятся на наших серверах.
         </div>
       </section>
 
-      {/* ── Delivery timing info-row ─────────────────────────── */}
+      
       <section className="mb-16">
         <div className="glass rounded-2xl overflow-hidden border border-white/5">
           <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/5">
@@ -295,7 +294,7 @@ const HowToBuyPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ── FAQ ──────────────────────────────────────────────── */}
+      
       <section className="mb-16">
         <div className="text-center mb-10">
           <h2 className="section-title">
@@ -333,7 +332,7 @@ const HowToBuyPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ── CTA ──────────────────────────────────────────────── */}
+      
       <section className="glass rounded-3xl p-10 text-center border border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5 pointer-events-none"
           style={{ background: "radial-gradient(circle at 50% 0%, #F3C15F, transparent 60%)" }} />

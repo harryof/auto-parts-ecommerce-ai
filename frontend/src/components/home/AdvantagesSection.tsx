@@ -55,7 +55,7 @@ const AdvantagesSection: React.FC = () => {
               }`}
             style={{ transitionDelay: `${i * 150}ms` }}
           >
-            {/* Top right gradient blob */}
+            
             <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/5 rounded-full blur-2xl group-hover:bg-primary-500/10 transition-colors" />
 
             <div className={`w-14 h-14 rounded-3xl bg-dark-900 border border-white/5 flex items-center justify-center mb-6 shadow-inner ${adv.color} group-hover:scale-110 transition-transform`}>

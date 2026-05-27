@@ -1,7 +1,5 @@
-/**
- * Общий тип Product, используемый по всему фронтенду.
- * Соответствует формату API (/api/products).
- */
+
+
 export interface Product {
   id: string;
   name: string;

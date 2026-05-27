@@ -20,7 +20,7 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
 
   return (
     <div className="glass rounded-2xl overflow-hidden mb-6">
-      {/* Tab buttons */}
+      
       <div className="flex border-b border-white/5 overflow-x-auto no-scrollbar">
         {TABS.map((tab) => (
           <button
@@ -40,9 +40,9 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
         ))}
       </div>
 
-      {/* Tab content */}
+      
       <div className="p-6">
-        {/* Description */}
+        
         {activeTab === "description" && (
           <div className="text-dark-200 leading-relaxed text-sm">
             {product.description
@@ -52,7 +52,7 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
           </div>
         )}
 
-        {/* Specifications */}
+        
         {activeTab === "specifications" && (
           hasSpecs ? (
             <table className="w-full text-sm">
@@ -73,7 +73,7 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
           )
         )}
 
-        {/* Compatibility */}
+        
         {activeTab === "compatibility" && (
           hasCars ? (
             <div>

@@ -19,7 +19,7 @@ const VinSearchModal: React.FC<VinSearchModalProps> = ({ isOpen, onClose }) => {
 
   const vinInputRef = useRef<HTMLInputElement>(null);
 
-  // Сброс состояния при закрытии
+  
   useEffect(() => {
     if (!isOpen) {
       setVin("");
@@ -34,7 +34,7 @@ const VinSearchModal: React.FC<VinSearchModalProps> = ({ isOpen, onClose }) => {
     }
   }, [isOpen]);
 
-  // Закрытие по Escape
+  
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -43,7 +43,7 @@ const VinSearchModal: React.FC<VinSearchModalProps> = ({ isOpen, onClose }) => {
     return () => document.removeEventListener("keydown", handler);
   }, [onClose]);
 
-  // Блокировка скролла страницы
+  
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -76,7 +76,7 @@ const VinSearchModal: React.FC<VinSearchModalProps> = ({ isOpen, onClose }) => {
   };
 
   const handleVinInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Только латинские буквы и цифры, не более 17 символов
+    
     const val = e.target.value.toUpperCase().replace(/[^A-HJ-NPR-Z0-9]/g, "");
     setVin(val.slice(0, 17));
     setError(null);
@@ -91,13 +91,13 @@ const VinSearchModal: React.FC<VinSearchModalProps> = ({ isOpen, onClose }) => {
       className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
-      {/* Backdrop */}
+      
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm animate-fadeIn" />
 
-      {/* Modal */}
+      
       <div className="relative w-full max-w-2xl max-h-[90vh] flex flex-col bg-dark-900 border border-white/10 rounded-3xl shadow-2xl shadow-black/50 animate-slideUp overflow-hidden">
 
-        {/* Header */}
+        
         <div className="flex items-center justify-between px-6 py-5 border-b border-white/5 flex-shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-primary-500/15 flex items-center justify-center">
@@ -116,12 +116,12 @@ const VinSearchModal: React.FC<VinSearchModalProps> = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        {/* Scrollable content */}
+        
         <div className="flex-1 overflow-y-auto">
 
-          {/* Form */}
+          
           <form onSubmit={handleSearch} className="p-6 space-y-4">
-            {/* VIN field */}
+            
             <div>
               <label className="text-xs font-semibold text-dark-300 uppercase tracking-wider mb-2 block">
                 VIN номер автомобиля
@@ -153,7 +153,7 @@ const VinSearchModal: React.FC<VinSearchModalProps> = ({ isOpen, onClose }) => {
               </p>
             </div>
 
-            {/* Part query field */}
+            
             <div>
               <label className="text-xs font-semibold text-dark-300 uppercase tracking-wider mb-2 block">
                 Нужная запчасть <span className="text-dark-500 font-normal normal-case">(необязательно)</span>
@@ -171,7 +171,7 @@ const VinSearchModal: React.FC<VinSearchModalProps> = ({ isOpen, onClose }) => {
               </div>
             </div>
 
-            {/* Error */}
+            
             {error && (
               <div className="flex items-start gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/20">
                 <AlertCircle size={18} className="text-red-400 flex-shrink-0 mt-0.5" />
@@ -179,7 +179,7 @@ const VinSearchModal: React.FC<VinSearchModalProps> = ({ isOpen, onClose }) => {
               </div>
             )}
 
-            {/* Submit */}
+            
             <button
               type="submit"
               disabled={!vinIsValid || loading}
@@ -194,10 +194,10 @@ const VinSearchModal: React.FC<VinSearchModalProps> = ({ isOpen, onClose }) => {
             </button>
           </form>
 
-          {/* Results */}
+          
           {searched && !loading && (
             <div className="px-6 pb-6">
-              {/* Found car info */}
+              
               {foundCar && (
                 <div className="mb-5 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center gap-4">
                   <div className="w-12 h-12 rounded-xl bg-emerald-500/15 flex items-center justify-center flex-shrink-0">
@@ -219,7 +219,7 @@ const VinSearchModal: React.FC<VinSearchModalProps> = ({ isOpen, onClose }) => {
                 </div>
               )}
 
-              {/* Products count */}
+              
               <div className="text-sm text-dark-400 mb-4">
                 {products.length > 0 ? (
                   <>Найдено запчастей: <span className="text-white font-semibold">{products.length}</span>
@@ -230,7 +230,7 @@ const VinSearchModal: React.FC<VinSearchModalProps> = ({ isOpen, onClose }) => {
                 )}
               </div>
 
-              {/* Product cards */}
+              
               {products.length > 0 && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {products.map((product) => (
@@ -240,7 +240,7 @@ const VinSearchModal: React.FC<VinSearchModalProps> = ({ isOpen, onClose }) => {
                       onClick={onClose}
                       className="group flex gap-3 p-3 rounded-xl bg-dark-800 border border-white/5 hover:border-primary-500/30 hover:bg-dark-700 transition-all"
                     >
-                      {/* Image */}
+                      
                       <div className="w-16 h-16 rounded-lg bg-dark-700 flex-shrink-0 overflow-hidden">
                         {product.image ? (
                           <img
@@ -255,7 +255,7 @@ const VinSearchModal: React.FC<VinSearchModalProps> = ({ isOpen, onClose }) => {
                         )}
                       </div>
 
-                      {/* Info */}
+                      
                       <div className="flex-1 min-w-0">
                         <p className="text-xs text-dark-400 mb-0.5">{product.brand}</p>
                         <h3 className="text-sm font-semibold text-white group-hover:text-primary-400 transition-colors line-clamp-2 leading-tight mb-1">

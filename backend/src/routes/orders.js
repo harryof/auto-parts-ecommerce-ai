@@ -4,13 +4,10 @@ const { body, validationResult } = require('express-validator');
 const pool = require('../db/pool');
 const { authMiddleware } = require('../middleware/auth');
 
-// Все маршруты требуют авторизации
+
 router.use(authMiddleware);
 
-/**
- * GET /api/orders
- * Возвращает список заказов текущего пользователя.
- */
+
 router.get('/', async (req, res) => {
   try {
     const ordersResult = await pool.query(
@@ -21,7 +18,7 @@ router.get('/', async (req, res) => {
       [req.user.id]
     );
 
-    // Позиции заказов
+
     const orderIds = ordersResult.rows.map((o) => o.id);
     let items = [];
     if (orderIds.length > 0) {
@@ -59,10 +56,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-/**
- * GET /api/orders/:id
- * Возвращает конкретный заказ (только свои).
- */
+
 router.get('/:id', async (req, res) => {
   try {
     const orderResult = await pool.query(
@@ -102,11 +96,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-/**
- * POST /api/orders
- * Создать новый заказ.
- * Body: { items: [{ productId, quantity }], deliveryAddress, notes }
- */
+
 router.post(
   '/',
   [
@@ -127,7 +117,7 @@ router.post(
     try {
       await client.query('BEGIN');
 
-      // Получаем данные и цены товаров из БД
+      
       const productIds = items.map((i) => i.productId);
       const productsResult = await client.query(
         'SELECT id, name, price, in_stock FROM products WHERE id = ANY($1::text[])',
@@ -139,7 +129,7 @@ router.post(
         productMap[p.id] = p;
       }
 
-      // Проверка наличия всех товаров
+      
       for (const item of items) {
         if (!productMap[item.productId]) {
           await client.query('ROLLBACK');
@@ -153,12 +143,12 @@ router.post(
         }
       }
 
-      // Вычисляем сумму
+      
       const totalAmount = items.reduce((sum, item) => {
         return sum + parseFloat(productMap[item.productId].price) * item.quantity;
       }, 0);
 
-      // Создаём заказ
+      
       const orderResult = await client.query(
         `INSERT INTO orders (user_id, total_amount, delivery_address, notes)
          VALUES ($1, $2, $3, $4)
@@ -167,7 +157,7 @@ router.post(
       );
       const order = orderResult.rows[0];
 
-      // Добавляем позиции
+      
       for (const item of items) {
         const product = productMap[item.productId];
         await client.query(

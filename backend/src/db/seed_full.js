@@ -10,9 +10,7 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
 });
 
-// ─────────────────────────────────────────────────────────────
-// КАТЕГОРИИ И ПОДКАТЕГОРИИ
-// ─────────────────────────────────────────────────────────────
+
 const categories = [
   {
     id: 'spare-parts', name: 'Автозапчасти',
@@ -214,7 +212,7 @@ function generateProducts() {
     for (const sub of cat.subs) {
       for (let i = 1; i <= 15; i++) {
         const brand = getRandomItem(brands);
-        const price = Math.floor(Math.random() * 9500) + 500; // 500 to 10000
+        const price = Math.floor(Math.random() * 9500) + 500; 
         const rating = (Math.random() * (5 - 3.5) + 3.5).toFixed(1);
         const isHit = Math.random() > 0.8;
         const isNew = Math.random() > 0.8;
@@ -254,7 +252,7 @@ async function seedFull() {
   try {
     await client.query('BEGIN');
 
-    // --- Категории
+    
     console.log('📂 Заполнение категорий и подкатегорий...');
     for (const cat of categories) {
       await client.query(
@@ -275,10 +273,7 @@ async function seedFull() {
     }
     console.log(`  ✅ ${categories.length} категорий добавлены`);
 
-    // Опционально можно удалить старые товары (из seed.js) чтобы избежать дублей по смыслу,
-    // но мы просто добавим новые через ON CONFLICT. Идентификаторы новые (prod-...).
-
-    // --- Товары
+    
     console.log(`📦 Заполнение товаров (${generatedProducts.length} шт.)...`);
     let count = 0;
     for (const p of generatedProducts) {

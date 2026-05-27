@@ -14,7 +14,7 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({ image, images, name }) 
 
   return (
     <div className="flex-shrink-0 w-full lg:w-96 xl:w-[420px]">
-      {/* Main image */}
+      
       <div
         className="relative overflow-hidden rounded-2xl bg-dark-800 border border-white/5 mb-3 cursor-zoom-in group"
         style={{ aspectRatio: "4/3" }}
@@ -39,7 +39,7 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({ image, images, name }) 
         </div>
       </div>
 
-      {/* Thumbnails */}
+      
       {allImages.length > 1 && (
         <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar">
           {allImages.map((img, i) => (

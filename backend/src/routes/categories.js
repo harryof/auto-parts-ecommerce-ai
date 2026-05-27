@@ -2,10 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db/pool');
 
-/**
- * GET /api/categories
- * Возвращает все категории с подкатегориями.
- */
+
 router.get('/', async (req, res) => {
   try {
     const catsResult = await pool.query(
@@ -42,10 +39,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-/**
- * GET /api/categories/:id
- * Возвращает одну категорию с подкатегориями.
- */
+
 router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;

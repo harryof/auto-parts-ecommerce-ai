@@ -1,8 +1,4 @@
-/**
- * Seed-скрипт: заполняет базу данных начальными данными.
- * По одному товару в каждой подкатегории — это только шаблон.
- * Дальнейшее наполнение делается через pgAdmin, DBeaver или SQL-запросы (см. README.md).
- */
+
 
 const path = require('path');
 const { Pool } = require('pg');
@@ -16,9 +12,7 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
 });
 
-// ─────────────────────────────────────────────────────────────
-// КАТЕГОРИИ И ПОДКАТЕГОРИИ
-// ─────────────────────────────────────────────────────────────
+
 const categories = [
   {
     id: 'spare-parts', name: 'Автозапчасти',
@@ -175,11 +169,9 @@ const categories = [
   },
 ];
 
-// ─────────────────────────────────────────────────────────────
-// ТОВАРЫ — по одному на каждую подкатегорию (шаблон)
-// ─────────────────────────────────────────────────────────────
+
 const products = [
-  // spare-parts
+  
   { id: 'sample-engine-parts-001',  name: 'Поршневой комплект (образец)',      price: 15000, brand: 'Mahle',       categoryId: 'spare-parts',     subcategoryId: 'engine-parts',   article: 'MHL-001', rating: 4.5, reviewCount: 0, isHit: true,  description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-body-parts-001',    name: 'Крыло переднее левое (образец)',    price: 8000,  brand: 'Bodyline',    categoryId: 'spare-parts',     subcategoryId: 'body-parts',     article: 'BL-001',  rating: 4.0, reviewCount: 0, isNew: true,  description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-washer-001',        name: 'Бачок омывателя (образец)',         price: 1200,  brand: 'Bosch',       categoryId: 'spare-parts',     subcategoryId: 'washer',         article: 'BSH-WS1', rating: 4.2, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
@@ -195,14 +187,14 @@ const products = [
   { id: 'sample-cooling-001',       name: 'Радиатор охлаждения (образец)',     price: 9000,  brand: 'NRF',         categoryId: 'spare-parts',     subcategoryId: 'cooling',        article: 'NRF-001', rating: 4.4, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-fuel-001',          name: 'Топливный насос (образец)',         price: 5000,  brand: 'Pierburg',    categoryId: 'spare-parts',     subcategoryId: 'fuel-system',    article: 'PB-001',  rating: 4.3, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
 
-  // auto-chemistry
+  
   { id: 'sample-car-care-001',      name: 'Автошампунь концентрат (образец)', price: 800,  brand: 'Koch Chemie', categoryId: 'auto-chemistry', subcategoryId: 'car-care',      article: 'KC-001',  rating: 4.7, reviewCount: 0, isNew: true, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-interior-care-001', name: 'Очиститель салона (образец)',      price: 600,  brand: 'GYEON',       categoryId: 'auto-chemistry', subcategoryId: 'interior-care', article: 'GY-001',  rating: 4.5, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-glass-care-001',    name: 'Незамерзающая жидкость (образец)', price: 400,  brand: 'Felix',       categoryId: 'auto-chemistry', subcategoryId: 'glass-care',    article: 'FLX-001', rating: 4.2, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-tech-fluids-001',   name: 'Антифриз G12 (образец)',           price: 500,  brand: 'Mannol',      categoryId: 'auto-chemistry', subcategoryId: 'tech-fluids',   article: 'MN-001',  rating: 4.4, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-degreasers-001',    name: 'Очиститель тормозов (образец)',    price: 450,  brand: 'Liqui Moly',  categoryId: 'auto-chemistry', subcategoryId: 'degreasers',    article: 'LM-001',  rating: 4.6, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
 
-  // autoelectronics
+  
   { id: 'sample-dashcam-001',   name: 'Видеорегистратор 4K (образец)',  price: 8000, brand: 'Navitel',  categoryId: 'autoelectronics', subcategoryId: 'dashcam',    article: 'NV-001', rating: 4.5, reviewCount: 0, isNew: true, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-radar-001',     name: 'Радар-детектор (образец)',       price: 6500, brand: 'Escort',   categoryId: 'autoelectronics', subcategoryId: 'radar',      article: 'ES-001', rating: 4.3, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-navigation-001',name: 'GPS-навигатор (образец)',        price: 5000, brand: 'Garmin',   categoryId: 'autoelectronics', subcategoryId: 'navigation', article: 'GR-001', rating: 4.4, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
@@ -210,56 +202,56 @@ const products = [
   { id: 'sample-audio-001',     name: 'Автомагнитола 2DIN (образец)',  price: 7000, brand: 'Pioneer',  categoryId: 'autoelectronics', subcategoryId: 'audio',      article: 'PNR-001',rating: 4.6, reviewCount: 0, isHit: true, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-alarm-001',     name: 'Сигнализация GSM (образец)',    price: 9000, brand: 'StarLine', categoryId: 'autoelectronics', subcategoryId: 'alarm',      article: 'SL-001', rating: 4.8, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
 
-  // batteries
+  
   { id: 'sample-lead-acid-001',  name: 'Аккумулятор 60 Ач (образец)',          price: 5500, brand: 'Varta',     categoryId: 'batteries', subcategoryId: 'lead-acid',      article: 'VRT-001', rating: 4.6, reviewCount: 0, isHit: true, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-agm-001',        name: 'AGM аккумулятор 70 Ач (образец)',      price: 9000, brand: 'Exide',     categoryId: 'batteries', subcategoryId: 'agm',            article: 'EX-001',  rating: 4.7, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-gel-001',        name: 'Гелевый аккумулятор 80 Ач (образец)', price: 12000,brand: 'Optima',    categoryId: 'batteries', subcategoryId: 'gel',            article: 'OPT-001', rating: 4.9, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-chargers-001',   name: 'Зарядное устройство (образец)',        price: 3000, brand: 'Ctek',      categoryId: 'batteries', subcategoryId: 'chargers',       article: 'CTK-001', rating: 4.8, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-batt-acc-001',   name: 'Клеммы для АКБ (образец)',             price: 300,  brand: 'AutoProfi', categoryId: 'batteries', subcategoryId: 'battery-access', article: 'AP-K001', rating: 4.0, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
 
-  // accessories
+  
   { id: 'sample-int-acc-001',  name: 'Коврики в салон (образец)',    price: 2500, brand: '3D Mats',  categoryId: 'accessories', subcategoryId: 'interior-access', article: '3DM-001', rating: 4.5, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-ext-acc-001',  name: 'Брызговики (образец)',         price: 800,  brand: 'Rival',    categoryId: 'accessories', subcategoryId: 'exterior-access', article: 'RVL-001', rating: 4.3, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-roof-001',     name: 'Бокс на крышу 450л (образец)',price: 18000,brand: 'Thule',    categoryId: 'accessories', subcategoryId: 'roof-cargo',      article: 'TH-001',  rating: 4.7, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-trailer-001',  name: 'Фаркоп съёмный (образец)',    price: 8000, brand: 'Berg',     categoryId: 'accessories', subcategoryId: 'trailer',         article: 'BRG-001', rating: 4.4, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-comfort-001',  name: 'Компрессор автомобильный (образец)', price: 1500, brand: 'Berkut', categoryId: 'accessories', subcategoryId: 'comfort',     article: 'BK-001',  rating: 4.6, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
 
-  // tuning
+  
   { id: 'sample-body-kit-001',   name: 'Спойлер универсальный (образец)',  price: 5000, brand: 'TuneMax', categoryId: 'tuning', subcategoryId: 'body-kits',       article: 'TM-001', rating: 4.2, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-stickers-001',   name: 'Виниловая плёнка матовая (образец)',price: 1200,brand: 'KPMF',    categoryId: 'tuning', subcategoryId: 'stickers',        article: 'KP-001', rating: 4.0, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-lighting-001',   name: 'LED дневные ходовые огни (образец)',price: 3000,brand: 'Philips', categoryId: 'tuning', subcategoryId: 'lighting',        article: 'PH-001', rating: 4.5, reviewCount: 0, isNew: true, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-eng-tuning-001', name: 'Спортивный воздушный фильтр (образец)',price:2500,brand:'K&N',   categoryId: 'tuning', subcategoryId: 'engine-tuning',   article: 'KN-001', rating: 4.6, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-int-tuning-001', name: 'Спортивное рулевое колесо (образец)',price:4500,band:'Sparco',   categoryId: 'tuning', subcategoryId: 'interior-tuning', article: 'SP-001', rating: 4.3, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
 
-  // tools
+  
   { id: 'sample-hand-tools-001',  name: 'Набор ключей 24 предмета (образец)',    price: 3500, brand: 'Kraftool', categoryId: 'tools', subcategoryId: 'hand-tools',    article: 'KT-001', rating: 4.6, reviewCount: 0, isHit: true, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-power-tools-001', name: 'Шуруповёрт аккумуляторный (образец)',  price: 5000, brand: 'DeWalt',   categoryId: 'tools', subcategoryId: 'power-tools',   article: 'DW-001', rating: 4.8, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-jacks-001',       name: 'Домкрат подкатной 2т (образец)',       price: 4200, brand: 'Stels',    categoryId: 'tools', subcategoryId: 'jacks',         article: 'ST-001', rating: 4.4, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-diagnostic-001',  name: 'OBD2 сканер (образец)',                price: 2000, brand: 'Launch',   categoryId: 'tools', subcategoryId: 'diagnostic',    article: 'LAU-001',rating: 4.7, reviewCount: 0, isNew: true, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-special-001',     name: 'Съёмник шаровых опор (образец)',       price: 1500, brand: 'Car-Tool', categoryId: 'tools', subcategoryId: 'special-tools', article: 'CT-001', rating: 4.3, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
 
-  // fasteners
+  
   { id: 'sample-bolts-001',   name: 'Набор болтов M10 (образец)',      price: 350, brand: 'Wurth',    categoryId: 'fasteners', subcategoryId: 'bolts-nuts',      article: 'WU-001', rating: 4.2, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-wbolts-001',  name: 'Болты колёсные M12x1.5 (образец)',price: 800, brand: 'H&R',      categoryId: 'fasteners', subcategoryId: 'wheel-bolts',     article: 'HR-001', rating: 4.5, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-studs-001',   name: 'Шпильки M8 упаковка 20шт (образец)',price:400,brand: 'Wurth',   categoryId: 'fasteners', subcategoryId: 'studs',           article: 'WU-002', rating: 4.1, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-clamps-001',  name: 'Хомуты червячные набор (образец)', price: 250,brand: 'Норм',    categoryId: 'fasteners', subcategoryId: 'clamps',          article: 'NR-001', rating: 4.0, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-clips-001',   name: 'Пластиковые клипсы 100шт (образец)',price:300,brand: 'AutoFix', categoryId: 'fasteners', subcategoryId: 'clips-retainers', article: 'AF-001', rating: 4.0, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
 
-  // oil
+  
   { id: 'sample-engine-oil-001',  name: 'Масло моторное 5W-30 4л (образец)',       price: 2200, brand: 'Castrol',    categoryId: 'oil', subcategoryId: 'engine-oil',       article: 'CS-001', rating: 4.8, reviewCount: 0, isHit: true, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-trans-oil-001',   name: 'Масло трансмиссионное 75W-90 (образец)',  price: 800,  brand: 'Liqui Moly', categoryId: 'oil', subcategoryId: 'transmission-oil', article: 'LQ-001', rating: 4.6, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-grease-001',      name: 'Смазка ШРУС-4 400г (образец)',            price: 350,  brand: 'Литол',      categoryId: 'oil', subcategoryId: 'greases',          article: 'LT-001', rating: 4.3, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-antifreeze-001',  name: 'Антифриз G12+ 5л (образец)',              price: 700,  brand: 'Felix',      categoryId: 'oil', subcategoryId: 'antifreeze',       article: 'FX-001', rating: 4.4, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-brake-fluid-001', name: 'Тормозная жидкость DOT4 500мл (образец)', price: 400,  brand: 'Sintec',     categoryId: 'oil', subcategoryId: 'brake-fluid',      article: 'SN-001', rating: 4.5, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
 
-  // filters
+  
   { id: 'sample-air-f-001',  name: 'Фильтр воздушный (образец)',   price: 900,  brand: 'Mann',  categoryId: 'filters', subcategoryId: 'air-filter',       article: 'MN-AF1', rating: 4.5, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-oil-f-001',  name: 'Фильтр масляный (образец)',    price: 500,  brand: 'Bosch', categoryId: 'filters', subcategoryId: 'oil-filter',       article: 'BS-OF1', rating: 4.6, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-fuel-f-001', name: 'Фильтр топливный (образец)',   price: 700,  brand: 'Mann',  categoryId: 'filters', subcategoryId: 'fuel-filter',      article: 'MN-FF1', rating: 4.4, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-cabin-f-001',name: 'Фильтр салонный угольный (образец)',price:600,brand:'Filtron',categoryId: 'filters', subcategoryId: 'cabin-filter',    article: 'FLT-01', rating: 4.3, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-hydr-f-001', name: 'Фильтр гидравлический ГУР (образец)',price:400,brand:'Hengst',categoryId: 'filters', subcategoryId: 'hydraulic-filter',article: 'HG-001', rating: 4.2, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
 
-  // wheels
+  
   { id: 'sample-summer-001',   name: 'Шина летняя 205/55 R16 (образец)',      price: 4500, brand: 'Michelin',  categoryId: 'wheels', subcategoryId: 'summer-tires',   article: 'MC-001', rating: 4.7, reviewCount: 0, isHit: true, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-winter-001',   name: 'Шина зимняя шипованная (образец)',      price: 5200, brand: 'Nokian',    categoryId: 'wheels', subcategoryId: 'winter-tires',   article: 'NK-001', rating: 4.8, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-allseas-001',  name: 'Шина всесезонная 205/55 R16 (образец)',price: 4800, brand: 'Continental',categoryId: 'wheels', subcategoryId: 'allseason-tires',article: 'CN-001', rating: 4.5, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
@@ -267,13 +259,13 @@ const products = [
   { id: 'sample-steel-001',    name: 'Диск штампованный R15 (образец)',       price: 2500, brand: 'Mefro',     categoryId: 'wheels', subcategoryId: 'steel-wheels',   article: 'MF-001', rating: 4.0, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-caps-001',     name: 'Колпаки колёсные R15 (образец)',        price: 1200, brand: 'Autoprofi', categoryId: 'wheels', subcategoryId: 'wheel-caps',     article: 'AU-001', rating: 3.9, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
 
-  // wipers
+  
   { id: 'sample-frameless-001',name: 'Щётка бескаркасная 650мм (образец)', price: 700, brand: 'Bosch',   categoryId: 'wipers', subcategoryId: 'frameless-wipers', article: 'BS-W1', rating: 4.5, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-framed-001',   name: 'Щётка каркасная 530мм (образец)',    price: 400, brand: 'Valeo',   categoryId: 'wipers', subcategoryId: 'framed-wipers',    article: 'VL-W1', rating: 4.2, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-rear-001',     name: 'Щётка задняя 280мм (образец)',       price: 350, brand: 'Trico',   categoryId: 'wipers', subcategoryId: 'rear-wipers',      article: 'TC-W1', rating: 4.1, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-blades-001',   name: 'Резинка для щётки 600мм (образец)',  price: 150, brand: 'Alca',    categoryId: 'wipers', subcategoryId: 'wiper-blades',     article: 'AL-W1', rating: 4.0, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
 
-  // electrical
+  
   { id: 'sample-bulbs-001',   name: 'Лампа H7 55W (образец)',             price: 250, brand: 'Osram',  categoryId: 'electrical', subcategoryId: 'bulbs',        article: 'OS-001', rating: 4.4, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-relays-001',  name: 'Реле поворотов (образец)',           price: 300, brand: 'Bosch',  categoryId: 'electrical', subcategoryId: 'relays-fuses', article: 'BS-R01', rating: 4.2, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
   { id: 'sample-wiring-001',  name: 'Провод автомобильный 4мм² (образец)',price: 200, brand: 'КВТ',    categoryId: 'electrical', subcategoryId: 'wiring',       article: 'KVT-01', rating: 4.0, reviewCount: 0, description: 'Образец товара. Замените на реальный.' },
@@ -281,15 +273,13 @@ const products = [
   { id: 'sample-sensors-001', name: 'Датчик ABS передний (образец)',      price: 1200,brand: 'Bosch',  categoryId: 'electrical', subcategoryId: 'sensors',      article: 'BS-S01', rating: 4.6, reviewCount: 0, isNew: true, description: 'Образец товара. Замените на реальный.' },
 ];
 
-// ─────────────────────────────────────────────────────────────
-// ВЫПОЛНЕНИЕ
-// ─────────────────────────────────────────────────────────────
+
 async function seed() {
   const client = await pool.connect();
   try {
     await client.query('BEGIN');
 
-    // --- Категории
+    
     console.log('📂 Заполнение категорий...');
     for (const cat of categories) {
       await client.query(
@@ -299,7 +289,7 @@ async function seed() {
         [cat.id, cat.name, cat.description, cat.icon]
       );
 
-      // --- Подкатегории
+      
       for (const sub of cat.subs) {
         await client.query(
           `INSERT INTO subcategories (id, category_id, name, description)
@@ -311,7 +301,7 @@ async function seed() {
     }
     console.log(`  ✅ ${categories.length} категорий и подкатегорий добавлены`);
 
-    // --- Товары
+    
     console.log('📦 Заполнение товаров (образцы)...');
     for (const p of products) {
       await client.query(

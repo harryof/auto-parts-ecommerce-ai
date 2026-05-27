@@ -11,7 +11,7 @@ interface ProductInfoProps {
 const ProductInfo: React.FC<ProductInfoProps> = ({ brand, inStock, color, serviceType }) => {
   return (
     <div className="flex-1 space-y-5">
-      {/* Quick specs */}
+      
       <div className="glass rounded-2xl p-4">
         <h3 className="text-xs font-bold uppercase tracking-wider text-dark-400 mb-3">Краткие характеристики</h3>
         <ul className="space-y-2.5 text-sm">
@@ -48,7 +48,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ brand, inStock, color, servic
         </ul>
       </div>
 
-      {/* Delivery */}
+      
       <div className="glass rounded-2xl p-4">
         <h3 className="text-xs font-bold uppercase tracking-wider text-dark-400 mb-3">Доставка</h3>
         <ul className="space-y-2 text-sm">
@@ -63,7 +63,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ brand, inStock, color, servic
         </ul>
       </div>
 
-      {/* Payment */}
+      
       <div className="glass rounded-2xl p-4">
         <h3 className="text-xs font-bold uppercase tracking-wider text-dark-400 mb-3">Оплата</h3>
         <ul className="space-y-2 text-sm">

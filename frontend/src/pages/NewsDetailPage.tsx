@@ -70,7 +70,7 @@ const NewsDetailPage: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-10 animate-fade-in">
-      {/* Back button */}
+      
       <button
         onClick={() => navigate("/news")}
         className="inline-flex items-center gap-2 mb-8 text-sm font-semibold transition-colors duration-200 hover:opacity-80"
@@ -82,18 +82,18 @@ const NewsDetailPage: React.FC = () => {
         Назад к новостям
       </button>
 
-      {/* Article card */}
+      
       <article className="glass rounded-3xl overflow-hidden" style={{ boxShadow: "0 8px 40px rgba(0,0,0,0.15)" }}>
-        {/* Hero image */}
+        
         <div className="relative h-72 md:h-96 overflow-hidden">
           <img
             src={newsItem.image}
             alt={newsItem.title}
             className="w-full h-full object-cover"
           />
-          {/* Gradient overlay */}
+          
           <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%)" }} />
-          {/* Category + date over image */}
+          
           <div className="absolute bottom-5 left-6 flex items-center gap-3">
             <span
               className="px-3 py-1 rounded-full text-xs font-bold backdrop-blur-sm"
@@ -105,7 +105,7 @@ const NewsDetailPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Body */}
+        
         <div className="p-8">
           <h1 className="section-title mb-4" style={{ fontSize: "clamp(1.6rem, 4vw, 2.5rem)" }}>
             <span>{newsItem.title}</span>
@@ -124,7 +124,7 @@ const NewsDetailPage: React.FC = () => {
             ))}
           </div>
 
-          {/* Footer */}
+          
           <div className="mt-10 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
             style={{ borderTop: "1px solid var(--color-border)" }}
           >

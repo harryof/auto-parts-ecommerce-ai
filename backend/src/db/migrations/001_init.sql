@@ -1,11 +1,8 @@
--- ============================================================
--- Миграция 001: Инициализация базы данных магазина автозапчастей
--- ============================================================
 
--- Расширение для UUID
+
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
--- ─── Категории ──────────────────────────────────────────────
+
 CREATE TABLE IF NOT EXISTS categories (
   id          VARCHAR(60)  PRIMARY KEY,
   name        VARCHAR(200) NOT NULL,
@@ -14,7 +11,7 @@ CREATE TABLE IF NOT EXISTS categories (
   created_at  TIMESTAMP    NOT NULL DEFAULT NOW()
 );
 
--- ─── Подкатегории ───────────────────────────────────────────
+
 CREATE TABLE IF NOT EXISTS subcategories (
   id          VARCHAR(60)  PRIMARY KEY,
   category_id VARCHAR(60)  NOT NULL REFERENCES categories(id) ON DELETE CASCADE,
@@ -23,7 +20,7 @@ CREATE TABLE IF NOT EXISTS subcategories (
   created_at  TIMESTAMP    NOT NULL DEFAULT NOW()
 );
 
--- ─── Товары ─────────────────────────────────────────────────
+
 CREATE TABLE IF NOT EXISTS products (
   id               VARCHAR(120) PRIMARY KEY,
   name             VARCHAR(300) NOT NULL,
@@ -48,18 +45,18 @@ CREATE TABLE IF NOT EXISTS products (
   updated_at       TIMESTAMP    NOT NULL DEFAULT NOW()
 );
 
--- Индексы для быстрого поиска
+
 CREATE INDEX IF NOT EXISTS idx_products_category    ON products(category_id);
 CREATE INDEX IF NOT EXISTS idx_products_subcategory ON products(subcategory_id);
 CREATE INDEX IF NOT EXISTS idx_products_brand       ON products(brand);
 CREATE INDEX IF NOT EXISTS idx_products_in_stock    ON products(in_stock);
 CREATE INDEX IF NOT EXISTS idx_products_is_hit      ON products(is_hit);
 CREATE INDEX IF NOT EXISTS idx_products_is_new      ON products(is_new);
--- Полнотекстовый поиск
+
 CREATE INDEX IF NOT EXISTS idx_products_fts ON products
   USING GIN (to_tsvector('russian', name || ' ' || COALESCE(description, '') || ' ' || COALESCE(brand, '') || ' ' || COALESCE(article, '')));
 
--- ─── Пользователи ───────────────────────────────────────────
+
 CREATE TABLE IF NOT EXISTS users (
   id            UUID         PRIMARY KEY DEFAULT gen_random_uuid(),
   name          VARCHAR(200) NOT NULL,
@@ -72,7 +69,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
 
--- ─── Заказы ─────────────────────────────────────────────────
+
 CREATE TABLE IF NOT EXISTS orders (
   id               SERIAL       PRIMARY KEY,
   user_id          UUID         REFERENCES users(id) ON DELETE SET NULL,
@@ -87,17 +84,17 @@ CREATE TABLE IF NOT EXISTS orders (
 
 CREATE INDEX IF NOT EXISTS idx_orders_user ON orders(user_id);
 
--- ─── Позиции заказа ─────────────────────────────────────────
+
 CREATE TABLE IF NOT EXISTS order_items (
   id             SERIAL       PRIMARY KEY,
   order_id       INTEGER      NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
   product_id     VARCHAR(120) REFERENCES products(id) ON DELETE SET NULL,
-  product_name   VARCHAR(300) NOT NULL,  -- снимок названия на момент заказа
+  product_name   VARCHAR(300) NOT NULL,  
   quantity       INTEGER      NOT NULL CHECK (quantity > 0),
-  price_at_time  NUMERIC(12,2) NOT NULL  -- цена на момент заказа
+  price_at_time  NUMERIC(12,2) NOT NULL  
 );
 
--- ─── Триггер обновления updated_at ──────────────────────────
+
 CREATE OR REPLACE FUNCTION update_updated_at()
 RETURNS TRIGGER AS $$
 BEGIN

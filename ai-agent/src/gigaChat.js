@@ -8,12 +8,12 @@ class GigaChatService {
     this.accessToken = null;
     this.expiresAt = null;
     
-    // Игнорируем проблемы с сертификатами (частая особенность работы со Сбером вне их экосистемы)
+    
     this.httpsAgent = new https.Agent({ rejectUnauthorized: false });
   }
 
   async getAccessToken() {
-    // Возвращаем токен если он ещё жив
+    
     if (this.accessToken && this.expiresAt && Date.now() < this.expiresAt) {
       return this.accessToken;
     }
@@ -33,13 +33,13 @@ class GigaChatService {
           'RqUID': uuidv4(),
           'Authorization': `Basic ${this.credentials}`
         },
-        data: 'scope=GIGACHAT_API_PERS', // или GIGACHAT_API_CORP в зависимости от аккаунта
+        data: 'scope=GIGACHAT_API_PERS', 
         httpsAgent: this.httpsAgent
       });
 
       this.accessToken = response.data.access_token;
-      // expires_at возвращается в миллисекундах (Unix time)
-      this.expiresAt = response.data.expires_at - 60000; // запас 1 минута
+      
+      this.expiresAt = response.data.expires_at - 60000; 
       return this.accessToken;
     } catch (error) {
       console.error('Ошибка получения токена GigaChat:', error.response?.data || error.message);
@@ -50,7 +50,7 @@ class GigaChatService {
   async sendMessage(messages) {
     const token = await this.getAccessToken();
     
-    // Fallback для разработки, если ключей еще нет
+    
     if (!token) {
       return {
         role: "assistant",
@@ -68,7 +68,7 @@ class GigaChatService {
           'Authorization': `Bearer ${token}`
         },
         data: {
-          model: 'GigaChat', // или GigaChat-Plus
+          model: 'GigaChat', 
           messages: messages,
           temperature: 0.7,
         },

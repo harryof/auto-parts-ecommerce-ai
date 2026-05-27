@@ -28,7 +28,7 @@ const carModels = [
 function generateRandomVIN(wmi) {
   const chars = '0123456789ABCDEFGHJKLMNPRSTUVWXYZ';
   let vin = wmi;
-  // Дополняем до 17 символов случайными буквами/цифрами, избегая I, O, Q (по стандарту VIN)
+  
   while (vin.length < 17) {
     vin += chars.charAt(Math.floor(Math.random() * chars.length));
   }
@@ -37,7 +37,7 @@ function generateRandomVIN(wmi) {
 
 const dataset = [];
 
-// Сгенерируем по 3 случайных VIN для каждой модели
+
 carModels.forEach(car => {
   for (let i = 0; i < 3; i++) {
     const vin = generateRandomVIN(car.wmi);
@@ -51,7 +51,7 @@ carModels.forEach(car => {
   }
 });
 
-// Перемешаем массив
+
 dataset.sort(() => 0.5 - Math.random());
 
 fs.writeFileSync('vins_dataset.json', JSON.stringify(dataset, null, 2));

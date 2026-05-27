@@ -79,7 +79,7 @@ const ReviewsSection: React.FC = () => {
         ))}
       </div>
       
-      {/* Background decoration */}
+      
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-64 bg-primary-500/5 rounded-full blur-[100px] pointer-events-none z-0" />
     </section>
   );

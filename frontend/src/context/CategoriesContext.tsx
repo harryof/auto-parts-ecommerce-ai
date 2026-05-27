@@ -1,7 +1,5 @@
-/**
- * React Context for categories — fetched once from the API and shared everywhere.
- * Wrap your app (or Layout) with <CategoriesProvider>.
- */
+
+
 import React, { createContext, useContext, useEffect, useState } from "react";
 import api from "../services/api";
 import { Category } from "../types/product";

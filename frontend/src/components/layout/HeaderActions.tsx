@@ -29,7 +29,7 @@ const HeaderActions: React.FC<HeaderActionsProps> = ({
   const { theme, toggleTheme } = useTheme();
   return (
     <div className="flex items-center gap-2 lg:gap-5 ml-auto">
-      {/* User auth */}
+      
       {currentUser ? (
         <div className="relative hidden lg:block" onClick={(e) => e.stopPropagation()}>
           <button
@@ -77,7 +77,7 @@ const HeaderActions: React.FC<HeaderActionsProps> = ({
         </Link>
       )}
 
-      {/* Theme toggle */}
+      
       <button
         onClick={toggleTheme}
         title={theme === "dark" ? "Светлая тема" : "Тёмная тема"}
@@ -89,7 +89,7 @@ const HeaderActions: React.FC<HeaderActionsProps> = ({
           : <Moon size={20} className="transition-transform duration-300 rotate-0 scale-100" />}
       </button>
 
-      {/* Favs */}
+      
       <Link
         to="/favorites"
         className="relative p-2 text-gray-300 hover:text-white transition-colors"
@@ -102,7 +102,7 @@ const HeaderActions: React.FC<HeaderActionsProps> = ({
         )}
       </Link>
 
-      {/* Cart */}
+      
       <Link
         to="/cart"
         className="relative p-2 text-gray-300 hover:text-white transition-colors"

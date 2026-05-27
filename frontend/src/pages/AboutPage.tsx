@@ -5,7 +5,7 @@ import {
   Award, Target, Headphones, ChevronRight, Zap,
 } from "lucide-react";
 
-/* ── Animated counter hook ──────────────────────────────────── */
+
 function useCounter(target: number, duration = 1800, trigger: boolean) {
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -22,7 +22,7 @@ function useCounter(target: number, duration = 1800, trigger: boolean) {
   return count;
 }
 
-/* ── Stats data ─────────────────────────────────────────────── */
+
 const STATS = [
   { value: 15,     suffix: "+",  label: "лет на рынке",         icon: Clock },
   { value: 50000,  suffix: "+",  label: "довольных клиентов",   icon: Users },
@@ -30,7 +30,7 @@ const STATS = [
   { value: 24,     suffix: "/7", label: "поддержка клиентов",   icon: Headphones },
 ];
 
-/* ── Advantages ─────────────────────────────────────────────── */
+
 const ADVANTAGES = [
   { icon: ShieldCheck, title: "Гарантия качества",        text: "Все товары проходят проверку на соответствие оригинальным стандартам производителей. Работаем только с сертифицированными поставщиками." },
   { icon: Truck,       title: "Быстрая доставка",         text: "Собственный склад с более чем 100 000 позиций обеспечивает отправку в день заказа. Доставляем по всей России за 1–3 дня." },
@@ -40,7 +40,7 @@ const ADVANTAGES = [
   { icon: Award,       title: "Лучшие цены",              text: "Прямые контракты с производителями позволяют предлагать цены ниже рыночных. Программа лояльности для постоянных клиентов." },
 ];
 
-/* ── Timeline ───────────────────────────────────────────────── */
+
 const TIMELINE = [
   { year: "2010", text: "Основание компании. Первый склад на 500 м² в Москве." },
   { year: "2013", text: "Запуск интернет-магазина. Выход на федеральный уровень." },
@@ -50,7 +50,7 @@ const TIMELINE = [
   { year: "2025", text: "Более 50 000 активных клиентов по всей России." },
 ];
 
-/* ── Team ───────────────────────────────────────────────────── */
+
 const TEAM = [
   { name: "Алексей Смирнов",  role: "Основатель & CEO",               initials: "АС" },
   { name: "Мария Козлова",    role: "Руководитель склада",             initials: "МК" },
@@ -59,7 +59,7 @@ const TEAM = [
 ];
 
 const AboutPage: React.FC = () => {
-  /* trigger stats counter when section enters viewport */
+  
   const statsRef = useRef<HTMLDivElement>(null);
   const [statsVisible, setStatsVisible] = useState(false);
 
@@ -81,10 +81,10 @@ const AboutPage: React.FC = () => {
   return (
     <div className="max-w-[1200px] mx-auto px-4 py-10">
 
-      {/* ── Hero banner ────────────────────────────────────────── */}
+      
       <section className="relative rounded-3xl overflow-hidden mb-16"
         style={{ background: "linear-gradient(135deg, #1B2131 0%, #2A3246 50%, #1B2131 100%)" }}>
-        {/* decorative circles */}
+        
         <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full opacity-10"
           style={{ background: "radial-gradient(circle, #F3C15F 0%, transparent 70%)" }} />
         <div className="absolute -bottom-16 -left-16 w-56 h-56 rounded-full opacity-10"
@@ -110,7 +110,7 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ── Animated stats ──────────────────────────────────────── */}
+      
       <section ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
         {STATS.map((s, i) => {
           const Icon = s.icon;
@@ -128,7 +128,7 @@ const AboutPage: React.FC = () => {
         })}
       </section>
 
-      {/* ── Mission section ─────────────────────────────────────── */}
+      
       <section className="mb-16">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
@@ -158,7 +158,7 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ── Advantages ──────────────────────────────────────────── */}
+      
       <section className="mb-16">
         <div className="text-center mb-10">
           <h2 className="section-title">
@@ -183,7 +183,7 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ── Timeline ────────────────────────────────────────────── */}
+      
       <section className="mb-16">
         <div className="text-center mb-10">
           <h2 className="section-title">
@@ -193,7 +193,7 @@ const AboutPage: React.FC = () => {
         </div>
 
         <div className="relative">
-          {/* center line — hidden on mobile */}
+          
           <div className="hidden md:block absolute left-1/2 -translate-x-0.5 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary-500/30 to-transparent" />
 
           <div className="space-y-6">
@@ -201,7 +201,7 @@ const AboutPage: React.FC = () => {
               const isLeft = i % 2 === 0;
               return (
                 <div key={i} className={`flex items-center gap-6 md:gap-0 ${isLeft ? "md:flex-row" : "md:flex-row-reverse"}`}>
-                  {/* Content card */}
+                  
                   <div className={`flex-1 ${isLeft ? "md:pr-10 md:text-right" : "md:pl-10"}`}>
                     <div className="glass rounded-2xl p-5 border border-white/5 hover:border-primary-500/20 transition-colors group">
                       <div className="text-primary-400 font-black text-xl mb-1">{item.year}</div>
@@ -209,10 +209,10 @@ const AboutPage: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Dot */}
+                  
                   <div className="hidden md:flex w-5 h-5 rounded-full bg-primary-500 border-4 border-dark-900 flex-shrink-0 z-10 shadow-lg shadow-primary-500/40" />
 
-                  {/* Spacer for alternating layout */}
+                  
                   <div className="hidden md:block flex-1" />
                 </div>
               );
@@ -221,7 +221,7 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ── Team ────────────────────────────────────────────────── */}
+      
       <section className="mb-16">
         <div className="text-center mb-10">
           <h2 className="section-title">
@@ -233,7 +233,7 @@ const AboutPage: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
           {TEAM.map(({ name, role, initials }, i) => (
             <div key={i} className="glass rounded-2xl p-6 text-center group hover:-translate-y-1 transition-transform duration-300 border border-white/5">
-              {/* Avatar */}
+              
               <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-dark-900 font-black text-lg mx-auto mb-4 shadow-lg shadow-primary-500/20 group-hover:shadow-primary-500/40 transition-shadow">
                 {initials}
               </div>
@@ -244,7 +244,7 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ── CTA ─────────────────────────────────────────────────── */}
+      
       <section className="glass rounded-3xl p-10 text-center border border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5"
           style={{ background: "radial-gradient(circle at 50% 0%, #F3C15F 0%, transparent 60%)" }} />

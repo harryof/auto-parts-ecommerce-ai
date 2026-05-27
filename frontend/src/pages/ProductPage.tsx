@@ -25,7 +25,7 @@ const ProductPage: React.FC = () => {
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavoritesStore();
   const { categories } = useCategories();
 
-  // Fetch product from API
+  
   useEffect(() => {
     if (!productId) return;
     setLoading(true);
@@ -33,7 +33,7 @@ const ProductPage: React.FC = () => {
     api.getProduct(productId)
       .then((p) => {
         setProduct(p);
-        // Fetch related products (same subcategory)
+        
         return api.getProducts({
           subcategory: p.subCategoryId,
           limit: 6,
@@ -83,7 +83,7 @@ const ProductPage: React.FC = () => {
     );
   }
 
-  // Resolve category names from context
+  
   const category = categories.find((c) => c.id === product.categoryId);
   const subCategory = category?.subCategories.find((s) => s.id === product.subCategoryId);
 
@@ -99,7 +99,7 @@ const ProductPage: React.FC = () => {
   return (
     <div className="max-w-[1600px] mx-auto px-4 py-8">
 
-      {/* ── Breadcrumbs ── */}
+      
       <nav className="flex items-center gap-2 text-xs sm:text-sm text-dark-400 mb-6 overflow-x-auto no-scrollbar whitespace-nowrap">
         <Link to="/" className="hover:text-white transition-colors">Главная</Link>
         <ChevronRight size={14} className="text-dark-500 flex-shrink-0" />
@@ -125,7 +125,7 @@ const ProductPage: React.FC = () => {
         <span className="text-white font-medium truncate max-w-xs">{product.name}</span>
       </nav>
 
-      {/* ── Product title ── */}
+      
       <div className="mb-8">
         <h1 className="section-title text-left">
           <span>{product.name}</span>
@@ -133,17 +133,17 @@ const ProductPage: React.FC = () => {
         <div className="accent-line mt-2" />
       </div>
 
-      {/* ── Main product block ── */}
+      
       <div className="glass rounded-2xl p-5 lg:p-7 mb-6">
         <div className="flex flex-col lg:flex-row gap-7">
-          {/* Gallery */}
+          
           <ProductGallery
             image={product.image ?? undefined}
             images={product.image ? [product.image] : undefined}
             name={product.name}
           />
 
-          {/* Info + Action */}
+          
           <div className="flex-1 flex flex-col md:flex-row gap-6">
             <ProductInfo
               brand={product.brand}
@@ -163,10 +163,10 @@ const ProductPage: React.FC = () => {
         </div>
       </div>
 
-      {/* ── Tabs ── */}
+      
       <ProductTabs product={product} />
 
-      {/* ── Related products ── */}
+      
       <RelatedProducts products={related} />
     </div>
   );

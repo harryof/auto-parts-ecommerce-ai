@@ -28,7 +28,7 @@ const CatalogPage: React.FC = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isVinOpen, setIsVinOpen] = useState(false);
 
-  // Products state (used on subcategory/product view)
+  
   const [products, setProducts] = useState<Product[]>([]);
   const [loadingProducts, setLoadingProducts] = useState(false);
   const [totalProducts, setTotalProducts] = useState(0);
@@ -41,7 +41,7 @@ const CatalogPage: React.FC = () => {
 
   const isProductView = true;
 
-  // Fetch products from API when subcategory is selected or filters change
+  
   const fetchProducts = useCallback(() => {
     if (!isProductView) return;
     setLoadingProducts(true);
@@ -61,13 +61,13 @@ const CatalogPage: React.FC = () => {
     api.getProducts(apiFilters)
       .then((res) => {
         let filtered = res.products;
-        // client-side multi-brand filter
+        
         if (filters.brands.length > 1) {
           filtered = filtered.filter((p) => filters.brands.includes(p.brand));
         }
         setProducts(filtered);
         setTotalProducts(res.pagination.total);
-        // Extract available brands
+        
         const brands = Array.from(new Set(res.products.map((p) => p.brand).filter(Boolean)));
         setAvailableBrands(brands);
       })
@@ -79,7 +79,7 @@ const CatalogPage: React.FC = () => {
     fetchProducts();
   }, [fetchProducts]);
 
-  // Reset products and brands when navigating away from product view
+  
   useEffect(() => {
     if (!isProductView) {
       setProducts([]);
@@ -87,7 +87,7 @@ const CatalogPage: React.FC = () => {
     }
   }, [isProductView]);
 
-  // Filter for category/subcategory list views (local, uses API data)
+  
   const filteredCategories = categories.filter((c) =>
     c.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -101,7 +101,7 @@ const CatalogPage: React.FC = () => {
     <>
     <div className="max-w-[1600px] mx-auto px-4 py-8">
 
-      {/* ── Breadcrumbs ── */}
+      
       <nav className="flex items-center gap-2 text-xs sm:text-sm text-dark-400 mb-5 overflow-x-auto no-scrollbar whitespace-nowrap">
         <Link to="/" className="hover:text-white transition-colors">Главная</Link>
         <ChevronRight size={14} className="text-dark-500 flex-shrink-0" />
@@ -126,7 +126,7 @@ const CatalogPage: React.FC = () => {
         )}
       </nav>
 
-      {/* ── Title + search ── */}
+      
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
         <div className="text-center md:text-left">
           <h1 className="section-title text-left">
@@ -156,19 +156,19 @@ const CatalogPage: React.FC = () => {
         </div>
       </div>
 
-      {/* ── VIN поиск ── */}
+      
       {!currentSubCategory && (
         <ServiceTypeSelector onVinSearch={() => setIsVinOpen(true)} />
       )}
 
-      {/* ── Main layout: sidebar + content ── */}
+      
       <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
 
         <CategorySidebar />
 
         <div className="flex-1 w-full min-w-0">
 
-          {/* ══ PRODUCT VIEW ══ */}
+          
           {isProductView && (
             <>
               <button
@@ -199,7 +199,7 @@ const CatalogPage: React.FC = () => {
             </>
           )}
 
-          {/* ══ SUBCATEGORY VIEW ══ */}
+          
           {!currentSubCategory && currentCategory && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
               {filteredSubCategories?.map((sub) => (
@@ -223,7 +223,7 @@ const CatalogPage: React.FC = () => {
             </div>
           )}
 
-          {/* ══ MAIN CATALOG VIEW ══ */}
+          
           {!currentCategory && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
               {filteredCategories.map((cat) => (
@@ -250,7 +250,7 @@ const CatalogPage: React.FC = () => {
       </div>
     </div>
 
-    {/* VIN Search Modal */}
+    
     <VinSearchModal isOpen={isVinOpen} onClose={() => setIsVinOpen(false)} />
   </>
   );

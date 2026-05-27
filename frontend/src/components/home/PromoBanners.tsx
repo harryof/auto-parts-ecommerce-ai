@@ -7,7 +7,7 @@ const PROMOS = [
     id: 1,
     title: "Готовьтесь к зиме",
     subtitle: "Скидки до 30% на аккумуляторы",
-    image: "https://images.pexels.com/photos/191533/pexels-photo-191533.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "https://media.istockphoto.com/id/183797799/ru/%D1%84%D0%BE%D1%82%D0%BE/%D1%82%D1%80%D0%B0%D0%BD%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%BD%D0%BE%D0%B3%D0%BE-%D1%81%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B0-%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B8.jpg?s=612x612&w=0&k=20&c=OVqCzwVuOIrxFGRXiXQ_qvCwQdakwscFIG8HLLPgC1Q=",
     link: "/catalog/batteries",
     color: "from-blue-900/90 to-blue-900/40"
   },
@@ -38,23 +38,22 @@ const PromoBanners: React.FC = () => {
           <Link
             key={promo.id}
             to={promo.link}
-            className={`group relative overflow-hidden rounded-[2.5rem] h-64 md:h-80 flex items-end p-8 transition-all duration-700 hover:-translate-y-2 hover:shadow-card-hover ${
-              visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-            }`}
+            className={`group relative overflow-hidden rounded-[2.5rem] h-64 md:h-80 flex items-end p-8 transition-all duration-700 hover:-translate-y-2 hover:shadow-card-hover ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+              }`}
             style={{ transitionDelay: `${i * 150}ms` }}
           >
-            {/* BG Image */}
+            
             <img
               src={promo.image}
               alt={promo.title}
               className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
+
             
-            {/* Overlay */}
             <div className={`absolute inset-0 bg-gradient-to-t ${promo.color} mix-blend-multiply opacity-80 group-hover:opacity-90 transition-opacity`} />
             <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/40 to-transparent opacity-90" />
 
-            {/* Content */}
+            
             <div className="relative z-10 w-full">
               <span className="inline-block px-3 py-1 mb-4 text-xs font-bold uppercase tracking-wider text-white bg-white/20 backdrop-blur-md rounded-full border border-white/10">
                 Акция
@@ -65,7 +64,7 @@ const PromoBanners: React.FC = () => {
               <p className="text-dark-300 font-medium mb-6">
                 {promo.subtitle}
               </p>
-              
+
               <div className="flex items-center gap-2 text-sm font-bold text-primary-400 group-hover:text-primary-300 transition-colors uppercase tracking-widest">
                 В каталог <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
               </div>

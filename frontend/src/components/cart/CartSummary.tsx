@@ -90,7 +90,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({
         top: "1rem",
       }}
     >
-      {/* Title */}
+      
       <div
         style={{
           fontSize: "0.75rem",
@@ -104,7 +104,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({
         Ваш заказ
       </div>
 
-      {/* Price breakdown */}
+      
       <div
         style={{
           display: "flex",
@@ -160,7 +160,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({
         </div>
       </div>
 
-      {/* Total */}
+      
       <div
         style={{
           display: "flex",
@@ -192,7 +192,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({
         </span>
       </div>
 
-      {/* Form */}
+      
       <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
         <div>
           <label htmlFor="name" style={labelStyle}>
@@ -254,7 +254,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({
           />
         </div>
 
-        {/* Submit button */}
+        
         <button
           style={{
             width: "100%",
@@ -286,7 +286,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({
           Оформить заказ
         </button>
 
-        {/* Trust line */}
+        
         <div
           style={{
             display: "flex",

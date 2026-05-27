@@ -29,7 +29,7 @@ const FeaturedProducts: React.FC = () => {
   const [visible, setVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  // Fetch products from API based on active tab
+  
   useEffect(() => {
     setLoading(true);
     const filters: Record<string, boolean> = {};
@@ -43,7 +43,7 @@ const FeaturedProducts: React.FC = () => {
       .finally(() => setLoading(false));
   }, [activeTab]);
 
-  // IntersectionObserver to trigger fade-in
+  
   useEffect(() => {
     const obs = new IntersectionObserver(
       ([e]) => { if (e.isIntersecting) setVisible(true); },
@@ -55,7 +55,7 @@ const FeaturedProducts: React.FC = () => {
 
   return (
     <section ref={sectionRef} className="max-w-[1600px] mx-auto px-4 py-20">
-      {/* Header */}
+      
       <div className={`relative flex flex-col items-center gap-4 mb-10 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
         <div className="text-center">
           <h2 className="section-title">Лучшие <span>предложения</span></h2>
@@ -66,7 +66,7 @@ const FeaturedProducts: React.FC = () => {
         </Link>
       </div>
 
-      {/* Tabs */}
+      
       <div className={`flex gap-2 mb-8 transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
         {TABS.map((tab) => (
           <button
@@ -83,7 +83,7 @@ const FeaturedProducts: React.FC = () => {
         ))}
       </div>
 
-      {/* Grid */}
+      
       {loading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {Array.from({ length: 4 }).map((_, i) => <SkeletonCard key={i} />)}

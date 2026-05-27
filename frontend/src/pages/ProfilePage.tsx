@@ -101,7 +101,7 @@ const ProfilePage: React.FC = () => {
     
     try {
       const token = localStorage.getItem("token");
-      // Change name/phone
+      
       if (formData.name !== currentUser.name || formData.phone !== currentUser.phone) {
         const res = await fetch("http://localhost:5000/api/auth/me", {
           method: "PUT",
@@ -111,7 +111,7 @@ const ProfilePage: React.FC = () => {
         if (!res.ok) throw new Error("Ошибка обновления профиля");
       }
       
-      // Change password
+      
       if (formData.currentPassword && formData.newPassword) {
         if (formData.newPassword !== formData.confirmPassword) {
           throw new Error("Новые пароли не совпадают");
@@ -151,7 +151,7 @@ const ProfilePage: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         
-        {/* Left Col: Avatar & Info */}
+        
         <div className="glass rounded-3xl p-8 flex flex-col items-center">
           <div className="relative mb-6 group">
             <div className="w-32 h-32 rounded-full overflow-hidden border-4" style={{ borderColor: 'var(--color-border2)' }}>
@@ -190,12 +190,12 @@ const ProfilePage: React.FC = () => {
           )}
         </div>
 
-        {/* Right Col: Forms & Card */}
+        
         <div className="lg:col-span-2 flex flex-col gap-8">
           
-          {/* CLIENT CARD */}
+          
           <div className="rounded-3xl p-8 shadow-2xl relative overflow-hidden" style={{ background: styleCard, color: '#fff' }}>
-            {/* Glass decoration inside card */}
+            
             <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
             <div className="absolute bottom-0 left-0 w-40 h-40 bg-black opacity-10 rounded-full blur-2xl translate-y-1/2 -translate-x-1/4" />
             
@@ -218,7 +218,7 @@ const ProfilePage: React.FC = () => {
             </div>
           </div>
 
-          {/* Edit Form */}
+          
           {isEditing && (
             <form onSubmit={handleSubmit} className="glass rounded-3xl p-8 flex flex-col gap-6">
               <h3 className="text-xl font-bold text-[var(--color-text)] mb-2">Основные данные</h3>

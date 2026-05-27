@@ -2,23 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db/pool');
 
-/**
- * GET /api/products
- * Query params:
- *   - category (string)        фильтр по категории
- *   - subcategory (string)     фильтр по подкатегории
- *   - brand (string)           фильтр по бренду
- *   - inStock (boolean)        только в наличии
- *   - isHit (boolean)          хиты
- *   - isNew (boolean)          новинки
- *   - isRecommended (boolean)  рекомендованные
- *   - search (string)          полнотекстовый поиск по name, brand, article
- *   - minPrice (number)        мин. цена
- *   - maxPrice (number)        макс. цена
- *   - page (number, default 1)
- *   - limit (number, default 20, max 100)
- *   - sortBy (price_asc | price_desc | rating | newest)
- */
+
 router.get('/', async (req, res) => {
   try {
     const {
@@ -74,7 +58,7 @@ router.get('/', async (req, res) => {
 
     const where = conditions.length > 0 ? 'WHERE ' + conditions.join(' AND ') : '';
 
-    // Сортировка
+    
     const orderMap = {
       price_asc:  'p.price ASC',
       price_desc: 'p.price DESC',
@@ -83,12 +67,12 @@ router.get('/', async (req, res) => {
     };
     const orderBy = orderMap[sortBy] || 'p.created_at DESC';
 
-    // Пагинация
+    
     const pageNum = Math.max(1, parseInt(page));
     const limitNum = Math.min(100, Math.max(1, parseInt(limit)));
     const offset = (pageNum - 1) * limitNum;
 
-    // Запрос товаров
+    
     const dataQuery = `
       SELECT
         p.id, p.name, p.description, p.price, p.old_price,
@@ -109,9 +93,9 @@ router.get('/', async (req, res) => {
     `;
     params.push(limitNum, offset);
 
-    // Запрос общего количества
+    
     const countQuery = `SELECT COUNT(*) FROM products p ${where}`;
-    const countParams = params.slice(0, params.length - 2); // без limit и offset
+    const countParams = params.slice(0, params.length - 2); 
 
     const [dataResult, countResult] = await Promise.all([
       pool.query(dataQuery, params),
@@ -135,10 +119,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-/**
- * GET /api/products/featured
- * Возвращает хиты и рекомендованные (не более 12).
- */
+
 router.get('/featured', async (req, res) => {
   try {
     const result = await pool.query(`
@@ -159,10 +140,7 @@ router.get('/featured', async (req, res) => {
   }
 });
 
-/**
- * GET /api/products/:id
- * Возвращает один товар по id.
- */
+
 router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -188,7 +166,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// ─── Хелпер форматирования ───────────────────────────────────
+
 function formatProduct(row) {
   return {
     id: row.id,
@@ -219,10 +197,7 @@ function formatProduct(row) {
 const { authMiddleware } = require('../middleware/auth');
 const upload = require('../middleware/upload');
 
-/**
- * POST /api/products
- * Создание товара (Admin)
- */
+
 router.post('/', authMiddleware, upload.single('image'), async (req, res) => {
   try {
     if (req.user.role !== 'admin') {

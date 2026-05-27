@@ -64,10 +64,10 @@ const ContactsPage: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        {/* ── Left column ── */}
+        
         <div className="flex flex-col gap-6">
 
-          {/* Contact info card */}
+          
           <div className="glass rounded-3xl p-7 flex flex-col gap-5">
             <h2 className="text-lg font-bold" style={{ color: "var(--color-text)" }}>
               Наши контакты
@@ -79,7 +79,7 @@ const ContactsPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Working hours card */}
+          
           <div className="glass rounded-3xl p-7">
             <h2 className="text-lg font-bold mb-5" style={{ color: "var(--color-text)" }}>
               Режим работы
@@ -105,7 +105,7 @@ const ContactsPage: React.FC = () => {
           </div>
         </div>
 
-        {/* ── Right column — form ── */}
+        
         <div className="glass rounded-3xl p-7">
           <h2 className="text-lg font-bold mb-6" style={{ color: "var(--color-text)" }}>
             Напишите нам
@@ -119,7 +119,7 @@ const ContactsPage: React.FC = () => {
           )}
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-            {/* Name + Phone row */}
+            
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs font-semibold text-dark-300 uppercase tracking-wider mb-1.5">
@@ -150,7 +150,7 @@ const ContactsPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Email */}
+            
             <div>
               <label className="block text-xs font-semibold text-dark-300 uppercase tracking-wider mb-1.5">
                 Email *
@@ -166,7 +166,7 @@ const ContactsPage: React.FC = () => {
               />
             </div>
 
-            {/* Message */}
+            
             <div>
               <label className="block text-xs font-semibold text-dark-300 uppercase tracking-wider mb-1.5">
                 Сообщение *

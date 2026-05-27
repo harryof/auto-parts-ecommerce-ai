@@ -5,7 +5,7 @@ interface HeaderSearchProps {
   searchQuery: string;
   setSearchQuery: (q: string) => void;
   handleSearch: (e: React.FormEvent) => void;
-  className?: string; // To allow mobile vs desktop specific styles
+  className?: string; 
 }
 
 const HeaderSearch: React.FC<HeaderSearchProps> = ({

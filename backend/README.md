@@ -76,7 +76,7 @@ NODE_ENV=development
 ### 4. Установить зависимости
 
 ```powershell
-cd C:\Diploma\CourseProject\backend
+cd C:\Diploma\auto_parts_project\backend
 npm install
 ```
 
@@ -279,13 +279,13 @@ Invoke-RestMethod -Method POST `
 
 **Терминал 1 — Backend:**
 ```powershell
-cd C:\Diploma\CourseProject\backend
+cd C:\Diploma\auto_parts_project\backend
 npm run dev
 ```
 
 **Терминал 2 — Frontend:**
 ```powershell
-cd C:\Diploma\CourseProject\frontend
+cd C:\Diploma\auto_parts_project\frontend
 npm run dev
 ```
 

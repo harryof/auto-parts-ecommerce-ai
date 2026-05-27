@@ -6,9 +6,7 @@ const { body, validationResult } = require('express-validator');
 const pool = require('../db/pool');
 const { authMiddleware } = require('../middleware/auth');
 
-/**
- * POST /api/auth/register
- */
+
 router.post(
   '/register',
   [
@@ -25,7 +23,7 @@ router.post(
 
     const { name, email, password, phone } = req.body;
     try {
-      // Проверка существующего пользователя
+      
       const existing = await pool.query('SELECT id FROM users WHERE email = $1', [email]);
       if (existing.rows.length > 0) {
         return res.status(409).json({ error: 'Пользователь с таким email уже существует' });
@@ -54,9 +52,7 @@ router.post(
   }
 );
 
-/**
- * POST /api/auth/login
- */
+
 router.post(
   '/login',
   [
@@ -104,10 +100,7 @@ router.post(
   }
 );
 
-/**
- * GET /api/auth/me
- * Возвращает профиль текущего пользователя.
- */
+
 router.get('/me', authMiddleware, async (req, res) => {
   try {
     const result = await pool.query(
@@ -124,10 +117,7 @@ router.get('/me', authMiddleware, async (req, res) => {
   }
 });
 
-/**
- * PUT /api/auth/me
- * Обновление профиля (имя, телефон).
- */
+
 router.put('/me', authMiddleware, [
   body('name').optional().trim().notEmpty(),
   body('phone').optional().trim(),
@@ -155,10 +145,7 @@ router.put('/me', authMiddleware, [
 
 const upload = require('../middleware/upload');
 
-/**
- * POST /api/auth/avatar
- * Загрузка аватара пользователя
- */
+
 router.post('/avatar', authMiddleware, upload.single('avatar'), async (req, res) => {
   try {
     if (!req.file) {
@@ -176,10 +163,7 @@ router.post('/avatar', authMiddleware, upload.single('avatar'), async (req, res)
   }
 });
 
-/**
- * PUT /api/auth/password
- * Изменение пароля
- */
+
 router.put('/password', authMiddleware, [
   body('currentPassword').notEmpty().withMessage('Укажите текущий пароль'),
   body('newPassword').isLength({ min: 6 }).withMessage('Новый пароль минимум 6 символов'),
@@ -207,7 +191,7 @@ router.put('/password', authMiddleware, [
   }
 });
 
-// ─── Хелпер генерации токена ─────────────────────────────────
+
 function generateToken(user) {
   return jwt.sign(
     { id: user.id, email: user.email, role: user.role },

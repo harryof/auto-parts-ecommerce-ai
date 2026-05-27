@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
@@ -10,10 +10,10 @@ export default {
           600: '#D9AB52',
         },
         dark: {
-          800: '#2A3246', // Card background / surface2
-          850: '#21283B', // Surface background
-          900: '#1B2131', // Main background
-          950: '#141824', // Header top / Darker shade
+          800: '#2A3246', 
+          850: '#21283B', 
+          900: '#1B2131', 
+          950: '#141824', 
         },
       },
       fontFamily: {

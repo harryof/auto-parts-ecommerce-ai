@@ -14,12 +14,12 @@ const SupportChat: React.FC = () => {
     e.preventDefault();
     if (!inputStr.trim()) return;
 
-    // Добавляем сообщение пользователя
+    
     const newMsg = { id: Date.now(), text: inputStr, isUser: true };
     setMessages((prev) => [...prev, newMsg]);
     setInputStr('');
 
-    // Имитация ответа нейросети
+    
     setTimeout(() => {
       setMessages((prev) => [
         ...prev,
@@ -34,7 +34,7 @@ const SupportChat: React.FC = () => {
 
   return (
     <>
-      {/* Кнопка открытия/закрытия чата */}
+      
       <button
         onClick={toggleChat}
         className={`fixed bottom-6 right-6 p-4 rounded-full shadow-2xl transition-transform duration-300 z-50 flex items-center justify-center
@@ -47,7 +47,7 @@ const SupportChat: React.FC = () => {
         <MessageSquare size={28} />
       </button>
 
-      {/* Окно чата */}
+      
       <div
         className={`fixed bottom-6 right-6 w-80 md:w-96 rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 z-50 origin-bottom-right glass
           ${isOpen ? 'scale-100 opacity-100' : 'scale-0 opacity-0 pointer-events-none'}`}
@@ -55,7 +55,7 @@ const SupportChat: React.FC = () => {
           height: '500px'
         }}
       >
-        {/* Заголовок */}
+        
         <div 
           className="flex items-center justify-between px-5 py-4"
           style={{ borderBottom: '1px solid var(--color-border2)', background: 'rgba(0,0,0,0.05)' }}
@@ -74,7 +74,7 @@ const SupportChat: React.FC = () => {
           </button>
         </div>
 
-        {/* Область сообщений */}
+        
         <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-3 custom-scrollbar">
           {messages.map((m) => (
             <div key={m.id} className={`flex ${m.isUser ? 'justify-end' : 'justify-start'}`}>
@@ -92,7 +92,7 @@ const SupportChat: React.FC = () => {
           ))}
         </div>
 
-        {/* Форма отправки */}
+        
         <form 
           onSubmit={sendMessage} 
           className="p-3 mb-2 mx-3 rounded-2xl flex items-center gap-2"

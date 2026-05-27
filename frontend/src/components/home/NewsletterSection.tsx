@@ -21,13 +21,13 @@ const NewsletterSection: React.FC = () => {
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         }`}
       >
-        {/* Background Gradients */}
+        
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-500/10 blur-[100px] rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/10 blur-[80px] rounded-full -translate-x-1/2 translate-y-1/2 pointer-events-none" />
 
         <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-20">
           
-          {/* Text Content */}
+          
           <div className="flex-1 text-center lg:text-left max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-primary-400 text-xs font-bold uppercase tracking-widest mb-6">
               <Mail size={14} /> Подписка на новости
@@ -44,7 +44,7 @@ const NewsletterSection: React.FC = () => {
             </p>
           </div>
 
-          {/* Form */}
+          
           <div className="w-full lg:w-auto flex-shrink-0">
             <form
               onSubmit={(e) => e.preventDefault()}

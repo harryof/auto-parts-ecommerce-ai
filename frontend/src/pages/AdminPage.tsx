@@ -5,13 +5,13 @@ const AdminPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'products' | 'news'>('products');
   const [msg, setMsg] = useState('');
 
-  // ─── Products state ───
+  
   const [productForm, setProductForm] = useState({
     name: '', description: '', price: '', oldPrice: '', brand: '', article: '', categoryId: '', subcategoryId: ''
   });
   const [productImg, setProductImg] = useState<File | null>(null);
 
-  // ─── News state ───
+  
   const [newsForm, setNewsForm] = useState({ title: '', excerpt: '', content: '', category: 'События' });
   const [newsImg, setNewsImg] = useState<File | null>(null);
 
@@ -29,7 +29,7 @@ const AdminPage: React.FC = () => {
     if (productImg) fd.append('image', productImg);
 
     try {
-      // Assuming api wrapper doesn't have post product, use raw fetch
+      
       const token = localStorage.getItem('token');
       const res = await fetch('http://localhost:5000/api/products', {
         method: 'POST',

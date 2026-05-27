@@ -40,7 +40,7 @@ const ServiceForm: React.FC<ServiceFormProps> = ({ services }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  /* Shared inline style for all native inputs/selects */
+  
   const fieldStyle: React.CSSProperties = {
     background: "var(--input-bg)",
     color: "var(--input-color)",
@@ -69,7 +69,7 @@ const ServiceForm: React.FC<ServiceFormProps> = ({ services }) => {
       )}
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        {/* Name + Phone */}
+        
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <FieldLabel>Ваше имя *</FieldLabel>
@@ -93,7 +93,7 @@ const ServiceForm: React.FC<ServiceFormProps> = ({ services }) => {
           </div>
         </div>
 
-        {/* Email + Car model */}
+        
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <FieldLabel>Email</FieldLabel>
@@ -117,7 +117,7 @@ const ServiceForm: React.FC<ServiceFormProps> = ({ services }) => {
           </div>
         </div>
 
-        {/* Service select */}
+        
         <div>
           <FieldLabel>Услуга *</FieldLabel>
           <select
@@ -134,7 +134,7 @@ const ServiceForm: React.FC<ServiceFormProps> = ({ services }) => {
           </select>
         </div>
 
-        {/* Date + Time */}
+        
         <div className="grid grid-cols-2 gap-4">
           <div>
             <FieldLabel>Дата *</FieldLabel>
@@ -159,7 +159,7 @@ const ServiceForm: React.FC<ServiceFormProps> = ({ services }) => {
           </div>
         </div>
 
-        {/* Message */}
+        
         <div>
           <FieldLabel>Дополнительная информация</FieldLabel>
           <textarea

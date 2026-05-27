@@ -25,7 +25,7 @@ const ServiceList: React.FC<ServiceListProps> = ({ services }) => {
             key={service.id}
             className="glass rounded-2xl p-5 flex items-start gap-4 group hover:scale-[1.01] transition-transform duration-200"
           >
-            {/* Icon badge */}
+            
             <div
               className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center"
               style={{ background: "rgba(243,193,95,0.12)", color: "#F3C15F" }}

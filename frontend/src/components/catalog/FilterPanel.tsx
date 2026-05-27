@@ -59,7 +59,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
 
   return (
     <div className="glass rounded-2xl p-5 mb-4">
-      {/* Header */}
+      
       <div className="flex items-center justify-between mb-5">
         <div className="flex items-center gap-2">
           <SlidersHorizontal size={15} className="text-primary-400" />
@@ -82,7 +82,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         )}
       </div>
 
-      {/* Active chips */}
+      
       {activeCount > 0 && (
         <div className="flex flex-wrap gap-1.5 mb-5">
           {filters.brands.map((b) => (
@@ -118,7 +118,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         </div>
       )}
 
-      {/* Price */}
+      
       <div className="mb-6">
         <h3 className="text-xs font-semibold text-dark-300 mb-3 uppercase tracking-wider">Цена, ₽</h3>
         <div className="flex gap-2">
@@ -139,7 +139,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         </div>
       </div>
 
-      {/* In stock */}
+      
       <div className="mb-6">
         <h3 className="text-xs font-semibold text-dark-300 mb-3 uppercase tracking-wider">Наличие</h3>
         <label className="flex items-center gap-3 cursor-pointer group">
@@ -155,7 +155,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         </label>
       </div>
 
-      {/* Brands */}
+      
       {availableBrands.length > 0 && (
         <div className="mb-6">
           <h3 className="text-xs font-semibold text-dark-300 mb-3 uppercase tracking-wider">Бренд</h3>
@@ -186,7 +186,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         </div>
       )}
 
-      {/* Colors */}
+      
       {availableColors.length > 0 && (
         <div>
           <h3 className="text-xs font-semibold text-dark-300 mb-3 uppercase tracking-wider">Цвет</h3>

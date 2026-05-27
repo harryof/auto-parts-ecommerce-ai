@@ -26,7 +26,7 @@ const CartItemList: React.FC<CartItemListProps> = ({
         marginBottom: "1.5rem",
       }}
     >
-      {/* Header */}
+      
       <div
         style={{
           padding: "1rem 1.25rem",
@@ -83,7 +83,7 @@ const CartItemList: React.FC<CartItemListProps> = ({
         </button>
       </div>
 
-      {/* Items */}
+      
       <div>
         {items.map((item, idx) => (
           <div
@@ -108,7 +108,7 @@ const CartItemList: React.FC<CartItemListProps> = ({
                 "transparent")
             }
           >
-            {/* Image */}
+            
             <div
               style={{
                 width: "72px",
@@ -132,7 +132,7 @@ const CartItemList: React.FC<CartItemListProps> = ({
               />
             </div>
 
-            {/* Info */}
+            
             <div style={{ flex: 1, minWidth: 0 }}>
               <Link
                 to={`/product/${item.id}`}
@@ -169,7 +169,7 @@ const CartItemList: React.FC<CartItemListProps> = ({
               </div>
             </div>
 
-            {/* Quantity control */}
+            
             <div
               style={{
                 display: "flex",
@@ -271,7 +271,7 @@ const CartItemList: React.FC<CartItemListProps> = ({
               </button>
             </div>
 
-            {/* Price */}
+            
             <div
               style={{
                 fontSize: "1rem",
@@ -285,7 +285,7 @@ const CartItemList: React.FC<CartItemListProps> = ({
               {(item.price * item.quantity).toLocaleString()} ₽
             </div>
 
-            {/* Remove */}
+            
             <button
               onClick={() => removeItem(item.id)}
               style={{

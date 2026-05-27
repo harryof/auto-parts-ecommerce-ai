@@ -72,10 +72,10 @@ const Header: React.FC<HeaderProps> = ({ toggleSideMenu }) => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-colors duration-300" style={{ backgroundColor: 'var(--bg-header)', borderBottom: '1px solid var(--color-border)' }}>
-      {/* ── Main Bar (Search & Actions) ── */}
+      
       <div className="max-w-[1600px] mx-auto px-4 pt-6 pb-2 lg:pt-8 lg:pb-3 flex items-center justify-between">
 
-        {/* Logo */}
+        
         <Link to="/" className="flex-shrink-0 flex items-center w-[160px] sm:w-[200px] lg:w-[280px] h-[40px] lg:h-[50px]">
           <img 
             src={logo} 
@@ -84,7 +84,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSideMenu }) => {
           />
         </Link>
 
-        {/* Mobile menu button */}
+        
         <button
           onClick={() => setMobileMenuOpen(v => !v)}
           className="lg:hidden p-2 text-gray-300 hover:text-white ml-auto"
@@ -92,7 +92,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSideMenu }) => {
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
-        {/* Central Search */}
+        
         <HeaderSearch
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
@@ -100,7 +100,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSideMenu }) => {
           className="flex-1 w-full hidden sm:block mx-4 lg:mx-12 xl:mx-20"
         />
 
-        {/* Actions */}
+        
         <HeaderActions
           currentUser={currentUser}
           userMenuOpen={userMenuOpen}

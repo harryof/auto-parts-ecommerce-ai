@@ -35,7 +35,7 @@ const NewsPage: React.FC = () => {
     fetch('http://localhost:5000/api/news')
       .then(res => res.json())
       .then(data => {
-        // Map backend format to frontend format
+        
         setNewsItems(data.map((item: any) => ({
           id: item.id,
           title: item.title,
@@ -62,7 +62,7 @@ const NewsPage: React.FC = () => {
       </h1>
       <div className="accent-line mx-auto mb-12" />
 
-      {/* News grid */}
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {newsItems.map((item) => (
           <div
@@ -70,14 +70,14 @@ const NewsPage: React.FC = () => {
             className="glass rounded-2xl overflow-hidden group hover:scale-[1.01] transition-transform duration-200"
             style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.1)" }}
           >
-            {/* Image */}
+            
             <div className="relative h-52 overflow-hidden">
               <img
                 src={item.image}
                 alt={item.title}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              {/* Category badge over image */}
+              
               <div className="absolute top-4 left-4">
                 <span
                   className="px-3 py-1 rounded-full text-xs font-bold backdrop-blur-sm"
@@ -92,7 +92,7 @@ const NewsPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Content */}
+            
             <div className="p-6">
               <div className="flex items-center justify-between mb-3">
                 <span className="text-xs text-dark-400">
@@ -121,7 +121,7 @@ const NewsPage: React.FC = () => {
         ))}
       </div>
 
-      {/* Subscribe block */}
+      
       <div className="mt-14 glass rounded-3xl p-10 text-center" style={{ border: "1px solid rgba(243,193,95,0.2)" }}>
         <h2 className="section-title mb-4">
           Подпишитесь на <span>новости</span>

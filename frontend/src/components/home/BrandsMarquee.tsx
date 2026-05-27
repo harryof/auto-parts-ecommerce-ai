@@ -15,7 +15,7 @@ const BrandsMarquee: React.FC = () => {
       </div>
       
       <div className="relative flex overflow-x-hidden">
-        {/* Gradients to fade edges */}
+        
         <div className="absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-dark-950 to-transparent z-10 pointer-events-none" />
         <div className="absolute top-0 bottom-0 right-0 w-32 bg-gradient-to-l from-dark-950 to-transparent z-10 pointer-events-none" />
 

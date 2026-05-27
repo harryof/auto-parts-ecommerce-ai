@@ -10,17 +10,17 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="relative mt-10 overflow-hidden">
-      {/* Gradient top border */}
+      
       <div className="h-px w-full" style={{ background: 'linear-gradient(90deg, transparent, #e11d48 40%, #fb923c 60%, transparent)' }} />
 
-      {/* Bg decoration */}
+      
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary-900/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary-900/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-[1600px] mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10">
 
-          {/* Brand */}
+          
           <div>
             <Link to="/" className="inline-block mb-4">
               <img 
@@ -46,7 +46,7 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Catalog */}
+          
           <div>
             <h3 className="text-sm font-bold uppercase tracking-wider text-white mb-3">Каталог</h3>
             <div className="accent-line w-8 mb-5" />
@@ -69,7 +69,7 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Info */}
+          
           <div>
             <h3 className="text-sm font-bold uppercase tracking-wider text-white mb-3">Информация</h3>
             <div className="accent-line w-8 mb-5" />
@@ -91,7 +91,7 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Newsletter + Social */}
+          
           <div>
             <h3 className="text-sm font-bold uppercase tracking-wider text-white mb-3">Рассылка</h3>
             <div className="accent-line w-8 mb-5" />
@@ -127,7 +127,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom */}
+        
         <div className="mt-12 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-dark-500">© {year} AutoParts. Все права защищены.</p>
           <div className="flex flex-wrap gap-5">

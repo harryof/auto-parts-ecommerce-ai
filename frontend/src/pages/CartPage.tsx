@@ -11,7 +11,7 @@ const CartPage: React.FC = () => {
   const [deliveryMethod, setDeliveryMethod] = useState("courier");
   const [paymentMethod, setPaymentMethod] = useState("card");
 
-  // Calculate totals
+  
   const subtotal = items.reduce(
     (total, item) => total + item.price * item.quantity,
     0

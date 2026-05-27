@@ -1,15 +1,8 @@
-/**
- * Сервис для работы с Backend API.
- * Базовый URL: /api (проксируется Vite на http://localhost:5000)
- *
- * Использование:
- *   import api from '../services/api';
- *   const products = await api.getProducts({ category: 'spare-parts' });
- */
+
 
 const BASE_URL = '/api';
 
-// ─── Хелпер запросов ─────────────────────────────────────────
+
 async function request(path: string, options: RequestInit = {}): Promise<any> {
   const token = localStorage.getItem('token');
 
@@ -36,9 +29,6 @@ async function request(path: string, options: RequestInit = {}): Promise<any> {
   return data;
 }
 
-// ─────────────────────────────────────────────────────────────
-// PRODUCTS
-// ─────────────────────────────────────────────────────────────
 
 export interface ProductFilters {
   category?: string;
@@ -91,7 +81,7 @@ export interface Product {
   createdAt: string;
 }
 
-/** Получить список товаров с фильтрами */
+
 async function getProducts(filters: ProductFilters = {}): Promise<ProductsResponse> {
   const params = new URLSearchParams();
   Object.entries(filters).forEach(([key, val]) => {
@@ -103,19 +93,16 @@ async function getProducts(filters: ProductFilters = {}): Promise<ProductsRespon
   return request(`/products${qs ? '?' + qs : ''}`);
 }
 
-/** Получить один товар по ID */
+
 async function getProduct(id: string): Promise<Product> {
   return request(`/products/${id}`);
 }
 
-/** Получить хиты и рекомендованные товары (до 12) */
+
 async function getFeaturedProducts(): Promise<Product[]> {
   return request('/products/featured');
 }
 
-// ─────────────────────────────────────────────────────────────
-// CATEGORIES
-// ─────────────────────────────────────────────────────────────
 
 export interface SubCategory {
   id: string;
@@ -131,19 +118,16 @@ export interface Category {
   subCategories: SubCategory[];
 }
 
-/** Получить все категории с подкатегориями */
+
 async function getCategories(): Promise<Category[]> {
   return request('/categories');
 }
 
-/** Получить одну категорию */
+
 async function getCategory(id: string): Promise<Category> {
   return request(`/categories/${id}`);
 }
 
-// ─────────────────────────────────────────────────────────────
-// AUTH
-// ─────────────────────────────────────────────────────────────
 
 export interface User {
   id: string;
@@ -159,7 +143,7 @@ export interface AuthResponse {
   user: User;
 }
 
-/** Регистрация нового пользователя */
+
 async function register(data: {
   name: string;
   email: string;
@@ -177,7 +161,7 @@ async function register(data: {
   return result;
 }
 
-/** Вход в аккаунт */
+
 async function login(email: string, password: string): Promise<AuthResponse> {
   const result = await request('/auth/login', {
     method: 'POST',
@@ -190,18 +174,18 @@ async function login(email: string, password: string): Promise<AuthResponse> {
   return result;
 }
 
-/** Выход из аккаунта */
+
 function logout(): void {
   localStorage.removeItem('token');
   localStorage.removeItem('currentUser');
 }
 
-/** Получить профиль текущего пользователя */
+
 async function getMe(): Promise<User> {
   return request('/auth/me');
 }
 
-/** Обновить профиль */
+
 async function updateMe(data: { name?: string; phone?: string }): Promise<User> {
   return request('/auth/me', {
     method: 'PUT',
@@ -209,20 +193,17 @@ async function updateMe(data: { name?: string; phone?: string }): Promise<User> 
   });
 }
 
-/** Проверить, авторизован ли пользователь (локально) */
+
 function isAuthenticated(): boolean {
   return !!localStorage.getItem('token');
 }
 
-/** Получить текущего пользователя из localStorage */
+
 function getCurrentUser(): User | null {
   const raw = localStorage.getItem('currentUser');
   return raw ? JSON.parse(raw) : null;
 }
 
-// ─────────────────────────────────────────────────────────────
-// ORDERS
-// ─────────────────────────────────────────────────────────────
 
 export interface OrderItem {
   id: number;
@@ -242,12 +223,12 @@ export interface Order {
   items: OrderItem[];
 }
 
-/** Получить заказы текущего пользователя */
+
 async function getOrders(): Promise<Order[]> {
   return request('/orders');
 }
 
-/** Создать заказ */
+
 async function createOrder(data: {
   items: { productId: string; quantity: number }[];
   deliveryAddress?: string;
@@ -259,20 +240,16 @@ async function createOrder(data: {
   });
 }
 
-// ─────────────────────────────────────────────────────────────
-// AI CHAT
-// ─────────────────────────────────────────────────────────────
 
 export interface ChatMessage {
   role: 'user' | 'assistant' | 'system';
   content: string;
 }
 
-/** Отправка сообщения в AI Ассистент */
+
 async function sendChatMessage(message: string, history: ChatMessage[] = []): Promise<ChatMessage> {
-  // /api/chat проксируется:
-  //   локально — через Vite proxy → localhost:5000 (backend не обрабатывает, нужна отдельная nginx-логика)
-  //   в Docker  — Nginx проксирует /api/chat → ai-agent:5001/api/chat
+  
+  
   const response = await fetch('/api/chat', {
     method: 'POST',
     headers: {
@@ -288,9 +265,6 @@ async function sendChatMessage(message: string, history: ChatMessage[] = []): Pr
   return data;
 }
 
-// ─────────────────────────────────────────────────────────────
-// VIN SEARCH
-// ─────────────────────────────────────────────────────────────
 
 export interface VinCar {
   vin: string;
@@ -309,30 +283,28 @@ export interface VinSearchResponse {
   total: number;
 }
 
-/** Найти автомобиль по VIN */
+
 async function vinLookup(vin: string): Promise<VinCar> {
   return request(`/vin/lookup?vin=${encodeURIComponent(vin)}`);
 }
 
-/** Найти запчасти по VIN и названию детали */
+
 async function searchByVin(vin: string, part: string): Promise<VinSearchResponse> {
   const params = new URLSearchParams({ vin });
   if (part) params.set('part', part);
   return request(`/vin/search?${params.toString()}`);
 }
 
-// ─────────────────────────────────────────────────────────────
-// Экспорт
-// ─────────────────────────────────────────────────────────────
+
 const api = {
-  // Products
+  
   getProducts,
   getProduct,
   getFeaturedProducts,
-  // Categories
+  
   getCategories,
   getCategory,
-  // Auth
+  
   register,
   login,
   logout,
@@ -340,12 +312,12 @@ const api = {
   updateMe,
   isAuthenticated,
   getCurrentUser,
-  // Orders
+  
   getOrders,
   createOrder,
-  // AI
+  
   sendChatMessage,
-  // VIN
+  
   vinLookup,
   searchByVin,
 };

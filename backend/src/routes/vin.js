@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const pool = require('../db/pool');
 
-// Загружаем VIN-датасет один раз при старте
+
 const VINS_PATH = path.join(__dirname, '../../vins_dataset.json');
 let vinsDataset = [];
 try {
@@ -14,21 +14,17 @@ try {
   console.error('⚠️  Не удалось загрузить vins_dataset.json:', e.message);
 }
 
-/**
- * Найти авто по VIN:
- * 1. Точное совпадение
- * 2. По первым 3 символам (WMI) — производитель
- */
+
 function lookupVin(vin) {
   const upperVin = vin.trim().toUpperCase();
 
-  // Точное совпадение
+  
   const exact = vinsDataset.find(v => v.vin.toUpperCase() === upperVin);
   if (exact) {
     return { ...exact, matchType: 'exact' };
   }
 
-  // По WMI (первые 3 символа)
+  
   const wmi = upperVin.slice(0, 3);
   const byWmi = vinsDataset.find(v => v.vin.toUpperCase().startsWith(wmi));
   if (byWmi) {
@@ -38,10 +34,7 @@ function lookupVin(vin) {
   return null;
 }
 
-/**
- * GET /api/vin/lookup?vin=XTACGNE3T1VL67P3D
- * Определяет автомобиль по VIN
- */
+
 router.get('/lookup', (req, res) => {
   const { vin } = req.query;
 
@@ -61,10 +54,7 @@ router.get('/lookup', (req, res) => {
   res.json(result);
 });
 
-/**
- * GET /api/vin/search?vin=XTACGNE3T1VL67P3D&part=тормозные+колодки
- * Ищет подходящие запчасти по VIN + название детали
- */
+
 router.get('/search', async (req, res) => {
   const { vin, part } = req.query;
 
@@ -72,7 +62,7 @@ router.get('/search', async (req, res) => {
     return res.status(400).json({ error: 'Укажите VIN (минимум 3 символа)' });
   }
 
-  // Определяем авто
+  
   const car = lookupVin(vin);
   if (!car) {
     return res.status(404).json({
@@ -86,11 +76,11 @@ router.get('/search', async (req, res) => {
     const conditions = [];
     let pIdx = 1;
 
-    // Фильтр по марке авто через compatible_cars (JSON array как text)
+    
     conditions.push(`p.compatible_cars::text ILIKE $${pIdx++}`);
     params.push(`%${car.make}%`);
 
-    // Поиск по названию запчасти (если указан)
+    
     if (part && part.trim()) {
       conditions.push(`(
         p.name ILIKE $${pIdx} OR
@@ -101,8 +91,7 @@ router.get('/search', async (req, res) => {
       params.push(`%${part.trim()}%`);
       pIdx++;
 
-      // Дополнительно: точный полнотекстовый поиск по русскому языку
-      // (уже встроен выше через ILIKE)
+      
     }
 
     const where = 'WHERE ' + conditions.join(' AND ');

@@ -4,7 +4,7 @@ const pool = require('../db/pool');
 const { authMiddleware, adminMiddleware } = require('../middleware/auth');
 const upload = require('../middleware/upload');
 
-// GET /api/news
+
 router.get('/', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM news ORDER BY created_at DESC');
@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET /api/news/:id
+
 router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -28,9 +28,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// POST /api/news (Admin only)
-// Notice we don't have adminMiddleware defined yet, we'll just check role in authMiddleware if needed, or add logic here.
-// For now, let's just use authMiddleware and check role inside.
+
 router.post('/', authMiddleware, upload.single('image'), async (req, res) => {
   try {
     if (req.user.role !== 'admin') {

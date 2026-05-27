@@ -9,7 +9,7 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
 });
 
-// Проверка подключения при старте
+
 pool.connect((err, client, release) => {
   if (err) {
     console.error('❌ Ошибка подключения к PostgreSQL:', err.message);
